@@ -1,0 +1,5 @@
+dotnet-hosting-2.1.6-win.exe  环境配置
+dotnet-runtime-2.1.6-win-x64.exe  运行时配置
+dotnet-sdk-2.1.500-win-x64.exe  项目sdk配置
+
+dotnet-sdk-2.1.500-win-x86.exe  项目sdk配置  该项是情况而定
