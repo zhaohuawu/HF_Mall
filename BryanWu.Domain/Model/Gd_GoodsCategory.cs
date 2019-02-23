@@ -5,16 +5,14 @@ using System.Text;
 namespace BryanWu.Domain.Model
 {
     ///<summary>
-    ///系统操作参数管理
+    ///商品类目
     ///</summary>
-    public partial class Sys_Option
+    public partial class Gd_GoodsCategory
     {
-        public Sys_Option()
+        public Gd_GoodsCategory()
         {
-            this.EnumCode = 0;
-            this.Levels = 1;
-            this.Orders = 0;
-            this.IsHide = 0;
+
+
         }
         /// <summary>
         /// Desc:
@@ -24,72 +22,74 @@ namespace BryanWu.Domain.Model
         public int Id { get; set; }
 
         /// <summary>
-        /// Desc:参数名称
+        /// Desc:类目父Id
         /// Default:
         /// Nullable:False
         /// </summary>           
-        public string GroupName { get; set; }
+        public int Pid { get; set; }
 
         /// <summary>
-        /// Desc:参数关键词
+        /// Desc:类目名称
         /// Default:
         /// Nullable:False
         /// </summary>           
-        public string GroupKey { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
-        /// Desc:参数编码
-        /// Default:0
-        /// Nullable:False
-        /// </summary>           
-        public int EnumCode { get; set; }
-
-        /// <summary>
-        /// Desc:参数编码类型名
+        /// Desc:类目级别
         /// Default:
         /// Nullable:False
         /// </summary>           
-        public string EnumName { get; set; }
+        public int Level { get; set; }
 
         /// <summary>
-        /// Desc:参数编码类型描述
+        /// Desc:排序
         /// Default:
-        /// Nullable:True
+        /// Nullable:False
         /// </summary>           
-        public string EnumLabel { get; set; }
+        public int Orders { get; set; }
 
         /// <summary>
-        /// Desc:参数编码类型描述
+        /// Desc:类目缩写
+        /// Default:
+        /// Nullable:False
+        /// </summary>           
+        public string Abbreviation { get; set; }
+
+        /// <summary>
+        /// Desc:是否商城显示
+        /// Default:1
+        /// Nullable:False
+        /// </summary>           
+        public string IsShow { get; set; }
+
+        /// <summary>
+        /// Desc:图片路径
+        /// Default:
+        /// Nullable:False
+        /// </summary>           
+        public string ImgUrl { get; set; }
+
+        /// <summary>
+        /// Desc:备注
         /// Default:
         /// Nullable:True
         /// </summary>           
         public string Remark { get; set; }
 
         /// <summary>
-        /// Desc:级别
-        /// Default:1
-        /// Nullable:False
-        /// </summary>           
-        public int Levels { get; set; }
-
-        /// <summary>
-        /// Desc:排序
-        /// Default:0
-        /// Nullable:False
-        /// </summary>           
-        public int Orders { get; set; }
-
-        /// <summary>
         /// Desc:创建时间
-        /// Default:CURRENT_TIMESTAMP
+        /// Default:
         /// Nullable:False
         /// </summary>           
         public DateTime CrtDate { get; set; }
 
         /// <summary>
-        /// 是否隐藏
-        /// </summary>
-        public int IsHide { get; set; }
+        /// Desc:修改时间
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public DateTime? ModifyDate { get; set; }
 
     }
 }

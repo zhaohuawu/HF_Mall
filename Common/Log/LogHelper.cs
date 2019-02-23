@@ -19,7 +19,7 @@ namespace Common.Log
         #region log4Net
 
         public static ILoggerRepository _repository;
-        private readonly ILog _log;
+        public ILog _log;
 
         /// <summary>
         /// 创建一个记录实体
@@ -27,13 +27,13 @@ namespace Common.Log
         public LogHelper()
         {
             //_repository = LogManager.CreateRepository(EnumLoggerReository.NETCoreRepository.ToString());
-            _log = log4net.LogManager.GetLogger(_repository.Name, EnumLogger.commonLogger.ToString());
+            _log = LogManager.GetLogger(_repository.Name, EnumLogger.commonLogger.ToString());
         }
 
         public LogHelper(EnumLogger logger)
         {
             //_repository = LogManager.CreateRepository(EnumLoggerReository.NETCoreRepository.ToString());
-            _log = log4net.LogManager.GetLogger(_repository.Name, logger.ToString());
+            _log = LogManager.GetLogger(_repository.Name, logger.ToString());
         }
 
         /// <summary>

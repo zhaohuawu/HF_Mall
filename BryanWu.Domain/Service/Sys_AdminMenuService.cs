@@ -83,6 +83,9 @@ namespace BryanWu.Domain.Service
         {
             return _repository.UpdateColumns(columns, model, isLock) > 0;
         }
+
+        #region private method
+        
         /// <summary>
         /// 下移>=OrderBy排序之间的菜单一位
         /// </summary>
@@ -139,6 +142,8 @@ namespace BryanWu.Domain.Service
             dic.Add("maxOrderBy", maxOrderBy);
             return _repository.ExcuteSql("update Sys_AdminMenu set Orders=Orders-1 where Pid=@pid and Orders>@minOrderBy and Orders<=@maxOrderBy", dic);
         }
+
+        #endregion
 
         #region 业务逻辑
         /// <summary>

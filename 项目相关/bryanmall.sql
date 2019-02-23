@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2019-02-21 18:02:29
+Date: 2019-02-23 11:58:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,10 +30,14 @@ CREATE TABLE `gd_goods` (
   `PriceFreight` decimal(10,4) NOT NULL DEFAULT '0.0000' COMMENT '运费',
   `PriceFreightAdditional` decimal(10,4) NOT NULL DEFAULT '0.0000' COMMENT '偏远地区附加运费',
   `Stock` int(11) NOT NULL DEFAULT '0' COMMENT '商品库存',
-  `SpecificationsNumber` int(11) NOT NULL DEFAULT '1' COMMENT '规格数量',
+  `SpecsNumber` int(11) NOT NULL DEFAULT '1' COMMENT '规格数量',
+  `SpecsJson` varchar(50) NOT NULL COMMENT '规格类型Json，如：[{Key："颜色","Value":["黑色","红色"]},{Key:"内存","Value":["16G","32G"]}}]',
   `RemoteRegion` varchar(200) DEFAULT NULL COMMENT '偏远地区',
   `ImgSmall` varchar(255) NOT NULL COMMENT '图片缩略图',
   `Remark` varchar(255) DEFAULT NULL COMMENT '商品描述',
+  `CrtDate` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
+  `ModifyDate` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改日期',
+  `BrandId` int(11) NOT NULL DEFAULT '0' COMMENT '品牌Id（sys_option主键）',
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商品信息';
 
@@ -77,7 +81,7 @@ CREATE TABLE `gd_goodscategory` (
   `ImgUrl` varchar(500) NOT NULL COMMENT '图片路径',
   `Remark` varchar(100) DEFAULT NULL COMMENT '备注',
   `CrtDate` datetime NOT NULL COMMENT '创建时间',
-  `ModifyDate` datetime NOT NULL COMMENT '修改时间',
+  `ModifyDate` datetime DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商品类目';
 
@@ -91,11 +95,56 @@ CREATE TABLE `gd_goodscategory` (
 DROP TABLE IF EXISTS `gd_goodsimg`;
 CREATE TABLE `gd_goodsimg` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `GoodsId` varchar(32) NOT NULL COMMENT '商品Id',
+  `TypeId` int(4) NOT NULL DEFAULT '0' COMMENT '图片类型',
+  `UploadFileId` int(11) NOT NULL DEFAULT '0' COMMENT '上传文件ID（sys_uploadfile主键）',
+  `Orders` int(4) NOT NULL DEFAULT '0' COMMENT '排序',
+  `ImgUrl` varchar(200) NOT NULL,
+  `CrtDate` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
+  `IsDelete` int(1) NOT NULL DEFAULT '0' COMMENT '是否删除',
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商品图片';
 
 -- ----------------------------
 -- Records of gd_goodsimg
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for gd_goodsinfo
+-- ----------------------------
+DROP TABLE IF EXISTS `gd_goodsinfo`;
+CREATE TABLE `gd_goodsinfo` (
+  `GoodsId` varchar(32) NOT NULL,
+  `GoodsDetails` text NOT NULL COMMENT '商品详情',
+  `GoodsParamsJson` varchar(1000) NOT NULL COMMENT '商品参数，如：{“品牌”:"新百伦",“尺码”:"38/39/40/41"}',
+  `CrtDate` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
+  `ModifyDate` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改日期',
+  PRIMARY KEY (`GoodsId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of gd_goodsinfo
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for gd_goodsspecs
+-- ----------------------------
+DROP TABLE IF EXISTS `gd_goodsspecs`;
+CREATE TABLE `gd_goodsspecs` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `GoodsId` varchar(32) NOT NULL COMMENT '商品Id',
+  `SpecsJosn` varchar(100) NOT NULL COMMENT '商品规格json数据，如：{"颜色":"金色","内存":"32G"}',
+  `Stock` int(11) NOT NULL DEFAULT '0' COMMENT '规格库存',
+  `SkuImgUrl` varchar(200) DEFAULT NULL COMMENT '规格缩略图',
+  `CrtDate` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
+  `ModifyDate` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改日期',
+  `Price` decimal(10,4) NOT NULL DEFAULT '0.0000' COMMENT '规格价格',
+  `IsDelete` int(2) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商品规格';
+
+-- ----------------------------
+-- Records of gd_goodsspecs
 -- ----------------------------
 
 -- ----------------------------
@@ -288,6 +337,7 @@ CREATE TABLE `sys_option` (
   `Levels` int(11) NOT NULL DEFAULT '1' COMMENT '级别',
   `Orders` int(11) NOT NULL DEFAULT '0' COMMENT '排序',
   `CrtDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `IsHide` int(2) NOT NULL DEFAULT '0' COMMENT '是否隐藏',
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='系统操作参数管理';
 
