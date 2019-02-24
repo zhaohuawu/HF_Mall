@@ -82,6 +82,7 @@ namespace Bryan.WebApi.Areas.Role.Models
         public int PageIndex { get; set; }
         public int PageSize { get; set; }
         public string RealName { get; set; }
+        public string UserName { get; set; }
         public int Status { get; set; }
     }
 

@@ -40,26 +40,45 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// <summary>
         /// 获取角色列表
         /// </summary>
-        /// <param name="page">分页第几页</param>
-        /// <param name="pageSize">每页的数量</param>
-        /// <param name="roleName">角色名称（可以为空，但是必须传该参数到后台）</param>
-        /// <param name="isForbidden">是否禁用，-1：全部，0：正常，1：禁用</param>
+        /// <param name="PageIndex">分页第几页</param>
+        /// <param name="PageSize">每页的数量</param>
+        /// <param name="RoleName">角色名称（可以为空，但是必须传该参数到后台）</param>
+        /// <param name="IsForbidden">是否禁用，-1：全部，0：正常，1：禁用</param>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult GetAdminRolesList(int page, int pageSize, int isForbidden, string roleName)
+        public IActionResult GetAdminRolesList(int PageIndex, int PageSize, int IsForbidden, string RoleName)
         {
             string code = "000000";
-            var pageSet = new PageSet();
-            pageSet.PageIndex = page > 0 ? page : 1;
-            pageSet.PageSize = pageSize > 0 ? pageSize : 30;
+            var pageSet = new PageSet(PageIndex, PageSize);
             var where = PredicateBuilder.True<Sys_AdminRole>();
-            if (!string.IsNullOrEmpty(roleName))
-                where = where.And(p => p.RoleName.Contains(roleName));
-            if (isForbidden > 0)
-                where = where.And(p => p.IsForbidden == isForbidden);
-            var list = _sysAdminRoleService.GetPageList(where, pageSet, p => p.CrtDate, true, true);
-            if (list.RecordCount > 0)
+            if (!string.IsNullOrEmpty(RoleName))
+                where = where.And(p => RoleName.Contains(p.RoleName));
+            if (IsForbidden > 0)
+                where = where.And(p => p.IsForbidden == IsForbidden);
+            var list = _sysAdminRoleService.GetPageList(where, pageSet, p => p.CrtDate, true, false);
+            if (list.RecordCount == 0)
                 code = "000200";
+            return ReturnJson(code, list);
+        }
+
+        /// <summary>
+        /// 根据角色获取权限
+        /// </summary>
+        /// <param name="roleId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult GetRolePerList(int roleId)
+        {
+            string code = "000000";
+            var list = _sysAdminPermissionService.GetList(p => p.RoleId == roleId, p => p.Id).Select(model => new
+            {
+                Id = model.Id,
+                TypeId = model.Type + "_" + model.MenuId,
+                roleId
+            }).ToList();
+            if (list.Count == 0)
+                return ReturnJson("000001");
+
             return ReturnJson(code, list);
         }
 
@@ -93,6 +112,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                             perModel.MenuId = item.MenuId;
                             perModel.RoleId = role.Id;
                             perModel.UserId = _userId;
+                            perModel.Type = item.Type;
                             perList.Add(perModel);
                         }
                         _sysAdminPermissionService.InsertList(perList);
@@ -127,7 +147,8 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                 }
                 else
                     role.IsForbidden = 0;
-                _sysAdminRoleService.UpdateColumns(p => new { p.IsForbidden }, role, true);
+                role.ModifyDate = DateTime.Now;
+                _sysAdminRoleService.UpdateColumns(p => new { p.IsForbidden, p.ModifyDate }, role, true);
             }
             else
                 code = "100007";
@@ -155,7 +176,9 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                         role.Id = model.RoleId;
                         role.RoleName = model.RoleName;
                         role.Remark = model.Remark;
-                        _sysAdminRoleService.UpdateColumns(p => new { p.RoleName, p.Remark }, role, true);
+                        role.IsForbidden = model.IsForbidden;
+                        role.ModifyDate = DateTime.Now;
+                        _sysAdminRoleService.UpdateColumns(p => new { p.RoleName, p.Remark, p.IsForbidden, p.ModifyDate }, role, true);
                     });
                     //异步更新角色权限
                     //if (model.MenuList.Where(p => p.Status == (int)RoleMenuStatus.update).Count() > 0)
@@ -196,6 +219,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                                 perModel.CrtDate = now;
                                 perModel.RoleId = model.RoleId;
                                 perModel.UserId = _userId;
+                                perModel.Type = item.Type;
                                 perList.Add(perModel);
                             }
                             _sysAdminPermissionService.InsertList(perList);
@@ -245,6 +269,34 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                 {
                     var returnMenuTree = new ReturnMenuTree(item1.Id, item1.MenuName, new List<ReturnMenuTree>());
                     Common.Util.MenuTree(returnMenuTree, list, item1.Id);
+                    returnList.Add(returnMenuTree);
+                }
+
+            }
+            return ReturnJson(code, returnList);
+        }
+
+        /// <summary>
+        /// 获取全部菜单
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult GetMenuListFromRole()
+        {
+            string code = "000000";
+            var list = _sysAdminMenuService.GetList(p => true, p => p.Pid);
+            var btnList = _sysAdminMenuBtnService.GetList(p => p.IsForbidden == 0, p => p.MenuId);
+            var returnList = new List<ReturnRoleMenuTree>();
+            if (list.Count == 0)
+                code = "000001";
+            else
+            {
+                var lel1List = list.Where(p => p.Level == 1).ToList();
+                var menu = new ReturnRoleMenuTree();
+                foreach (var item1 in lel1List)
+                {
+                    var returnMenuTree = new ReturnRoleMenuTree("url_" + item1.Id, item1.Id, item1.MenuName, "url", new List<ReturnRoleMenuTree>());
+                    Common.Util.RoleMenuTree(returnMenuTree, list, item1.Id, btnList);
                     returnList.Add(returnMenuTree);
                 }
 

@@ -14,10 +14,10 @@ namespace Common.Repository
             this.PageSize = 10;
         }
 
-        public PageSet(int pageIndex,int pageSize)
+        public PageSet(int pageIndex, int pageSize)
         {
-            this.PageIndex = PageIndex;
-            this.PageSize = pageSize;
+            this.PageIndex = pageIndex > 0 ? pageIndex : 1;
+            this.PageSize = pageSize > 0 ? pageSize : 30;
         }
 
         /// <summary>

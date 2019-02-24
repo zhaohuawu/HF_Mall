@@ -52,6 +52,12 @@ namespace BryanWu.Domain.Model
         /// 是否禁用，0：正常，1：禁用
         /// </summary>
         public int IsForbidden { get; set; }
+        /// <summary>
+        /// Desc:修改日期
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public DateTime? ModifyDate { get; set; }
 
     }
 }

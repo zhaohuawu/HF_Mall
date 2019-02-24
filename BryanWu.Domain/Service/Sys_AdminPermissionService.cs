@@ -41,7 +41,7 @@ namespace BryanWu.Domain.Service
 
         public List<Sys_AdminPermission> GetList(Expression<Func<Sys_AdminPermission, bool>> where, Expression<Func<Sys_AdminPermission, object>> orderBy, bool isDesc = false)
         {
-            throw new NotImplementedException();
+            return _repository.GetList(where, orderBy, isDesc);
         }
 
         public TResult GetOneKey<TResult>(Expression<Func<Sys_AdminPermission, bool>> where, Expression<Func<Sys_AdminPermission, TResult>> filed)

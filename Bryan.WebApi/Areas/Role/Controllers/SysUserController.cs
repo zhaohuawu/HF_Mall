@@ -77,7 +77,9 @@ namespace Bryan.WebApi.Areas.Role.Controllers
             pageSet.PageSize = model.PageSize;
             var where = PredicateBuilder.True<Sys_User>();
             if (!string.IsNullOrEmpty(model.RealName))
-                where = where.And(n => n.RealName.Contains(model.RealName));
+                where = where.And(n => model.RealName.Contains(n.RealName));
+            if (!string.IsNullOrEmpty(model.UserName))
+                where = where.And(n => model.UserName.Contains(n.UserName));
             if (model.Status > 0)
                 where = where.And(n => n.Status == model.Status);
 
@@ -86,7 +88,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                 code = "000200";
             return ReturnJson(code, list);
         }
-        
+
 
         /// <summary>
         /// 注册账号
@@ -148,7 +150,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
              });
             return tt;
         }
-        
+
         /// <summary>
         /// 修改账号状态
         /// </summary>

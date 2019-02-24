@@ -11,6 +11,10 @@ namespace Bryan.WebApi.Areas.Role.Models
     public class FromAddRole
     {
         /// <summary>
+        /// 角色Id
+        /// </summary>
+        public int RoleId { get; set; }
+        /// <summary>
         /// Desc:角色名称
         /// </summary>           
         public string RoleName { get; set; }
@@ -19,6 +23,11 @@ namespace Bryan.WebApi.Areas.Role.Models
         /// Desc:角色描述
         /// </summary>           
         public string Remark { get; set; }
+
+        /// <summary>
+        /// 是否禁用，0：正常，1：禁用
+        /// </summary>
+        public int IsForbidden { get; set; }
 
         /// <summary>
         /// 角色权限下的菜单Id列表
@@ -41,6 +50,11 @@ namespace Bryan.WebApi.Areas.Role.Models
         public string RoleName { get; set; }
 
         /// <summary>
+        /// 是否禁用，0：正常，1：禁用
+        /// </summary>
+        public int IsForbidden { get; set; }
+
+        /// <summary>
         /// 角色描述
         /// </summary>           
         public string Remark { get; set; }
@@ -49,6 +63,38 @@ namespace Bryan.WebApi.Areas.Role.Models
         /// 角色权限下的菜单Id列表
         /// </summary>
         public List<RoleMenu> MenuList { get; set; }
+    }
+    /// <summary>
+    /// 添加角色中的授权页面菜单树
+    /// </summary>
+    public class ReturnRoleMenuTree
+    {
+        public ReturnRoleMenuTree() { }
+        public ReturnRoleMenuTree(string typeId, int id, string menuName, string type, List<ReturnRoleMenuTree> children)
+        {
+            this.TypeId = typeId;
+            this.Id = id;
+            this.MenuName = menuName;
+            this.Type = type;
+            this.Children = children;
+        }
+        public string TypeId { get; set; }
+        /// <summary>
+        /// 菜单主键
+        /// </summary>
+        public int Id { get; set; }
+        /// <summary>
+        /// 菜单名
+        /// </summary>
+        public string MenuName { get; set; }
+        /// <summary>
+        /// 菜单类型
+        /// </summary>
+        public string Type { get; set; }
+        /// <summary>
+        /// 子菜单列表
+        /// </summary>
+        public List<ReturnRoleMenuTree> Children { get; set; }
     }
 
     public class RoleMenu
@@ -69,6 +115,11 @@ namespace Bryan.WebApi.Areas.Role.Models
         /// 菜单按钮json字符串
         /// </summary>
         public string BtnJson { get; set; }
+        /// <summary>
+        /// 菜单类型
+        /// </summary>
+        public string Type { get; set; }
+
     }
 
     /// <summary>
@@ -171,7 +222,10 @@ namespace Bryan.WebApi.Areas.Role.Models
         /// </summary>           
         public int IsForbidden { get; set; }
     }
-    
+
+    /// <summary>
+    /// 菜单管理中的菜单树
+    /// </summary>
     public class ReturnMenuTree
     {
         public ReturnMenuTree() { }

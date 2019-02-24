@@ -36,6 +36,11 @@ namespace BryanWu.Domain.Model
         public int RoleId { get; set; }
 
         /// <summary>
+        /// 菜单类型
+        /// </summary>
+        public string Type { get; set; }
+
+        /// <summary>
         /// Desc:
         /// Default:CURRENT_TIMESTAMP
         /// Nullable:False
