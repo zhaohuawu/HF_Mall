@@ -61,5 +61,9 @@ namespace BryanWu.Domain.Model
         /// </summary>           
         public string BtnJson { get; set; }
 
+        /// <summary>
+        /// 选中状态（checkd：选中，half：半选中）
+        /// </summary>
+        public string CheckStatus { get; set; }
     }
 }

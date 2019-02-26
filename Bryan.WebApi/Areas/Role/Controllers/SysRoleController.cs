@@ -74,7 +74,8 @@ namespace Bryan.WebApi.Areas.Role.Controllers
             {
                 Id = model.Id,
                 TypeId = model.Type + "_" + model.MenuId,
-                roleId
+                CheckStatus = model.CheckStatus,
+                RoleId = model.RoleId
             }).ToList();
             if (list.Count == 0)
                 return ReturnJson("000001");
@@ -113,6 +114,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                             perModel.RoleId = role.Id;
                             perModel.UserId = _userId;
                             perModel.Type = item.Type;
+                            perModel.CheckStatus = item.CheckStatus;
                             perList.Add(perModel);
                         }
                         _sysAdminPermissionService.InsertList(perList);
@@ -181,27 +183,28 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                         _sysAdminRoleService.UpdateColumns(p => new { p.RoleName, p.Remark, p.IsForbidden, p.ModifyDate }, role, true);
                     });
                     //异步更新角色权限
-                    //if (model.MenuList.Where(p => p.Status == (int)RoleMenuStatus.update).Count() > 0)
-                    //{
-                    //    Task.Run(() =>
-                    //    {
-                    //        var perList = new List<Sys_AdminPermission>();
-                    //        var menuList = model.MenuList.Where(p => p.Status == (int)RoleMenuStatus.update);
+                    if (model.MenuList.Where(p => p.Status == (int)RoleMenuStatus.update).Count() > 0)
+                    {
+                        Task.Run(() =>
+                        {
+                            var perList = new List<Sys_AdminPermission>();
+                            var menuList = model.MenuList.Where(p => p.Status == (int)RoleMenuStatus.update);
 
-                    //        foreach (var item in menuList)
-                    //        {
-                    //            var perModel = new Sys_AdminPermission();
-                    //            perModel.Id = item.PerId;
-                    //            perModel.MenuId = item.MenuId;
-                    //            perModel.BtnJson = item.BtnJson;
-                    //            perModel.CrtDate = now;
-                    //            perModel.RoleId = model.RoleId;
-                    //            perModel.UserId = _userId;
-                    //            perList.Add(perModel);
-                    //        }
-                    //        _sysAdminPermissionService.UpdateList(perList);
-                    //    });
-                    //}
+                            foreach (var item in menuList)
+                            {
+                                var perModel = new Sys_AdminPermission();
+                                perModel.Id = item.PerId;
+                                perModel.MenuId = item.MenuId;
+                                perModel.BtnJson = item.BtnJson;
+                                perModel.CrtDate = now;
+                                perModel.RoleId = model.RoleId;
+                                perModel.UserId = _userId;
+                                perModel.CheckStatus = item.CheckStatus;
+                                perList.Add(perModel);
+                            }
+                            _sysAdminPermissionService.UpdateList(perList, p => new { p.CheckStatus, p.UserId, p.CrtDate });
+                        });
+                    }
                     //异步添加角色权限
                     if (model.MenuList.Where(p => p.Status == (int)RoleMenuStatus.add).Count() > 0)
                     {
@@ -220,6 +223,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                                 perModel.RoleId = model.RoleId;
                                 perModel.UserId = _userId;
                                 perModel.Type = item.Type;
+                                perModel.CheckStatus = item.CheckStatus;
                                 perList.Add(perModel);
                             }
                             _sysAdminPermissionService.InsertList(perList);
@@ -230,7 +234,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                     {
                         Task.Run(() =>
                         {
-                            var perList = model.MenuList.Where(p => p.Status == (int)RoleMenuStatus.add).Select(p => p.PerId).ToArray();
+                            var perList = model.MenuList.Where(p => p.Status == (int)RoleMenuStatus.delete).Select(p => p.PerId).ToArray();
                             _sysAdminPermissionService.DeleteByIdArray(perList);
                         });
                     }

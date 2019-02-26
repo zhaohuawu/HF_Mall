@@ -432,9 +432,9 @@ namespace Common.Repository
         /// </summary>
         /// <param name="updateList"></param>
         /// <returns></returns>
-        public int UpdateList<T>(List<T> updateList) where T : class, new()
+        public int UpdateList<T>(List<T> updateList, Expression<Func<T, object>> updateColumns) where T : class, new()
         {
-            return SqlSugarDB.Updateable(updateList).ExecuteCommand();
+            return SqlSugarDB.Updateable(updateList).UpdateColumns(updateColumns).ExecuteCommand();
         }
 
         #endregion

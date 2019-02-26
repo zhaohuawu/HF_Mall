@@ -120,6 +120,11 @@ namespace Bryan.WebApi.Areas.Role.Models
         /// </summary>
         public string Type { get; set; }
 
+        /// <summary>
+        /// 选中状态（checkd：选中，half：半选中）
+        /// </summary>
+        public string CheckStatus { get; set; }
+
     }
 
     /// <summary>

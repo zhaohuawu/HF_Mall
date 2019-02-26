@@ -94,6 +94,12 @@ namespace Bryan.WebApi.Areas.Role.Controllers
             return ReturnJson(code, model);
         }
 
+        /// <summary>
+        /// 添加字典
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
         public IActionResult AddOption([FromBody]FromAddSysOption model)
         {
             string code = "000000";

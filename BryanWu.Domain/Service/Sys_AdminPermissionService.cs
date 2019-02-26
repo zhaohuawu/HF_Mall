@@ -83,9 +83,9 @@ namespace BryanWu.Domain.Service
             return _repository.DeleteByIdArray<Sys_AdminPermission>(idArr);
         }
 
-        public int UpdateList(List<Sys_AdminPermission> updateList)
+        public int UpdateList(List<Sys_AdminPermission> updateList, Expression<Func<Sys_AdminPermission, object>> updateColumns)
         {
-            return _repository.UpdateList(updateList);
+            return _repository.UpdateList(updateList, updateColumns);
         }
     }
 }

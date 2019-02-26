@@ -161,7 +161,7 @@ namespace Common.Interface
         /// </summary>
         /// <param name="updateList"></param>
         /// <returns></returns>
-        int UpdateList<T>(List<T> updateList) where T : class, new();
+        int UpdateList<T>(List<T> updateList,Expression<Func<T, object>> updateColumns) where T : class, new();
         /// <summary>
         /// 根据主键删除
         /// </summary>
