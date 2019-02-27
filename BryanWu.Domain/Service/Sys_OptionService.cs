@@ -74,6 +74,17 @@ namespace BryanWu.Domain.Service
             return _repository.UpdateColumns(columns, model, isLock) > 0;
         }
 
+        public TResult GetOneKey<TResult>(Expression<Func<Sys_Option, bool>> where, Expression<Func<Sys_Option, TResult>> filed)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public int GetCount(Expression<Func<Sys_Option, bool>> where)
+        {
+            return _repository.GetCount(where);
+        }
+
         #region private method
 
         /// <summary>
@@ -140,7 +151,53 @@ namespace BryanWu.Domain.Service
 
         #region 业务逻辑
         /// <summary>
-        /// 改变菜单排序
+        /// 添加字典
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public bool AddOption(Sys_Option model)
+        {
+            //防止使排序需要为正整数
+            if (model.Orders <= 0)
+                model.Orders = 1;
+            bool isNeedCommit = false;
+            _repository.BeginTran();
+            try
+            {
+                var maxOrder = _repository.GetMaxValue<Sys_Option>(p => p.GroupKey == model.GroupKey, p => p.Orders);
+                if (model.Orders > maxOrder)
+                {
+                    model.Orders = maxOrder + 1;//保证更新的排序不会大于（最大值+1）
+                    if (_repository.Insert(model) > 0)
+                        isNeedCommit = true;
+                }
+                else
+                {
+                    if (UpdateOrderByPlus(model.GroupKey, model.Orders) > 0)//上移排序需要将排在自己前面的排序往下移1
+                    {
+                        isNeedCommit = true;
+                        if (_repository.Insert(model) <= 0)
+                            isNeedCommit = false;
+                    }
+                }
+
+                if (isNeedCommit)
+                    _repository.CommitTran();
+                else
+                    _repository.RollBackTran();
+                return isNeedCommit;
+            }
+            catch (Exception ex)
+            {
+                _repository.RollBackTran();
+                _log.Exception(ex);
+                return false;
+            }
+
+        }
+
+        /// <summary>
+        /// 改变字典排序
         /// </summary>
         /// <param name="orders"></param>
         /// <param name="adminMenu"></param>
@@ -154,6 +211,10 @@ namespace BryanWu.Domain.Service
             _repository.BeginTran();
             try
             {
+                var maxOrder = _repository.GetMaxValue<Sys_Option>(p => p.GroupKey == adminMenu.GroupKey, p => p.Orders);
+                if (adminMenu.Orders > maxOrder)
+                    adminMenu.Orders = maxOrder + 1;//保证更新的排序不会大于（最大值+1）
+
                 if (adminMenu.Orders > orders)//上移排序
                 {
                     if (UpdateOrderByPlus(adminMenu.GroupKey, orders, adminMenu.Orders) > 0)//上移排序需要将排在自己前面的排序往下移1
@@ -189,10 +250,7 @@ namespace BryanWu.Domain.Service
             }
         }
 
-        public TResult GetOneKey<TResult>(Expression<Func<Sys_Option, bool>> where, Expression<Func<Sys_Option, TResult>> filed)
-        {
-            throw new NotImplementedException();
-        }
+
         #endregion
     }
 }

@@ -85,7 +85,7 @@ namespace BryanWu.Domain.Service
         }
 
         #region private method
-        
+
         /// <summary>
         /// 下移>=OrderBy排序之间的菜单一位
         /// </summary>
@@ -161,6 +161,10 @@ namespace BryanWu.Domain.Service
             _repository.BeginTran();
             try
             {
+                var maxOrder = _repository.GetMaxValue<Sys_AdminMenu>(p => p.Pid == adminMenu.Pid, p => p.Orders);
+                if (adminMenu.Orders > maxOrder)
+                    adminMenu.Orders = maxOrder + 1;//保证更新的排序不会大于（最大值+1）
+
                 if (adminMenu.Orders > orders)//上移排序
                 {
                     if (UpdateOrderByPlus(adminMenu.Pid, orders, adminMenu.Orders) > 0)//上移排序需要将排在自己前面的排序往下移1

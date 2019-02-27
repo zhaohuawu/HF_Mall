@@ -11,7 +11,7 @@ using Common.Interface;
 using Common.Repository;
 using Common;
 using BryanWu.Domain.Model;
-using Bryan.WebApi.Areas.Role.Models;
+using Bryan.WebApi.Areas.Role.Models.SysOption;
 
 namespace Bryan.WebApi.Areas.Role.Controllers
 {
@@ -104,14 +104,109 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         {
             string code = "000000";
             var sysOption = AutoMapperExt.MapTo<Sys_Option>(model);
+            sysOption.CrtDate = DateTime.Now;
+
             if (sysOption.Levels == 1)
             {
-                sysOption.Orders = 0;
-                sysOption.IsHide = 0;
+                if (_sysOptionService.IsAny(p => p.GroupKey == sysOption.GroupKey))
+                    return ReturnJson("100021");
+                if (_sysOptionService.Insert(sysOption) <= 0)
+                    return ReturnJson("000011");
+            }
+            else
+            {
+                if (_sysOptionService.IsAny(p => p.GroupKey == sysOption.GroupKey && p.EnumCode == sysOption.EnumCode))
+                    return ReturnJson("100021");
+                if (!_sysOptionService.AddOption(sysOption))
+                    return ReturnJson("000011");
             }
 
-            int result = _sysOptionService.Insert(sysOption);
+            return ReturnJson(code);
+        }
 
+        /// <summary>
+        /// 修改字典名
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult UpdateOptionName([FromBody]FromUpdateSysOption model)
+        {
+            string code = "000000";
+            var sysOption = AutoMapperExt.MapTo<Sys_Option>(model);
+            var optionEntity = _sysOptionService.GetEntityById(sysOption.Id);
+            if (optionEntity != null)
+            {
+                //修改其他字段
+                if (optionEntity.GroupKey != sysOption.GroupKey)
+                {
+                    if (_sysOptionService.IsAny(p => p.GroupKey == sysOption.GroupKey && p.Levels > 1))
+                        return ReturnJson("100021");
+                }
+                if (!_sysOptionService.UpdateColumns(p => new { p.GroupKey, p.GroupName, p.IsHide, p.Remark }, sysOption))
+                    return ReturnJson("000001");
+            }
+            else
+                code = "100020";
+            return ReturnJson(code);
+        }
+
+        /// <summary>
+        /// 修改字典
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult UpdateOption([FromBody]FromAddSysOption model)
+        {
+            string code = "000000";
+            var sysOption = AutoMapperExt.MapTo<Sys_Option>(model);
+            var optionEntity = _sysOptionService.GetEntityById(sysOption.Id);
+            if (optionEntity != null)
+            {
+                if (_sysOptionService.IsAny(p => p.GroupKey == sysOption.GroupKey && p.EnumCode == sysOption.EnumCode))
+                    return ReturnJson("100021");
+                if (optionEntity.Orders != optionEntity.Orders)
+                {
+                    //修改排序
+                    Task.Run(() =>
+                    {
+                        _sysOptionService.UpdateOptionOrders(optionEntity.Orders, sysOption);
+                    });
+                }
+                //修改其他字段
+                if (!_sysOptionService.UpdateColumns(p => new { p.EnumCode, p.EnumLabel, p.EnumName, p.IsHide, p.Remark }, sysOption))
+                    return ReturnJson("000001");
+            }
+            else
+                code = "100020";
+            return ReturnJson(code);
+        }
+
+        /// <summary>
+        /// 改变字典排序
+        /// </summary>
+        /// <param name="mid">字典ID</param>
+        /// <param name="orders">将移动到的排序位置</param>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult UpdateOptionOrders([FromForm]int mid, [FromForm]int orders)
+        {
+            string code = "000000";
+            if (mid > 0)
+            {
+                var adminMenu = _sysOptionService.GetEntityById(mid);
+                if (adminMenu != null)
+                {
+                    bool reuslt = _sysOptionService.UpdateOptionOrders(orders, adminMenu);
+                    if (!reuslt)
+                        code = "0000001";
+                }
+                else
+                    code = "100020";
+            }
+            else
+                code = "100020";
             return ReturnJson(code);
         }
     }

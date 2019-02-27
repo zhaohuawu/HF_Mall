@@ -27,6 +27,20 @@ namespace Bryan.WebApi.Areas.Role.Models
         update_sysRole = 19,
         [Description("删除角色")]
         delete_sysRole = 20,
-
     }
+
+    public enum UserRoleStatus
+    {
+        add = 1,
+        delete = 2
+    }
+
+    #region 枚举
+    public enum RoleMenuStatus
+    {
+        delete = 0,
+        add = 1,
+        update = 2
+    }
+    #endregion
 }

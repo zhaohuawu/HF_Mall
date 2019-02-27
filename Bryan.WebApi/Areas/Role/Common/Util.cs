@@ -1,4 +1,4 @@
-﻿using Bryan.WebApi.Areas.Role.Models;
+﻿using Bryan.WebApi.Areas.Role.Models.SysRole;
 using BryanWu.Domain.Model;
 using System;
 using System.Collections.Generic;

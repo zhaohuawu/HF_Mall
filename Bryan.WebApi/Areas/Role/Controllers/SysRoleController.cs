@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using Common.Autofac;
+using Bryan.WebApi.Areas.Role.Models.SysRole;
 
 namespace Bryan.WebApi.Areas.Role.Controllers
 {

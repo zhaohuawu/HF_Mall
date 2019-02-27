@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Bryan.WebApi.Areas.Role.Models
+namespace Bryan.WebApi.Areas.Role.Models.SysOption
 {
-
     public class FromAddSysOption
     {
+        public int Id { get; set; }
         /// <summary>
         /// Desc:参数名称
         /// Default:
@@ -49,14 +49,14 @@ namespace Bryan.WebApi.Areas.Role.Models
         /// Nullable:True
         /// </summary>           
         public string Remark { get; set; }
-        
+
         /// <summary>
         /// Desc:排序
         /// Default:0
         /// Nullable:False
         /// </summary>           
         public int Orders { get; set; }
-        
+
         /// <summary>
         /// 是否隐藏
         /// </summary>

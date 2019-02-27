@@ -4,12 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using BryanWu.Domain.Interface;
 using BryanWu.Domain.Model;
-using Bryan.WebApi.Areas.Role.Models;
 using Bryan.WebApi.Controllers;
 using Common;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Bryan.WebApi.Areas.Role.Models.SysRole;
 
 namespace Bryan.WebApi.Areas.Role.Controllers
 {

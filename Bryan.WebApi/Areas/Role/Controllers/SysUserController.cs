@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Common.Repository;
+using Bryan.WebApi.Areas.Role.Models.SysUser;
 
 namespace Bryan.WebApi.Areas.Role.Controllers
 {
@@ -223,7 +224,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                     {
                         Task.Run(() =>
                         {
-                            var perList = model.RoleList.Where(p => p.Status == (int)RoleMenuStatus.add).Select(p => p.UserRoleId).ToArray();
+                            var perList = model.RoleList.Where(p => p.Status == (int)RoleMenuStatus.delete).Select(p => p.UserRoleId).ToArray();
                             _sysUserService.DeleteByIdArray(perList);
                         });
                     }
