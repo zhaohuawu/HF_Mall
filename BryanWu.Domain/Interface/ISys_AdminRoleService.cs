@@ -21,6 +21,7 @@ namespace BryanWu.Domain.Interface
         Sys_AdminRole GetEntity(Expression<Func<Sys_AdminRole, bool>> where);
         bool IsAny(Expression<Func<Sys_AdminRole, bool>> where);
         List<Sys_AdminRole> GetList(Expression<Func<Sys_AdminRole, bool>> where, Expression<Func<Sys_AdminRole, object>> orderBy, bool isDesc = false);
+        List<TResult> GetList<TResult>(Expression<Func<Sys_AdminRole, bool>> where, Expression<Func<Sys_AdminRole, TResult>> obj, Expression<Func<Sys_AdminRole, object>> orderBy, bool isDesc = false);
         PageList<Sys_AdminRole> GetPageList(Expression<Func<Sys_AdminRole, bool>> where, PageSet pageSet, Expression<Func<Sys_AdminRole, object>> orderBy, bool isDesc = false, bool isPageNavStr = false);
         TResult GetOneKey<TResult>(Expression<Func<Sys_AdminRole, bool>> where, Expression<Func<Sys_AdminRole, TResult>> filed);
     }

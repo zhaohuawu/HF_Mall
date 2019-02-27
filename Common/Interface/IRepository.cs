@@ -100,7 +100,7 @@ namespace Common.Interface
         /// <param name="orderBy"></param>
         /// <param name="orderByType"></param>
         /// <returns></returns>
-        List<object> GetList<T>(Expression<Func<T, bool>> where, Expression<Func<T, object>> obj, Expression<Func<T, object>> orderBy, bool isDesc = false) where T : class, new();
+        List<TResult> GetList<TResult, T>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> obj, Expression<Func<T, object>> orderBy, bool isDesc = false) where T : class, new();
         /// <summary>
         /// 分页查询数据
         /// </summary>
@@ -111,6 +111,8 @@ namespace Common.Interface
         /// <param name="isPageNavStr"></param>
         /// <returns></returns>
         PageList<T> GetPageList<T>(Expression<Func<T, bool>> where, PageSet pageSet, Expression<Func<T, object>> orderBy, bool isDesc = false, bool isPageNavStr = false) where T : class, new();
+        
+        PageList<TResult> GetPageList<TResult,T>(Expression<Func<T, bool>> where, PageSet pageSet, Expression<Func<T, TResult>> obj, Expression<Func<T, object>> orderBy, bool isDesc = false, bool isPageNavStr = false) where T : class, new();
 
         /// <summary>
         /// 获取最大值

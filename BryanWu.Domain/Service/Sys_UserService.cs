@@ -34,6 +34,11 @@ namespace BryanWu.Domain.Service
             return _repository.GetPageList(where, pageSet, orderBy, isDesc, isPageNavStr);
         }
 
+        public PageList<TResult> GetPageList<TResult>(Expression<Func<Sys_User, bool>> where, PageSet pageSet, Expression<Func<Sys_User, TResult>> obj, Expression<Func<Sys_User, object>> orderBy, bool isDesc = false, bool isPageNavStr = false)
+        {
+            return _repository.GetPageList(where, pageSet, obj, orderBy, isDesc, isPageNavStr);
+        }
+
         public Sys_User AddUser(Sys_User model)
         {
             return _repository.InsertAndGetEntity(model);
@@ -88,6 +93,11 @@ namespace BryanWu.Domain.Service
         public int DeleteByIdArray(params int[] idArr)
         {
             return _repository.DeleteByIdArray<Sys_UserRole>(idArr);
+        }
+
+        public List<TResult> GetList<TResult>(Expression<Func<Sys_UserRole, bool>> where, Expression<Func<Sys_UserRole, TResult>> obj, Expression<Func<Sys_UserRole, object>> orderBy, bool isDesc = false)
+        {
+            return _repository.GetList(where, obj, orderBy, isDesc);
         }
 
         #endregion

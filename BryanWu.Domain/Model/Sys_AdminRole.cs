@@ -11,7 +11,7 @@ namespace BryanWu.Domain.Model
     {
         public Sys_AdminRole()
         {
-            this.IsForbidden = 0;
+            this.IsForbidden = 1;
         }
         /// <summary>
         /// Desc:

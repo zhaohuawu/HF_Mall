@@ -16,6 +16,7 @@ namespace BryanWu.Domain.Interface
         int InsertList(List<Sys_AdminPermission> insertList);
         bool DeleteById(int id);
         int DeleteByIdArray(params int[] idArr);
+        int DeleteBatch(Expression<Func<Sys_AdminPermission, bool>> where);
         bool Update(Sys_AdminPermission model);
         int UpdateList(List<Sys_AdminPermission> updateList,Expression<Func<Sys_AdminPermission, object>> updateColumns);
         Sys_AdminPermission GetEntityById(int id);

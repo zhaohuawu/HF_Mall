@@ -39,12 +39,26 @@ namespace Bryan.WebApi.Areas.Role.Controllers
 
         #region 角色
         /// <summary>
+        /// 获取所有角色列表
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult GetAllRolesList()
+        {
+            string code = "000000";
+            var list = _sysAdminRoleService.GetList(p => true, p => new { p.Id, p.RoleName }, p => p.Id);
+            if (list.Count == 0)
+                code = "000200";
+            return ReturnJson(code, list);
+        }
+
+        /// <summary>
         /// 获取角色列表
         /// </summary>
         /// <param name="PageIndex">分页第几页</param>
         /// <param name="PageSize">每页的数量</param>
         /// <param name="RoleName">角色名称（可以为空，但是必须传该参数到后台）</param>
-        /// <param name="IsForbidden">是否禁用，-1：全部，0：正常，1：禁用</param>
+        /// <param name="IsForbidden">是否禁用，0：全部，1：正常，5：禁用</param>
         /// <returns></returns>
         [HttpGet]
         public IActionResult GetAdminRolesList(int PageIndex, int PageSize, int IsForbidden, string RoleName)
@@ -144,12 +158,12 @@ namespace Bryan.WebApi.Areas.Role.Controllers
             var role = _sysAdminRoleService.GetEntityById(roleId);
             if (role != null)
             {
-                if (role.IsForbidden == 0)
+                if (role.IsForbidden == 1)
                 {
-                    role.IsForbidden = 1;
+                    role.IsForbidden = 5;
                 }
                 else
-                    role.IsForbidden = 0;
+                    role.IsForbidden = 1;
                 role.ModifyDate = DateTime.Now;
                 _sysAdminRoleService.UpdateColumns(p => new { p.IsForbidden, p.ModifyDate }, role, true);
             }

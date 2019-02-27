@@ -87,5 +87,10 @@ namespace BryanWu.Domain.Service
         {
             return _repository.UpdateList(updateList, updateColumns);
         }
+
+        public int DeleteBatch(Expression<Func<Sys_AdminPermission, bool>> where)
+        {
+            return _repository.SqlSugarDB.Deleteable(where).ExecuteCommand();
+        }
     }
 }

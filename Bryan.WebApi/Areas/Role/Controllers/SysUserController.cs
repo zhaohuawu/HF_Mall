@@ -46,6 +46,9 @@ namespace Bryan.WebApi.Areas.Role.Controllers
             var data = _sysUserService.GetUserById(id);
             if (data == null)
                 code = "000200";
+            else
+                data.Password = null;
+
             return ReturnJson(code, data);
         }
 
@@ -83,11 +86,12 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                 where = where.And(n => model.UserName.Contains(n.UserName));
             if (model.Status > 0)
                 where = where.And(n => n.Status == model.Status);
+            var pageList = _sysUserService.GetPageList(where, pageSet, p => new { p.Id, p.UserName, p.RealName, p.Sex, p.LastIp, p.Status, p.LastLogDate }, p => p.LastLogDate, true);
 
-            var list = _sysUserService.GetPageList(where, pageSet, p => p.Status);
-            if (list.RecordCount == 0)
+            if (pageList.RecordCount == 0)
                 code = "000200";
-            return ReturnJson(code, list);
+
+            return ReturnJson(code, pageList);
         }
 
 
@@ -175,6 +179,23 @@ namespace Bryan.WebApi.Areas.Role.Controllers
             else
                 code = "000104";
             return ReturnJson(code);
+        }
+
+        /// <summary>
+        /// 获取所有角色列表
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult GetUserRolesList(int userId)
+        {
+            string code = "000000";
+            var list = _sysUserService.GetList(p => p.UserId == userId, p => new { p.Id, p.RoleId }, p => p.Id);
+            var roleIdList = new List<int>();
+            if (list.Count == 0)
+                code = "000200";
+            else
+                roleIdList = list.Select(p => p.RoleId).ToList();
+            return ReturnJson(code, new { list = list, roleList = roleIdList });
         }
 
         /// <summary>

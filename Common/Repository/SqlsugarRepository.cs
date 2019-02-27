@@ -10,7 +10,7 @@ namespace Common.Repository
     public class SqlsugarRepository : IRepository
     {
         public SqlSugarClient SqlSugarDB => DBManager.GetInstance();
-        
+
         public void BeginTran()
         {
             SqlSugarDB.Ado.BeginTran();
@@ -145,7 +145,7 @@ namespace Common.Repository
         /// <param name="orderBy"></param>
         /// <param name="orderByType"></param>
         /// <returns></returns>
-        public List<object> GetList<T>(Expression<Func<T, bool>> where, Expression<Func<T, object>> obj, Expression<Func<T, object>> orderBy, bool isDesc = false) where T : class, new()
+        public List<TResult> GetList<TResult, T>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> obj, Expression<Func<T, object>> orderBy, bool isDesc = false) where T : class, new()
         {
             if (isDesc)
                 return SqlSugarDB.Queryable<T>().Where(where).OrderBy(orderBy, OrderByType.Desc).Select(obj).ToList();
@@ -168,7 +168,7 @@ namespace Common.Repository
         /// <param name="obj"></param>
         /// <param name="orderBy"></param>
         /// <returns></returns>
-        public List<object> GetList<T>(Expression<Func<T, bool>> where, Expression<Func<T, object>> obj, string orderBy) where T : class, new()
+        public List<TResult> GetList<T, TResult>(Expression<Func<T, bool>> where, Expression<Func<T, TResult>> obj, string orderBy) where T : class, new()
         {
             return SqlSugarDB.Queryable<T>().Where(where).OrderBy(orderBy).Select(obj).ToList();
         }
@@ -259,7 +259,7 @@ namespace Common.Repository
         /// <param name="isDesc"></param>
         /// <param name="isPageNavStr"></param>
         /// <returns></returns>
-        public PageList<TResult> GetPageList<T, TResult>(Expression<Func<T, bool>> where, PageSet pageSet, Expression<Func<T, TResult>> obj, Expression<Func<T, object>> orderBy, bool isDesc = false, bool isPageNavStr = false) where T : class, new()
+        public PageList<TResult> GetPageList<TResult, T>(Expression<Func<T, bool>> where, PageSet pageSet, Expression<Func<T, TResult>> obj, Expression<Func<T, object>> orderBy, bool isDesc = false, bool isPageNavStr = false) where T : class, new()
         {
             if (pageSet == null)
             {

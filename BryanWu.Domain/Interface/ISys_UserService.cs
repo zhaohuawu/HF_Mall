@@ -16,7 +16,7 @@ namespace BryanWu.Domain.Interface
         Sys_User GetUserById(int id);
 
         PageList<Sys_User> GetPageList(Expression<Func<Sys_User, bool>> where, PageSet pageSet, Expression<Func<Sys_User, object>> orderBy, bool isDesc = false, bool isPageNavStr = false);
-
+        PageList<TResult> GetPageList<TResult>(Expression<Func<Sys_User, bool>> where, PageSet pageSet, Expression<Func<Sys_User, TResult>> obj, Expression<Func<Sys_User, object>> orderBy, bool isDesc = false, bool isPageNavStr = false);
         bool IsAny(Expression<Func<Sys_User, bool>> where);
         Sys_User AddUser(Sys_User model);
         bool UpdateUser(Sys_User model);
@@ -30,5 +30,7 @@ namespace BryanWu.Domain.Interface
         int InsertList(List<Sys_UserRole> insertList);
         bool DeleteById(int id);
         int DeleteByIdArray(params int[] idArr);
+        List<TResult> GetList<TResult>(Expression<Func<Sys_UserRole, bool>> where, Expression<Func<Sys_UserRole, TResult>> obj, Expression<Func<Sys_UserRole, object>> orderBy, bool isDesc = false);
+
     }
 }

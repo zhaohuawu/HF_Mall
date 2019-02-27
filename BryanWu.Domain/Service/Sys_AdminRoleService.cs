@@ -72,5 +72,10 @@ namespace BryanWu.Domain.Service
         {
             return _repository.UpdateColumns(columns, model, isLock) > 0;
         }
+
+        public List<TResult> GetList<TResult>(Expression<Func<Sys_AdminRole, bool>> where, Expression<Func<Sys_AdminRole, TResult>> obj, Expression<Func<Sys_AdminRole, object>> orderBy, bool isDesc = false)
+        {
+            return _repository.GetList(where, obj, orderBy, isDesc);
+        }
     }
 }
