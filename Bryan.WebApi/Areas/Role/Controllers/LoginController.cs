@@ -6,7 +6,6 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using BryanWu.Domain.Interface;
-using Bryan.WebApi.Common;
 using Bryan.WebApi.Controllers;
 using Common;
 using Common.Interface;
@@ -16,6 +15,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Bryan.WebApi.Models.AppSettings;
 
 namespace Bryan.WebApi.Areas.Role.Controllers
 {

@@ -29,6 +29,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using Swashbuckle.AspNetCore.SwaggerUI;
+using Bryan.WebApi.Models.AppSettings;
 
 namespace Bryan.WebApi
 {
@@ -46,10 +47,13 @@ namespace Bryan.WebApi
         {
             //AppSettings 参数配置
             var appSettingsSection = Configuration.GetSection("AppSettings");
-            services.Configure<AppSettings>(appSettingsSection);
+           
             var jwtSettingsSection = Configuration.GetSection("JwtSettings");
-            services.Configure<JwtSettings>(jwtSettingsSection);
             var appSettings = appSettingsSection.Get<AppSettings>();
+
+            services.Configure<AppSettings>(appSettingsSection);
+            services.Configure<JwtSettings>(jwtSettingsSection);
+            services.Configure<UploadSettings>(Configuration.GetSection("Upload"));
 
             //注册数据库服务
             DBManager.ConnectionString = Configuration.GetConnectionString("rongfang_master");

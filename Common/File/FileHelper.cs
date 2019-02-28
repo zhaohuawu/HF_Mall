@@ -7,6 +7,8 @@ using System.Web;
 using System.IO;
 using System.Drawing;
 using Microsoft.AspNetCore.Http;
+using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Common
 {
@@ -49,7 +51,7 @@ namespace Common
             }
             return returnString;
         }
-        
+
         /// <summary>
         /// 获取所有图片的缩略图的标记
         /// </summary>
@@ -73,7 +75,7 @@ namespace Common
                         strTags = string.Format("{0}-{1}", param.appType.ToString().ToLower(), param.fileType.ToString().ToLower());
                         break;
                 }
-               
+
                 XmlElement xmlElement = GetXmlElement(strTags);
                 XmlNodeList xmlNodeList = xmlElement.GetElementsByTagName("wh");
                 foreach (XmlNode xmlNode in xmlNodeList)
@@ -96,7 +98,7 @@ namespace Common
             List<string> allowExtensions = strExtensions.Split(",".ToCharArray()).ToList<string>();
             return allowExtensions;
         }
-        
+
         /// <summary>
         /// 获取随机文件名
         /// </summary>
@@ -336,6 +338,7 @@ namespace Common
                             {
                                 file.Write(bytes, 0, count);
                             }
+                            
                             file.Close();
                         }
                         stream.Close();
@@ -348,6 +351,35 @@ namespace Common
                 rtnValue = false;
             }
             return rtnValue;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="file"></param>
+        /// <param name="fileDir"></param>
+        /// <param name="savePath"></param>
+        /// <returns></returns>
+        public static bool UploadFileWithFormFile(IFormFile file, string fileDir, string savePath)
+        {
+            try
+            {
+                if (!Directory.Exists(fileDir))
+                {
+                    Directory.CreateDirectory(fileDir);
+                }
+                //上传的文件的路径
+                using (var stream = new FileStream(savePath, FileMode.Create))
+                {
+                    file.CopyTo(stream);
+                }
+                
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         /// <summary>

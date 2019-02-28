@@ -15,6 +15,8 @@ using Microsoft.AspNetCore.Mvc;
 using Common.Repository;
 using Bryan.WebApi.Areas.Role.Models.SysUser;
 using System.IO;
+using Microsoft.Extensions.Options;
+using Bryan.WebApi.Models.AppSettings;
 
 namespace Bryan.WebApi.Areas.Role.Controllers
 {
@@ -27,8 +29,10 @@ namespace Bryan.WebApi.Areas.Role.Controllers
     public class SysUserController : BaseController
     {
         private ISys_UserService _sysUserService { get; set; }
+       
+       
 
-        public SysUserController(ISys_UserService sysUserService, ILog_AdminService logAdmin, ILog log)
+        public SysUserController(ISys_UserService sysUserService,ILog_AdminService logAdmin, ILog log)
         {
             _logAdmin = logAdmin;
             _log = log;
@@ -269,53 +273,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
             return ReturnJson(code);
         }
 
-        #region 文件上传  可以带参数
-        [HttpPost]
-        public IActionResult upload(IFormCollection Files, string userId)
-        {
-            string code = "000000";
-            string imgUrl = null;
-            try
-            {
-                string dd = Files["File"];
-                var form = Files;//定义接收类型的参数
-                IFormFileCollection cols = Request.Form.Files;
-                if (cols == null || cols.Count == 0)
-                {
-                    return ReturnJson("000001");
-                }
-                foreach (IFormFile file in cols)
-                {
-                    if (file != null)
-                    {
-                        var now = DateTime.Now;
-                        imgUrl = @"Upload/images/avatar/" + now.Year + "/" + now.Month + "/" + now.Day;
-                        var fileDir = @"F:/PersonalProjects/BryanMall/Bryan.WebApi/";
-
-                        if (!Directory.Exists(fileDir))
-                        {
-                            Directory.CreateDirectory(fileDir);
-                        }
-                        //文件名称
-                        imgUrl = imgUrl + "/" + GUIDHelper.GetStringID() + ".png";
-
-                        //上传的文件的路径
-                        using (FileStream fs = System.IO.File.Create(fileDir + imgUrl))
-                        {
-                            file.CopyTo(fs);
-                            fs.Flush();
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                _log.Error(ex.Message);
-                code = "000001";
-            }
-            return ReturnJson(code, imgUrl);
-        }
-        #endregion
+        
 
 
     }

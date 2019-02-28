@@ -87,7 +87,7 @@ namespace BryanWu.Domain.Service
         {
             await Task.Run(() =>
             {
-                logAdmin.Ip = HttpContextExtension.GetIp(http);
+                logAdmin.Ip = http.GetIp();
                 logAdmin.Url = HttpContextExtension.GetAbsoluteUri(http.Request);
                 logAdmin.CrtDate = DateTime.Now;
                 _repository.Insert(logAdmin);
