@@ -53,6 +53,20 @@ namespace Common
             return flag;
         }
 
+        /// <summary> 
+        /// 根据GUID获取16位的唯一字符串 
+        /// </summary>  
+        /// <returns></returns> 
+        public static string GetStringID()
+        {
+            long i = 1;
+            foreach (byte b in Guid.NewGuid().ToByteArray())
+            {
+                i *= ((int)b + 1);
+            }
+            return string.Format("{0:x}", i - DateTime.Now.Ticks);
+        }
+
         /// <summary>
         /// 根据GUID获取19位的唯一数字序列
         /// </summary>

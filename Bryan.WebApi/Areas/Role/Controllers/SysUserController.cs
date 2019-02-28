@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Common.Repository;
 using Bryan.WebApi.Areas.Role.Models.SysUser;
+using System.IO;
 
 namespace Bryan.WebApi.Areas.Role.Controllers
 {
@@ -86,7 +87,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                 where = where.And(n => model.UserName.Contains(n.UserName));
             if (model.Status > 0)
                 where = where.And(n => n.Status == model.Status);
-            var pageList = _sysUserService.GetPageList(where, pageSet, p => new { p.Id, p.UserName, p.RealName, p.Sex, p.LastIp, p.Status, p.LastLogDate }, p => p.LastLogDate, true);
+            var pageList = _sysUserService.GetPageList(where, pageSet, p => new { p.Id, p.UserName, p.RealName, p.Sex, p.LastIp, p.Status, p.LastLogDate, p.HeadImgUrl, p.Mobile, p.Email }, p => p.LastLogDate, true);
 
             if (pageList.RecordCount == 0)
                 code = "000200";
@@ -215,15 +216,22 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                     //异步更新用户角色相关
                     Task.Run(() =>
                     {
-                        var user = new Sys_User();
+                        var user = AutoMapperExt.MapTo<Sys_User>(model);
                         user.Id = model.UserId;
-                        user.UserName = model.UserName;
-                        user.RealName = model.RealName;
-                        user.Password = AESUtil.EncryptPsw(model.Password);
-                        _sysUserService.UpdateColumns(p => new { p.UserName, p.RealName, p.Password }, user, true);
+                        user.ModifyDate = now;
+                        if (string.IsNullOrEmpty(model.Password))
+                        {
+                            _sysUserService.UpdateColumns(p => new { p.UserName, p.RealName, p.Email, p.HeadImgUrl, p.Mobile, p.Sex, p.ModifyDate }, user, true);
+                        }
+                        else
+                        {
+                            user.Password = AESUtil.EncryptPsw(model.Password);
+                            _sysUserService.UpdateColumns(p => new { p.UserName, p.RealName, p.Password, p.Email, p.HeadImgUrl, p.Mobile, p.Sex, p.ModifyDate }, user, true);
+                        }
+
                     });
                     //异步添加用户角色权限
-                    if (model.RoleList.Where(p => p.Status == (int)RoleMenuStatus.add).Count() > 0)
+                    if (model.RoleList.Where(p => p.Status == (int)RoleMenuStatus.add).Count() > 0 && model.UserId > 0)
                     {
                         Task.Run(() =>
                         {
@@ -241,7 +249,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                         });
                     }
                     //异步删除用户角色权限
-                    if (model.RoleList.Where(p => p.Status == (int)RoleMenuStatus.delete).Count() > 0)
+                    if (model.RoleList.Where(p => p.Status == (int)RoleMenuStatus.delete).Count() > 0 && model.UserId > 0)
                     {
                         Task.Run(() =>
                         {
@@ -260,6 +268,55 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                 code = "100007";
             return ReturnJson(code);
         }
+
+        #region 文件上传  可以带参数
+        [HttpPost]
+        public IActionResult upload(IFormCollection Files, string userId)
+        {
+            string code = "000000";
+            string imgUrl = null;
+            try
+            {
+                string dd = Files["File"];
+                var form = Files;//定义接收类型的参数
+                IFormFileCollection cols = Request.Form.Files;
+                if (cols == null || cols.Count == 0)
+                {
+                    return ReturnJson("000001");
+                }
+                foreach (IFormFile file in cols)
+                {
+                    if (file != null)
+                    {
+                        var now = DateTime.Now;
+                        imgUrl = @"Upload/images/avatar/" + now.Year + "/" + now.Month + "/" + now.Day;
+                        var fileDir = @"F:/PersonalProjects/BryanMall/Bryan.WebApi/";
+
+                        if (!Directory.Exists(fileDir))
+                        {
+                            Directory.CreateDirectory(fileDir);
+                        }
+                        //文件名称
+                        imgUrl = imgUrl + "/" + GUIDHelper.GetStringID() + ".png";
+
+                        //上传的文件的路径
+                        using (FileStream fs = System.IO.File.Create(fileDir + imgUrl))
+                        {
+                            file.CopyTo(fs);
+                            fs.Flush();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _log.Error(ex.Message);
+                code = "000001";
+            }
+            return ReturnJson(code, imgUrl);
+        }
+        #endregion
+
 
     }
 }

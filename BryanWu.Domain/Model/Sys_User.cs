@@ -73,6 +73,14 @@ namespace BryanWu.Domain.Model
         public DateTime CrtDate { get; set; }
 
         /// <summary>
+        /// Desc:修改时间
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public DateTime? ModifyDate { get; set; }
+        
+
+        /// <summary>
         /// Desc:最后登录时间
         /// Default:
         /// Nullable:True
@@ -99,6 +107,10 @@ namespace BryanWu.Domain.Model
         /// Nullable:True
         /// </summary>           
         public string Mobile { get; set; }
+        /// <summary>
+        /// 邮箱
+        /// </summary>
+        public string Email { get; set; }
 
         /// <summary>
         /// Desc:创建人

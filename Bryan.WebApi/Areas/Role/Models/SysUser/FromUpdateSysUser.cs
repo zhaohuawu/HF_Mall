@@ -36,6 +36,31 @@ namespace Bryan.WebApi.Areas.Role.Models.SysUser
         public string Password { get; set; }
 
         /// <summary>
+        /// Desc:头像
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public string HeadImgUrl { get; set; }
+
+        /// <summary>
+        /// Desc:性别
+        /// Default:0
+        /// Nullable:True
+        /// </summary>           
+        public int? Sex { get; set; }
+
+        /// <summary>
+        /// Desc:联系号码
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public string Mobile { get; set; }
+        /// <summary>
+        /// 邮箱
+        /// </summary>
+        public string Email { get; set; }
+
+        /// <summary>
         /// 角色列表
         /// Default:1
         /// Nullable:False
