@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Bryan.WebApi.Models;
 using Bryan.WebApi.Models.AppSettings;
 using BryanWu.Domain.Interface;
+using BryanWu.Domain;
 using Common;
 using Common.Interface;
 using Common.Net;
@@ -59,6 +60,28 @@ namespace Bryan.WebApi.Controllers
             }
             return ReturnJson(code, returnUpload);
         }
+
+        /// <summary>
+        /// 修改图片状态为可删除
+        /// </summary>
+        /// <param name="filePath">图片路径</param>
+        /// <returns></returns>
+        [HttpPost("updatestatus")]
+        public async Task<IActionResult> DeleteUploadStatusAsync(string filePath)
+        {
+            if (filePath.StartsWith("upload/"))
+            {
+                await Task.Run(() =>
+                {
+                    _uploadFileService.UpdateUploadStatusAsync(UploadTypeEnum.image, filePath, UploadStatusEnum.可删除);
+                });
+
+                return ReturnJson("000000");
+            }
+            else
+                return ReturnJson("000001");
+        }
+
         #endregion
 
     }

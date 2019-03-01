@@ -16,9 +16,11 @@ namespace BryanWu.Domain.Service
     public class Sys_UploadFileService : ISys_UploadFileService
     {
         public IRepository _repository { get; set; }
-        public Sys_UploadFileService(IRepository repository)
+        private ILog _log;
+        public Sys_UploadFileService(IRepository repository, ILog log)
         {
             _repository = repository;
+            this._log = log;
         }
 
         #region Service
@@ -116,7 +118,6 @@ namespace BryanWu.Domain.Service
         {
             var now = DateTime.Now;
             imgUrl = imgUrl + now.Year + "/" + now.Month + "/" + now.Day + "/";
-            //var fileDir = @"F:/PersonalProjects/BryanMall/Bryan.WebApi/" + imgUrl;
             path = path + imgUrl;
             //文件名称
             string fileName = GUIDHelper.GetStringID() + ".png";
@@ -133,21 +134,55 @@ namespace BryanWu.Domain.Service
             uploadModel.FileSize = 0;
             uploadModel.FileType = "image/jpeg";
             uploadModel.Ip = ip;
-            uploadModel.TypeId = (int)UploadEnum.image;
+            uploadModel.TypeId = (int)UploadTypeEnum.image;
             uploadModel.UserId = userId;
+            uploadModel.Status = (int)UploadStatusEnum.未使用;
             uploadModel.Id = _repository.Insert(uploadModel, true);
             return JSONHelper.Seriallize(new { url = imgUrl, uploadId = uploadModel.Id });
         }
-        #endregion
 
-        #region Enum
-        private enum UploadEnum
+        /// <summary>
+        /// 修改上传文件的状态
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="uEnum"></param>
+        public async void UpdateUploadStatusAsync(int id, UploadStatusEnum uEnum)
         {
-            image = 1,
-            file = 5,
-            excel = 15
+            var model = new Sys_UploadFile();
+            model.Id = id;
+            model.Status = (int)uEnum;
+            await Task.Run(() =>
+            {
+                _repository.UpdateColumns(p => new { p.Status }, model);
+            });
+        }
+
+        /// <summary>
+        /// 修改上传文件的状态
+        /// </summary>
+        /// <param name="typeEnum"></param>
+        /// <param name="filePath"></param>
+        /// <param name="statusEnum"></param>
+        public async void UpdateUploadStatusAsync(UploadTypeEnum typeEnum, string filePath, UploadStatusEnum statusEnum)
+        {
+            _log.Debug(typeEnum.ToString() + "--" + filePath + "---" + statusEnum.ToString() + "---" + (int)statusEnum);
+            if (filePath.StartsWith("upload/"))
+            {
+                var lastIndex = filePath.LastIndexOf('/');
+                var length = filePath.Length;
+                string fileName = filePath.Substring(lastIndex + 1, filePath.Length - lastIndex - 1);
+                int status = (int)statusEnum;
+                int typeId = (int)typeEnum;
+                await Task.Run(() =>
+                {
+                    _repository.SqlSugarDB.Updateable<Sys_UploadFile>().UpdateColumns(p => new Sys_UploadFile() { Status = status }).Where(p => p.FileName == fileName && p.TypeId == typeId).ExecuteCommand();
+                });
+            }
         }
 
         #endregion
+
+
     }
+
 }

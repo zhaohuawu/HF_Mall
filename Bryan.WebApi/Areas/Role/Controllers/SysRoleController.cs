@@ -39,14 +39,14 @@ namespace Bryan.WebApi.Areas.Role.Controllers
 
         #region 角色
         /// <summary>
-        /// 获取所有角色列表
+        /// 获取所有角色列表(禁用的排除)
         /// </summary>
         /// <returns></returns>
         [HttpGet]
         public IActionResult GetAllRolesList()
         {
             string code = "000000";
-            var list = _sysAdminRoleService.GetList(p => true, p => new { p.Id, p.RoleName }, p => p.Id);
+            var list = _sysAdminRoleService.GetList(p => p.IsForbidden == 0, p => new { p.Id, p.RoleName }, p => p.Id);
             if (list.Count == 0)
                 code = "000200";
             return ReturnJson(code, list);

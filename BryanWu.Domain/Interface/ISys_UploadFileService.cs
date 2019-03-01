@@ -1,4 +1,5 @@
 ﻿using BryanWu.Domain.Model;
+using BryanWu.Domain.Service;
 using Common.Interface;
 using Common.Repository;
 using Microsoft.AspNetCore.Http;
@@ -33,5 +34,7 @@ namespace BryanWu.Domain.Interface
         int DeleteByIdArray(params int[] idArr);
         List<TResult> GetList<TResult>(Expression<Func<Sys_UploadFile, bool>> where, Expression<Func<Sys_UploadFile, TResult>> obj, Expression<Func<Sys_UploadFile, object>> orderBy, bool isDesc = false);
         string UploadImg(IFormFile file, string path, string imgUrl, string ip, int userId);
+        void UpdateUploadStatusAsync(int id, UploadStatusEnum uEnum);
+        void UpdateUploadStatusAsync(UploadTypeEnum typeEnum, string filePath, UploadStatusEnum statusEnum);
     }
 }

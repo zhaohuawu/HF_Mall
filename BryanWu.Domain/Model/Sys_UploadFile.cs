@@ -13,7 +13,7 @@ namespace BryanWu.Domain.Model
         {
 
             this.TypeId = 0;
-
+            this.Status = 1;
         }
         /// <summary>
         /// Desc:
@@ -84,6 +84,10 @@ namespace BryanWu.Domain.Model
         /// Nullable:False
         /// </summary>           
         public string Ip { get; set; }
+        /// <summary>
+        /// 图片状态：1未用，3可删除，15已删除，20使用中
+        /// </summary>
+        public int Status { get; set; }
 
         /// <summary>
         /// Desc:上传时间

@@ -17,6 +17,7 @@ using Bryan.WebApi.Areas.Role.Models.SysUser;
 using System.IO;
 using Microsoft.Extensions.Options;
 using Bryan.WebApi.Models.AppSettings;
+using BryanWu.Domain;
 
 namespace Bryan.WebApi.Areas.Role.Controllers
 {
@@ -29,14 +30,13 @@ namespace Bryan.WebApi.Areas.Role.Controllers
     public class SysUserController : BaseController
     {
         private ISys_UserService _sysUserService { get; set; }
-       
-       
-
-        public SysUserController(ISys_UserService sysUserService,ILog_AdminService logAdmin, ILog log)
+        private ISys_UploadFileService _sysUploadService { get; set; }
+        public SysUserController(ISys_UserService sysUserService, ISys_UploadFileService sysUploadService, ILog_AdminService logAdmin, ILog log)
         {
             _logAdmin = logAdmin;
             _log = log;
             this._sysUserService = sysUserService;
+            this._sysUploadService = sysUploadService;
         }
 
         /// <summary>
@@ -106,59 +106,64 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> AddSysUser([FromBody]FromAddSysUser model)
+        public IActionResult AddSysUser([FromBody]FromAddSysUser model)
         {
             string code = "000000";
             var user = AutoMapperExt.MapTo<Sys_User>(model);
             user.Password = AESUtil.EncryptPsw(user.Password);
-            var tt = await Task.Run(() =>
-             {
-                 Log_Admin logAdmin = new Log_Admin();
 
-                 var now = DateTime.Now;
-                 if (_sysUserService.IsAny(p => p.UserName == user.UserName))
-                 {
-                     return ReturnJson("100001");
-                 }
-                 else
-                 {
-                     user.LastIp = HttpContextExtension.GetIp(HttpContext);
-                     user.LastLogDate = now;
-                     user.CrtUser = _userName;
-                     user.CrtDate = now;
-                     user.Id = _sysUserService.Insert(user, false);
+            Log_Admin logAdmin = new Log_Admin();
 
-                     if (user.Id > 0 && model.RoleList.Count > 0)
-                     {
-                         //异步执行角色权限配置
-                         Task.Run(() =>
-                         {
-                             var perList = new List<Sys_UserRole>();
-                             foreach (var item in model.RoleList)
-                             {
-                                 var perModel = new Sys_UserRole();
-                                 perModel.RoleId = item.RoleId;
-                                 perModel.UserId = user.Id;
-                                 perList.Add(perModel);
-                             }
-                             _sysUserService.InsertList(perList);
-                         });
-                     }
-                     else if (user.Id == 0)
-                         code = "000001";
+            var now = DateTime.Now;
+            if (_sysUserService.IsAny(p => p.UserName == user.UserName))
+            {
+                return ReturnJson("100001");
+            }
+            else
+            {
+                user.LastIp = HttpContextExtension.GetIp(HttpContext);
+                user.LastLogDate = now;
+                user.CrtUser = _userName;
+                user.CrtDate = now;
+                user.Id = _sysUserService.Insert(user, false);
 
-                     logAdmin.Remark = "账号：" + user.UserName + "注册成功";
+                if (user.Id > 0 && !string.IsNullOrEmpty(user.HeadImgUrl))
+                {
+                    //更改图片状态
+                    _sysUploadService.UpdateUploadStatusAsync(UploadTypeEnum.image, user.HeadImgUrl, UploadStatusEnum.使用中);
+                }
 
-                     logAdmin.TypeId = (int)EnumLogAdminType.add_sysUser;//添加用户时的类型Id
-                 }
+                if (user.Id > 0 && model.RoleList.Count > 0)
+                {
+                    //异步执行角色权限配置
+                    Task.Run(() =>
+                    {
+                        var perList = new List<Sys_UserRole>();
+                        foreach (var item in model.RoleList)
+                        {
+                            var perModel = new Sys_UserRole();
+                            perModel.RoleId = item.RoleId;
+                            perModel.UserId = user.Id;
+                            perList.Add(perModel);
+                        }
+                        _sysUserService.InsertList(perList);
+                    });
+                }
+                else if (user.Id == 0)
+                    code = "000001";
 
-                 logAdmin.OtherId = user.Id.ToString();
-                 logAdmin.CrtUserId = _userId;
-                 logAdmin.CrtUserName = _userName;
-                 _logAdmin.LogAdmin(logAdmin, HttpContext);
-                 return ReturnJson(code);
-             });
-            return tt;
+                logAdmin.Remark = "账号：" + user.UserName + "注册成功";
+
+                logAdmin.TypeId = (int)EnumLogAdminType.add_sysUser;//添加用户时的类型Id
+            }
+
+            logAdmin.OtherId = user.Id.ToString();
+            logAdmin.CrtUserId = _userId;
+            logAdmin.CrtUserName = _userName;
+            _logAdmin.LogAdmin(logAdmin, HttpContext);
+            return ReturnJson(code);
+
+
         }
 
         /// <summary>
@@ -212,7 +217,8 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         public IActionResult UpdateUserRole([FromBody]FromUpdateSysUser model)
         {
             string code = "000000";
-            if (_sysUserService.IsAny(p => p.Id == model.UserId))
+            var userEntity = _sysUserService.GetUserById(model.UserId);
+            if (userEntity != null)
             {
                 try
                 {
@@ -234,6 +240,13 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                         }
 
                     });
+                    //异步更新图片状态
+                    if (userEntity.HeadImgUrl != model.HeadImgUrl)
+                    {
+                        _sysUploadService.UpdateUploadStatusAsync(UploadTypeEnum.image, model.HeadImgUrl, UploadStatusEnum.使用中);
+                        if (!string.IsNullOrEmpty(userEntity.HeadImgUrl))
+                            _sysUploadService.UpdateUploadStatusAsync(UploadTypeEnum.image, userEntity.HeadImgUrl, UploadStatusEnum.可删除);
+                    }
                     //异步添加用户角色权限
                     if (model.RoleList.Where(p => p.Status == (int)RoleMenuStatus.add).Count() > 0 && model.UserId > 0)
                     {
@@ -242,7 +255,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                             var perList = new List<Sys_UserRole>();
                             var menuList = model.RoleList.Where(p => p.Status == (int)RoleMenuStatus.add);
 
-                            foreach (var item in model.RoleList)
+                            foreach (var item in menuList)
                             {
                                 var perModel = new Sys_UserRole();
                                 perModel.RoleId = item.RoleId;
@@ -273,7 +286,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
             return ReturnJson(code);
         }
 
-        
+
 
 
     }
