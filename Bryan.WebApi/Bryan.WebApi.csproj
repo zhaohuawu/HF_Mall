@@ -22,9 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Product\Controllers\" />
     <Folder Include="Areas\Product\Data\" />
-    <Folder Include="Areas\Product\Models\" />
     <Folder Include="Areas\Product\Views\" />
     <Folder Include="Areas\Role\Models\Category\" />
     <Folder Include="Areas\Role\Views\" />

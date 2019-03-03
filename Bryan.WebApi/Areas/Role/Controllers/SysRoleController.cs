@@ -46,7 +46,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         public IActionResult GetAllRolesList()
         {
             string code = "000000";
-            var list = _sysAdminRoleService.GetList(p => p.IsForbidden == 0, p => new { p.Id, p.RoleName }, p => p.Id);
+            var list = _sysAdminRoleService.GetList(p => p.IsForbidden == 1, p => new { p.Id, p.RoleName }, p => p.Id);
             if (list.Count == 0)
                 code = "000200";
             return ReturnJson(code, list);
