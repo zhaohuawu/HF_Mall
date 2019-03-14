@@ -285,9 +285,6 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                 code = "100007";
             return ReturnJson(code);
         }
-
-
-
-
+        
     }
 }

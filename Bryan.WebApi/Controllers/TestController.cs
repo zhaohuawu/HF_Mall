@@ -20,7 +20,7 @@ namespace Bryan.WebApi.Controllers
         /// 测试代码
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet("get")]
         public IActionResult Get(string code)
         {
             return ReturnJson(code);
