@@ -36,3 +36,5 @@
 /.vs/BryanMallCore
 /Bryan.WebApi/Upload
 /.vs/config
+/Bryan.Test/obj
+/Bryan.Test/bin/Debug/netcoreapp2.1
