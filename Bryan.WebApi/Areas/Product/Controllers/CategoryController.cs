@@ -53,7 +53,12 @@ namespace Bryan.WebApi.Areas.Product.Controllers
             return ReturnJson(code, entity);
         }
 
-        
+        /// <summary>
+        /// 添加商品类目
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost("addCategory")]
         public IActionResult AddCategory([FromBody]FromAddCategory model)
         {
             string code = "000000";
