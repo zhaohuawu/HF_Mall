@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using BryanWu.Domain.Interface;
 using BryanWu.Domain.Model;
 using Common;
+using Common.Enums;
 using Common.Interface;
 using Common.Net;
+using Common.Repository;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -27,8 +29,8 @@ namespace Bryan.WebApi.Controllers
         public static string _userName = string.Empty;//用户名
         public static int _userId = 0;//用户ID
         public static int _role = 0;//用户角色ID
-        private static IConfigurationRoot _msgCode = null;//保存msgcode.json数据
-      
+                                    //private static IConfigurationRoot _msgCode = null;//保存msgcode.json数据
+
 
         #region ajax结果返回
         /// <summary>
@@ -37,7 +39,6 @@ namespace Bryan.WebApi.Controllers
         /// <param name="code"></param>
         /// <param name="msg"></param>
         /// <returns></returns>
-        [Route("")]
         protected IActionResult ToJson(ReturnResultEnum code, string msg = "")
         {
             return Ok(new ReturnResult(code, msg));
@@ -48,7 +49,6 @@ namespace Bryan.WebApi.Controllers
         /// <param name="code"></param>
         /// <param name="obj"></param>
         /// <returns></returns>
-        [Route("")]
         protected IActionResult ToJson(ReturnResultEnum code, object obj = null)
         {
             return Ok(new ReturnResult(code, obj));
@@ -60,7 +60,6 @@ namespace Bryan.WebApi.Controllers
         /// <param name="msg"></param>
         /// <param name="obj"></param>
         /// <returns></returns>
-        [Route("")]
         protected IActionResult ToJson(ReturnResultEnum code, string msg, object obj = null)
         {
             ReturnResult result;
@@ -76,15 +75,21 @@ namespace Bryan.WebApi.Controllers
         /// <param name="code"></param>
         /// <param name="obj"></param>
         /// <returns></returns>
-        [Route("")]
         protected IActionResult ReturnJson(string code, object obj = null)
         {
             //TODO msg根据code获取
-            var build = new ConfigurationBuilder().AddJsonFile("Config/msgCode.json");
-            if (_msgCode == null)
-                _msgCode = build.Build();
-            string msg = _msgCode[code.ToString()];
-            if (msg == null)
+            var redis = new RedisRepository();
+            string msg = redis.HashGet(RedisKeysEnum.ReturnCodeHash.ToString(), code);
+            if (string.IsNullOrEmpty(msg))
+            {
+                _log.Debug("sss");
+                var build = new ConfigurationBuilder().AddJsonFile("Config/msgCode.json");
+                var _msgCode = build.Build();
+                msg = _msgCode[code.ToString()];
+                if (!string.IsNullOrEmpty(msg))
+                    redis.HashSet(RedisKeysEnum.ReturnCodeHash.ToString(), code, msg);
+            }
+            if (string.IsNullOrEmpty(msg))
                 msg = "未知类型";
             if (obj == null)
                 return Ok(new ReturnMsgCode(code, msg));
@@ -98,15 +103,20 @@ namespace Bryan.WebApi.Controllers
         /// <param name="obj"></param>
         /// <param name="param"></param>
         /// <returns></returns>
-        [Route("")]
         protected IActionResult ReturnJsonByParms(string code, object obj, params string[] param)
         {
             //TODO msg根据code获取
-            var build = new ConfigurationBuilder().AddJsonFile("Config/msgCode.json");
-            if (_msgCode == null)
-                _msgCode = build.Build();
-            string msg = _msgCode[code.ToString()];
-            if (msg == null)
+            var redis = new RedisRepository();
+            string msg = redis.HashGet(RedisKeysEnum.ReturnCodeHash.ToString(), code);
+            if (string.IsNullOrEmpty(msg))
+            {
+                var build = new ConfigurationBuilder().AddJsonFile("Config/msgCode.json");
+                var _msgCode = build.Build();
+                msg = _msgCode[code.ToString()];
+                if (!string.IsNullOrEmpty(msg))
+                    redis.HashSet(RedisKeysEnum.ReturnCodeHash.ToString(), code, msg);
+            }
+            if (string.IsNullOrEmpty(msg))
             {
                 msg = "未知类型";
             }

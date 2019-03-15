@@ -47,7 +47,7 @@ namespace Bryan.WebApi
         {
             //AppSettings 参数配置
             var appSettingsSection = Configuration.GetSection("AppSettings");
-           
+
             var jwtSettingsSection = Configuration.GetSection("JwtSettings");
             var appSettings = appSettingsSection.Get<AppSettings>();
 
@@ -56,8 +56,12 @@ namespace Bryan.WebApi
             services.Configure<UploadSettings>(Configuration.GetSection("Upload"));
 
             //注册数据库服务
-            DBManager.ConnectionString = Configuration.GetConnectionString("rongfang_master");
-            DBManager.isLocal = appSettings.isLocal;
+            DBManager.ConnectionString = Configuration.GetConnectionString("mysql_hfmall");
+            DBManager.isLocal = appSettings.IsLocal;
+            //注册redis
+            RedisRepository._connectionString = Configuration.GetConnectionString("Redis_Hfmall"); //appSettings.Redis_Hfmall;
+            RedisRepository._databaseKey = Configuration.GetConnectionString("Redis_DatabaseKey"); //appSettings.Redis_DatabaseKey;
+
             //加载log4net日志配置文件
             LogHelper._repository = LogManager.CreateRepository(EnumLoggerReository.NETCoreRepository.ToString());
             XmlConfigurator.Configure(LogHelper._repository, new FileInfo("log4net.config"));

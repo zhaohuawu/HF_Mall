@@ -10,8 +10,8 @@ namespace Bryan.WebApi.Models.AppSettings
     /// </summary>
     public class AppSettings
     {
-        public string isLocal { get; set; }
-        public string imgHost { get; set; }
+        public bool IsLocal { get; set; }
+        public string ImgHost { get; set; }
     }
-   
+
 }

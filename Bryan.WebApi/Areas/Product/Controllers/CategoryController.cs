@@ -28,7 +28,7 @@ namespace Bryan.WebApi.Areas.Product.Controllers
         /// 获取商品分类list
         /// </summary>
         /// <returns></returns>
-        [HttpGet("categorylist")]
+        [HttpGet("getcategorylist")]
         public IActionResult GetCategoryList()
         {
             string code = "000000";
@@ -43,7 +43,7 @@ namespace Bryan.WebApi.Areas.Product.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("category")]
+        [HttpGet("getcategory")]
         public IActionResult GetCategory(int id)
         {
             string code = "000000";
@@ -58,12 +58,11 @@ namespace Bryan.WebApi.Areas.Product.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost("addcategory")]
         public IActionResult AddCategory([FromBody]FromAddCategory model)
         {
             string code = "000000";
             var category = AutoMapperExt.MapTo<Gd_GoodsCategory>(model);
-
 
             return ReturnJson(code);
         }

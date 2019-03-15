@@ -14,9 +14,9 @@ namespace Common.Repository
     public class DBManager
     {
         //TODO 改为配置的方式
-        public static string ConnectionString = "server=193.112.41.35;Database=rongfang1;Uid=rongfang;Pwd=rf654321";
-        public static string ConnectionString2 = "server=193.112.41.35;Database=rongfang1;Uid=rongfang;Pwd=rf654321";
-        public static string isLocal = "1";
+        public static string ConnectionString;
+        public static string ConnectionString2;
+        public static bool isLocal = true;
         public static SqlSugarClient GetInstance()
         {
             SqlSugarClient db = new SqlSugarClient(new ConnectionConfig()

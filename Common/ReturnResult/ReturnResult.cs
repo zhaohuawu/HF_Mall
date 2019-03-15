@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Extension;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,7 @@ namespace Common
         /// </summary>
         public ReturnResult()
         {
-            this.enumcode = ReturnResultEnum.success.GetEnumDesc();
+            this.enumcode = ReturnResultEnum.success.GetDesc();
             this.code = (int)ReturnResultEnum.success;
             this.msg = "成功"; //ReturnResultEnum.success.ToString();
             this.data = "";
@@ -28,7 +29,7 @@ namespace Common
         public ReturnResult(ReturnResultEnum _code, string _msg)
         {
             this.code = (int)_code;
-            this.enumcode = _code.GetEnumDesc();
+            this.enumcode = _code.GetDesc();
             this.msg = _msg;
             this.data = "";
         }
@@ -40,7 +41,7 @@ namespace Common
         public ReturnResult(ReturnResultEnum _code, object _data)
         {
             this.code = (int)_code;
-            this.enumcode = _code.GetEnumDesc();
+            this.enumcode = _code.GetDesc();
             this.msg = "";
             this.data = _data;
         }
@@ -53,7 +54,7 @@ namespace Common
         public ReturnResult(ReturnResultEnum _code, string _msg, object _data)
         {
             this.code = (int)_code;
-            this.enumcode = _code.GetEnumDesc();
+            this.enumcode = _code.GetDesc();
             this.msg = _msg;
             this.data = _data;
         }
