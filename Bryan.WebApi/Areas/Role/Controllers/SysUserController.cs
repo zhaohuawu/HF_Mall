@@ -81,9 +81,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         public IActionResult GetPageList([FromQuery]FromGetSysUser model)
         {
             string code = "000000";
-            PageSet pageSet = new PageSet();
-            pageSet.PageIndex = model.PageIndex;
-            pageSet.PageSize = model.PageSize;
+            PageSet pageSet = new PageSet(model.PageIndex, model.PageSize);
             var where = PredicateBuilder.True<Sys_User>();
             if (!string.IsNullOrEmpty(model.RealName))
                 where = where.And(n => model.RealName.Contains(n.RealName));
