@@ -26,7 +26,7 @@ namespace Bryan.Test
             //    Console.WriteLine(info.Name);
             //}
 
-            RedisTest.HashMo();
+            //RedisTest.HashMo();
             //RedisTest.HashDelete();
             //RedisTest.Sys_UserHash();
 
@@ -36,6 +36,9 @@ namespace Bryan.Test
             //Console.WriteLine(WordsHelper.hz_pinyin(words, "", true));
             //Console.WriteLine(WordsHelper.index_hz_pinyin(words, "", true));
             //.net core 使用StackExchange.Redis文档
+
+            ObjectTest.SetAndGet();
+
             Console.ReadKey();
         }
     }
