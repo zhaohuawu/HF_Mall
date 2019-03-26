@@ -176,12 +176,12 @@ namespace Bryan.WebApi.Areas.Role.Controllers
             var role = _sysUserService.GetUserById(userId);
             if (role != null)
             {
-                if (role.Status == 1)
+                if (role.Status == (int)SysUserStatusEnum.Normal)
                 {
-                    role.Status = 5;
+                    role.Status = (int)SysUserStatusEnum.Logout;
                 }
                 else
-                    role.Status = 1;
+                    role.Status = (int)SysUserStatusEnum.Normal;
                 _sysUserService.UpdateColumns(p => new { p.Status }, role, true);
             }
             else
@@ -283,6 +283,6 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                 code = "100007";
             return ReturnJson(code);
         }
-        
+
     }
 }

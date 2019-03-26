@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Bryan.WebApi.Models.AppSettings;
+using BryanWu.Domain.Model;
 
 namespace Bryan.WebApi.Areas.Role.Controllers
 {
@@ -53,7 +54,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                 var sysuser = await Task.Run(() => { return _sysUserService.GetEntity(p => p.UserName == username && p.Password == psw); });
                 if (sysuser != null)
                 {
-                    if (sysuser.Status != 1) return ReturnJson("000103");//1为正常使用账号
+                    if (sysuser.Status != (int)SysUserStatusEnum.Normal) return ReturnJson("000103");//1为正常使用账号
                     var now = DateTime.Now;
                     var exp = now.AddHours(_jwtSettings.Expires);
                     var claims = new Claim[]

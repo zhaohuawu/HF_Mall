@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
@@ -78,7 +79,7 @@ namespace BryanWu.Domain.Model
         /// Nullable:True
         /// </summary>           
         public DateTime? ModifyDate { get; set; }
-        
+
 
         /// <summary>
         /// Desc:最后登录时间
@@ -119,5 +120,13 @@ namespace BryanWu.Domain.Model
         /// </summary>           
         public string CrtUser { get; set; }
 
+    }
+
+    public enum SysUserStatusEnum
+    {
+        [Description("正常")]
+        Normal = 1,
+        [Description("注销")]
+        Logout = 5,
     }
 }
