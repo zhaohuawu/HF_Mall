@@ -59,8 +59,11 @@ namespace Bryan.WebApi
             DBManager.ConnectionString = Configuration.GetConnectionString("mysql_hfmall");
             DBManager.isLocal = appSettings.IsLocal;
             //注册redis
-            RedisRepository._connectionString = Configuration.GetConnectionString("Redis_Hfmall"); //appSettings.Redis_Hfmall;
-            RedisRepository._databaseKey = Configuration.GetConnectionString("Redis_DatabaseKey"); //appSettings.Redis_DatabaseKey;
+            //RedisRepository._connectionString = Configuration.GetConnectionString("Redis_Hfmall"); //appSettings.Redis_Hfmall;
+            //RedisRepository._databaseKey = Configuration.GetConnectionString("Redis_DatabaseKey"); //appSettings.Redis_DatabaseKey;
+            var cacheStr = Configuration.GetConnectionString("Redis_Hfmall");
+            var csredis = new CSRedis.CSRedisClient(cacheStr);
+            RedisHelper.Initialization(csredis);
 
             //加载log4net日志配置文件
             LogHelper._repository = LogManager.CreateRepository(EnumLoggerReository.NETCoreRepository.ToString());

@@ -25,7 +25,7 @@ namespace Bryan.WebApi.Controllers
         }
 
         /// <summary>
-        /// 测试代码
+        /// 测试代码sssss
         /// </summary>
         /// <returns></returns>
         [HttpGet("get")]

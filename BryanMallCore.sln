@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ul", "Ul", "{E17C483F-C71E-
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{5E7D5232-55E6-4C14-80F9-A8DBBE943421}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib", "Lib\Lib.csproj", "{5A8B4103-2DDD-4975-9EF3-11A8484C9646}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bryan.WebApi", "Bryan.WebApi\Bryan.WebApi.csproj", "{DA37D243-B86C-4B7C-B0A4-9D574AB13144}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bryan.Mvc", "Bryan.Mvc\Bryan.Mvc.csproj", "{DFE6D295-9C36-445A-ACAA-5154A8AEA463}"
@@ -25,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BryanWu.Application", "Brya
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{7788916E-8B63-4D2F-8261-E7225C6A4F45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bryan.Test", "Bryan.Test\Bryan.Test.csproj", "{3EC90882-25BD-4548-BF3A-82887C676A57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bryan.Test", "Bryan.Test\Bryan.Test.csproj", "{3EC90882-25BD-4548-BF3A-82887C676A57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,22 +37,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5A8B4103-2DDD-4975-9EF3-11A8484C9646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5A8B4103-2DDD-4975-9EF3-11A8484C9646}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5A8B4103-2DDD-4975-9EF3-11A8484C9646}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{5A8B4103-2DDD-4975-9EF3-11A8484C9646}.Debug|ARM.Build.0 = Debug|Any CPU
-		{5A8B4103-2DDD-4975-9EF3-11A8484C9646}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{5A8B4103-2DDD-4975-9EF3-11A8484C9646}.Debug|x64.Build.0 = Debug|Any CPU
-		{5A8B4103-2DDD-4975-9EF3-11A8484C9646}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{5A8B4103-2DDD-4975-9EF3-11A8484C9646}.Debug|x86.Build.0 = Debug|Any CPU
-		{5A8B4103-2DDD-4975-9EF3-11A8484C9646}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5A8B4103-2DDD-4975-9EF3-11A8484C9646}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5A8B4103-2DDD-4975-9EF3-11A8484C9646}.Release|ARM.ActiveCfg = Release|Any CPU
-		{5A8B4103-2DDD-4975-9EF3-11A8484C9646}.Release|ARM.Build.0 = Release|Any CPU
-		{5A8B4103-2DDD-4975-9EF3-11A8484C9646}.Release|x64.ActiveCfg = Release|Any CPU
-		{5A8B4103-2DDD-4975-9EF3-11A8484C9646}.Release|x64.Build.0 = Release|Any CPU
-		{5A8B4103-2DDD-4975-9EF3-11A8484C9646}.Release|x86.ActiveCfg = Release|Any CPU
-		{5A8B4103-2DDD-4975-9EF3-11A8484C9646}.Release|x86.Build.0 = Release|Any CPU
 		{DA37D243-B86C-4B7C-B0A4-9D574AB13144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DA37D243-B86C-4B7C-B0A4-9D574AB13144}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA37D243-B86C-4B7C-B0A4-9D574AB13144}.Debug|ARM.ActiveCfg = Debug|Any CPU
