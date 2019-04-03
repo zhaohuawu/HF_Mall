@@ -16,8 +16,8 @@ namespace Bryan.Test
             string words = "伍昭华是的法规";
             DBManager.ConnectionString = "server=193.112.41.35;Database=hfmall;Uid=xintaoke;Pwd=xtk920706;SslMode=None";
             //注册redis
-            RedisRepository._connectionString = "193.112.41.35:6379,allowAdmin=true,password=wzh920706";
-            RedisRepository._databaseKey = "hfmall";
+            var csredis = new CSRedis.CSRedisClient("193.112.41.35:6379,allowAdmin=true,password=wzh920706");
+            RedisHelper.Initialization(csredis);
             //var user = new Sys_User();
             //user.HeadImgUrl = "sgdsg";
 
