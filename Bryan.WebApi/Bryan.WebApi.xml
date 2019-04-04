@@ -104,14 +104,6 @@
             <param name="pid"></param>
             <param name="btnList"></param>
         </member>
-        <member name="M:Bryan.WebApi.Areas.Role.Controllers.LoginController.CreateToken(System.String,System.String)">
-            <summary>
-            生成token
-            </summary>
-            <param name="username">用户名</param>
-            <param name="password">密码</param>
-            <returns></returns>
-        </member>
         <member name="M:Bryan.WebApi.Areas.Role.Controllers.MenuController.GetMenuList">
             <summary>
             获取全部菜单
@@ -870,6 +862,14 @@
             <param name="code"></param>
             <param name="obj"></param>
             <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Bryan.WebApi.Controllers.LoginController.CreateToken(System.String,System.String)">
+            <summary>
+            生成token
+            </summary>
+            <param name="username">用户名</param>
+            <param name="password">密码</param>
             <returns></returns>
         </member>
         <member name="M:Bryan.WebApi.Controllers.RedisController.UpdateMsgCodeToRedis">

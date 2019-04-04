@@ -139,15 +139,15 @@ namespace Bryan.WebApi
                             {
                                 var jwtToken = new JwtSecurityToken(token[1]);
                                 var payload = jwtToken.Payload;
-                                var nameName = payload.Where(p => p.Key == ClaimTypes.Name).Select(p => p.Value).FirstOrDefault();
-                                var userid = payload.Where(p => p.Key == ClaimTypes.NameIdentifier).Select(p => p.Value).FirstOrDefault();
-                                var exp = payload.Where(p => p.Key == ClaimTypes.Expired).Select(p => p.Value).FirstOrDefault();
-
+                                var nameName = payload.Where(p => p.Key == "name").Select(p => p.Value).FirstOrDefault();
+                                var userid = payload.Where(p => p.Key == "userId").Select(p => p.Value).FirstOrDefault();
+                                var exp = payload.Where(p => p.Key == "exp").Select(p => p.Value).FirstOrDefault();
+                                 //TODO 时间戳转换为时间
                                 if (DateTime.Now > ConvertHelper.Instance.ConvertToDate(exp))
                                 {
                                     Controllers.BaseController._userId = 0;
                                     Controllers.BaseController._userName = string.Empty;
-                                    context.Fail("Unauthorized");
+                                    context.Fail("Unauthorized11");
                                 }
                                 else
                                 {
