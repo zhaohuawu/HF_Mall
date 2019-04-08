@@ -11,63 +11,12 @@ namespace Common
 
         #region 公共属性方法
 
-
-
         /// <summary>
-        /// 返回标准日期格式 
+        /// 返回标准年月日时间格式 
         /// </summary>
-        public static string GetDate()
+        public static string ToDateCh(this DateTime dt)
         {
-            return GetDate(DateTime.Now);
-        }
-
-        /// <summary>
-        /// 返回标准日期格式
-        /// </summary>
-        public static string GetDate(this DateTime dt)
-        {
-            return dt.ToString("yyyy-MM-dd");
-        }
-
-        /// <summary>
-        /// 返回标准时间格式
-        /// </summary>
-        public static string GetTime()
-        {
-            return GetTime(DateTime.Now);
-        }
-
-        /// <summary>
-        /// 返回标准时间格式
-        /// </summary>
-        public static string GetTime(this DateTime dt)
-        {
-            return dt.ToString("HH:mm:ss");
-        }
-
-        /// <summary>
-        /// 返回标准日期时间格式
-        /// </summary>
-        public static string GetDateTime()
-        {
-            return GetDateTime(DateTime.Now);
-        }
-
-        /// <summary>
-        /// 返回标准日期时间格式 
-        /// </summary>
-        public static string GetDateTime(this DateTime dt)
-        {
-            return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-        }
-
-        /// <summary>
-        /// 返回标准日期时间格式 
-        /// </summary>
-        public static string GetDateCh(DateTime dt)
-        {
-            var strArr = dt.ToString("yyyy-MM-dd").Split('-');
-            return strArr[0] + "年" + strArr[1] + "月" + strArr[2] + "日";
+            return string.Format("{0:F}", dt);
         }
 
         public static string GetDateStr(this DateTime dt)
@@ -105,7 +54,7 @@ namespace Common
         /// <summary>
         /// 长整形时间转换成c#时间
         /// </summary>
-        public static DateTime ToCsharpTime(long time)
+        public static DateTime ConvertToCsharpTime(long time)
         {
             if (time == 0)
                 return DateTime.Now;

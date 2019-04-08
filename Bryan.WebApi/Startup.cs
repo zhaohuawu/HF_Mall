@@ -141,9 +141,9 @@ namespace Bryan.WebApi
                                 var payload = jwtToken.Payload;
                                 var nameName = payload.Where(p => p.Key == "name").Select(p => p.Value).FirstOrDefault();
                                 var userid = payload.Where(p => p.Key == "userId").Select(p => p.Value).FirstOrDefault();
-                                var exp = payload.Where(p => p.Key == "exp").Select(p => p.Value).FirstOrDefault();
-                                 //TODO 时间戳转换为时间
-                                if (DateTime.Now > ConvertHelper.Instance.ConvertToDate(exp))
+                                var exp = (long)payload.Where(p => p.Key == "exp").Select(p => p.Value).FirstOrDefault();
+                                //TODO 时间戳转换为时间
+                                if (DateTime.Now > DateTimeHelper.ConvertToCsharpTime(exp))
                                 {
                                     Controllers.BaseController._userId = 0;
                                     Controllers.BaseController._userName = string.Empty;
