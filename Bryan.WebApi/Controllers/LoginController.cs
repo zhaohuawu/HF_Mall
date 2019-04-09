@@ -59,9 +59,6 @@ namespace Bryan.WebApi.Controllers
                     var exp = now.AddHours(_jwtSettings.Expires);
                     var claims = new Claim[]
                     {
-                        //new Claim(ClaimTypes.NameIdentifier,sysuser.Id.ToString()),
-                        //new Claim(ClaimTypes.Name,username),
-                        //new Claim(ClaimTypes.Expired,exp.ToString()),
                         new Claim("userId",sysuser.Id.ToString()),
                         new Claim("name",username),
                         new Claim("source","1")

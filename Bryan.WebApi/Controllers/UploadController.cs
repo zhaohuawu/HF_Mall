@@ -35,7 +35,7 @@ namespace Bryan.WebApi.Controllers
         /// 上传头像
         /// </summary>
         /// <returns></returns>
-        [HttpPost("UploadAvatar")]
+        [HttpPost("uploadavatar")]
         public IActionResult UploadAvatar()
         {
             string code = "000000";
