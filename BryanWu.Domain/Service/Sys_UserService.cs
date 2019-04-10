@@ -102,5 +102,35 @@ namespace BryanWu.Domain.Service
 
         #endregion
 
+        /// <summary>
+        /// 获取用户角色列表
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="roleId"></param>
+        /// <returns></returns>
+        public List<Sys_UserRole> GetUserRoleList(int userId, int roleId)
+        {
+            string sql = @"select sur.UserId,sur.RoleId from sys_user su
+                        inner join sys_userrole sur on sur.UserId=su.Id
+                        inner join sys_adminrole sar on sur.RoleId=sar.Id
+                        where su.`Status`=1
+                        and sar.IsForbidden=1";
+            string whereSql = "";
+            var whereDic = new Dictionary<string, object>();
+            if (userId > 0)
+            {
+                whereSql += " and su.Id=@userId";
+                whereDic.Add("@userId", userId);
+            }
+
+            if (roleId > 0)
+            {
+                whereSql += " and sar.Id=@roleId";
+                whereDic.Add("@roleId", roleId);
+            }
+
+            return _repository.ExcuteGetList<Sys_UserRole>(sql + whereSql, whereDic);
+        }
+
     }
 }

@@ -19,12 +19,12 @@ namespace Bryan.WebApi.Controllers
         {
             _log = log;
         }
-        
+
         /// <summary>
         /// 覆盖返回码redis
         /// </summary>
         /// <returns></returns>
-        [HttpGet("updatemsgcodetoredis")]
+        [HttpPost("updatemsgcodetoredis")]
         public async Task<IActionResult> UpdateMsgCodeToRedis()
         {
             RedisHelper.HDel(RedisKeysEnum.ReturnCodeHash.GetHFMallKey());
@@ -48,5 +48,7 @@ namespace Bryan.WebApi.Controllers
             });
             return ReturnJson(code);
         }
+
+        
     }
 }

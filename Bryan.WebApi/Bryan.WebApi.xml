@@ -346,6 +346,14 @@
             <param name="model"></param>
             <returns></returns>
         </member>
+        <member name="M:Bryan.WebApi.Areas.Role.Controllers.SysUserController.UpdateUserRoleToRedis(System.Int32,System.Int32)">
+            <summary>
+            添加或修改账号角色列表Redis
+            </summary>
+            <param name="userId"></param>
+            <param name="roleId"></param>
+            <returns></returns>
+        </member>
         <member name="T:Bryan.WebApi.Areas.Role.Models.EnumLogAdminType">
             <summary>
             后台操作日志
@@ -647,6 +655,11 @@
         <member name="P:Bryan.WebApi.Areas.Role.Models.SysRole.ReturnRoleMenuTree.Children">
             <summary>
             子菜单列表
+            </summary>
+        </member>
+        <member name="P:Bryan.WebApi.Areas.Role.Models.SysRole.ReturnRoleMenuTree.Disabled">
+            <summary>
+            是否禁止点击
             </summary>
         </member>
         <member name="P:Bryan.WebApi.Areas.Role.Models.SysRole.RoleMenu.PerId">

@@ -19,6 +19,9 @@ using Microsoft.Extensions.Options;
 using Bryan.WebApi.Models.AppSettings;
 using BryanWu.Domain;
 using Bryan.WebApi.Common;
+using Common.Enums;
+using Bryan.WebApi.Models;
+using Common.Extension;
 
 namespace Bryan.WebApi.Areas.Role.Controllers
 {
@@ -287,5 +290,63 @@ namespace Bryan.WebApi.Areas.Role.Controllers
             return ReturnJson(code);
         }
 
+        /// <summary>
+        /// 添加或修改账号角色列表Redis
+        /// </summary>
+        /// <param name="isAdd">1:增加，0减少</param>
+        /// <param name="userId"></param>
+        /// <param name="roleId"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> UpdateUserRoleToRedis([FromForm]int isAdd, [FromForm]int userId, [FromForm]int roleId)
+        {
+            var result = await Task.Run(() =>
+            {
+                var list = new List<Sys_UserRole>();
+                var dicList = new Dictionary<int, List<int>>();
+                if (userId > 0 && isAdd != 1)
+                {
+                    if (RedisHelper.HExists(RedisKeysEnum.AdminRoleHash.GetHFMallKey(), userId.ToString()))
+                        RedisHelper.HDel(RedisKeysEnum.AdminRoleHash.GetHFMallKey(), userId.ToString());
+                    list = _sysUserService.GetUserRoleList(userId, 0);
+                    var arr = list.Select(n => n.RoleId).Distinct().ToList();
+                    RedisHelper.HSet(RedisKeysEnum.AdminRoleHash.GetHFMallKey(), userId.ToString(), arr);
+                    dicList.Add(userId, arr);
+                }
+                else if (roleId > 0 && isAdd != 1)
+                {
+                    list = _sysUserService.GetUserRoleList(0, roleId);
+
+                    var hDic = RedisHelper.HGetAll<List<int>>(RedisKeysEnum.AdminRoleHash.GetHFMallKey());
+                    Parallel.ForEach(hDic, item =>
+                    {
+                        var arr = item.Value;
+                        if (arr.Contains(roleId))
+                        {
+                            if (RedisHelper.HExists(RedisKeysEnum.AdminRoleHash.GetHFMallKey(), item.Key))
+                                RedisHelper.HDel(RedisKeysEnum.AdminRoleHash.GetHFMallKey(), item.Key);
+                            arr.Remove(roleId);
+                            RedisHelper.HSet(RedisKeysEnum.AdminRoleHash.GetHFMallKey(), item.Key, arr);
+                            dicList.Add(Convert.ToInt32(item.Key), arr);
+                        }
+                    });
+                }
+                else
+                {
+                    list = _sysUserService.GetUserRoleList(0, 0);
+                    var userList = list.Select(p => p.UserId).Distinct().ToList();
+                    RedisHelper.HDel(RedisKeysEnum.AdminRoleHash.GetHFMallKey());
+                    Parallel.ForEach(userList, item =>
+                    {
+                        var arr = list.Where(p => p.UserId == item).Select(n => n.RoleId).Distinct().ToList();
+                        RedisHelper.HSet(RedisKeysEnum.AdminRoleHash.GetHFMallKey(), item.ToString(), arr);
+                        dicList.Add(item, arr);
+                    });
+                }
+
+                return ("000030", dicList).ToTuple();
+            });
+            return ReturnJson(result.Item1, result.Item2);
+        }
     }
 }

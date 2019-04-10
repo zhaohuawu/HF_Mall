@@ -23,5 +23,7 @@ namespace Common.Enums
         SysUserHash,
         [Description("接口结果返回码")]
         ReturnCodeHash,
+        [Description("账号角色列表")]
+        AdminRoleHash,
     }
 }

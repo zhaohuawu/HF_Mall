@@ -31,6 +31,7 @@ namespace BryanWu.Domain.Interface
         bool DeleteById(int id);
         int DeleteByIdArray(params int[] idArr);
         List<TResult> GetList<TResult>(Expression<Func<Sys_UserRole, bool>> where, Expression<Func<Sys_UserRole, TResult>> obj, Expression<Func<Sys_UserRole, object>> orderBy, bool isDesc = false);
+        List<Sys_UserRole> GetUserRoleList(int userId, int roleId);
 
     }
 }

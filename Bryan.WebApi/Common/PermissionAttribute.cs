@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Common.Extension;
 
 namespace Bryan.WebApi.Common
 {
@@ -11,6 +12,13 @@ namespace Bryan.WebApi.Common
     public class PermissionAttribute : Attribute, IFilterMetadata
     {
         public string PermissionStr { get; set; }
+        public string[] PermissionArray
+        {
+            get
+            {
+                return PermissionStr.ToSafeStrArray(',');
+            }
+        }
 
         public PermissionAttribute(string permissionStr)
         {

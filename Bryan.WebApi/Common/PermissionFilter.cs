@@ -23,15 +23,16 @@ namespace Bryan.WebApi.Common
 
             if (actionAttr != null)
             {
-                strNavName = actionAttr.PermissionStr;
+                var arr = actionAttr.PermissionArray;
                 List<string> permissionList = new List<string>();
                 permissionList.Add("sysiuii");
-                if (!permissionList.Contains(strNavName))
+                if (permissionList.Where(s => arr.Contains(s)).ToList().Count == 0)
                 {
                     string code = "000050";
                     filterContext.Result = new JsonResult(new ReturnMsgCode(code, RedisOptHelper.GetMsgCode(code)));
                     return;
                 }
+                Console.WriteLine("是否有权限：" + permissionList.Where(s => arr.Contains(s)).ToList().Count);
             }
 
         }
