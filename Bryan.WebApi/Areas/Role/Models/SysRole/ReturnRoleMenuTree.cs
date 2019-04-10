@@ -18,6 +18,7 @@ namespace Bryan.WebApi.Areas.Role.Models.SysRole
             this.MenuName = menuName;
             this.Type = type;
             this.Children = children;
+            this.Disabled = false;
         }
         public string TypeId { get; set; }
         /// <summary>
@@ -36,5 +37,9 @@ namespace Bryan.WebApi.Areas.Role.Models.SysRole
         /// 子菜单列表
         /// </summary>
         public List<ReturnRoleMenuTree> Children { get; set; }
+        /// <summary>
+        /// 是否禁止点击
+        /// </summary>
+        public bool Disabled { get; set; }
     }
 }
