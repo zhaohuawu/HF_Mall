@@ -48,19 +48,16 @@ namespace Bryan.WebApi
             //AppSettings 参数配置
             var appSettingsSection = Configuration.GetSection("AppSettings");
 
-            var jwtSettingsSection = Configuration.GetSection("JwtSettings");
-            var appSettings = appSettingsSection.Get<AppSettings>();
 
+            var appSettings = appSettingsSection.Get<AppSettings>();
             services.Configure<AppSettings>(appSettingsSection);
-            services.Configure<JwtSettings>(jwtSettingsSection);
             services.Configure<UploadSettings>(Configuration.GetSection("Upload"));
 
             //注册数据库服务
             DBManager.ConnectionString = Configuration.GetConnectionString("mysql_hfmall");
             DBManager.isLocal = appSettings.IsLocal;
             //注册redis
-            RedisRepository._connectionString = Configuration.GetConnectionString("Redis_Hfmall"); //appSettings.Redis_Hfmall;
-            RedisRepository._databaseKey = Configuration.GetConnectionString("Redis_DatabaseKey"); //appSettings.Redis_DatabaseKey;
+            RegisterRedis();
 
             //加载log4net日志配置文件
             LogHelper._repository = LogManager.CreateRepository(EnumLoggerReository.NETCoreRepository.ToString());
@@ -114,61 +111,8 @@ namespace Bryan.WebApi
 
             });
 
-            #region JWT认证  
-            //TOMO 令牌过期后刷新，以及更改密码后令牌未过期的处理问题
-            var jwtSettings = jwtSettingsSection.Get<JwtSettings>();
-            services.AddAuthentication(opts =>
-            {
-                opts.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                opts.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(opts =>
-            {
-                opts.Events = new JwtBearerEvents()
-                {
-                    OnMessageReceived = context =>
-                    {
-                        var auth = context.Request.Headers["Authorization"].FirstOrDefault();
-                        if (!string.IsNullOrEmpty(auth))
-                        {
-                            var token = auth.Split(' ');
-                            if (token.Length > 1)
-                            {
-                                var jwtToken = new JwtSecurityToken(token[1]);
-                                var payload = jwtToken.Payload;
-                                var nameName = payload.Where(p => p.Key == ClaimTypes.Name).Select(p => p.Value).FirstOrDefault();
-                                var userid = payload.Where(p => p.Key == ClaimTypes.NameIdentifier).Select(p => p.Value).FirstOrDefault();
-                                var exp = payload.Where(p => p.Key == ClaimTypes.Expired).Select(p => p.Value).FirstOrDefault();
-
-                                if (DateTime.Now > ConvertHelper.Instance.ConvertToDate(exp))
-                                {
-                                    Controllers.BaseController._userId = 0;
-                                    Controllers.BaseController._userName = string.Empty;
-                                    context.Fail("Unauthorized");
-                                }
-                                else
-                                {
-                                    Controllers.BaseController._userId = ConvertHelper.Instance.ConvertToInt(userid);
-                                    Controllers.BaseController._userName = nameName.ToString();
-                                }
-                            }
-                        }
-                        return Task.CompletedTask;
-                    }
-                };
-
-                opts.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secretkey)),
-                    ValidateIssuer = true,
-                    ValidIssuer = jwtSettings.Issuer,
-                    ValidateAudience = true,
-                    ValidAudience = jwtSettings.Audience,
-                };
-            });
-
-            #endregion
+            //JWT认证  
+            JwtValidation(services);
 
             //配置跨域处理
             services.AddCors(options =>
@@ -217,7 +161,7 @@ namespace Bryan.WebApi
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection(); //使用Https传输
             app.UseAuthentication();
             app.UseMvc(routes =>
             {
@@ -229,6 +173,73 @@ namespace Bryan.WebApi
 
 
 
+        }
+
+        private void JwtValidation(IServiceCollection services)
+        {
+            var jwtSettingsSection = Configuration.GetSection("JwtSettings");
+            services.Configure<JwtSettings>(jwtSettingsSection);
+            //TOMO 令牌过期后刷新，以及更改密码后令牌未过期的处理问题
+            var jwtSettings = jwtSettingsSection.Get<JwtSettings>();
+            services.AddAuthentication(opts =>
+            {
+                opts.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opts.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(opts =>
+            {
+                opts.Events = new JwtBearerEvents()
+                {
+                    OnMessageReceived = context =>
+                    {
+                        var auth = context.Request.Headers["Authorization"].FirstOrDefault();
+                        if (!string.IsNullOrEmpty(auth))
+                        {
+                            var token = auth.Split(' ');
+                            if (token.Length > 1)
+                            {
+                                var jwtToken = new JwtSecurityToken(token[1]);
+                                var payload = jwtToken.Payload;
+                                var nameName = payload.Where(p => p.Key == "name").Select(p => p.Value).FirstOrDefault();
+                                var userid = payload.Where(p => p.Key == "userId").Select(p => p.Value).FirstOrDefault();
+                                var exp = (long)payload.Where(p => p.Key == "exp").Select(p => p.Value).FirstOrDefault();
+
+                                if (DateTime.Now > DateTimeHelper.ConvertToCsharpTime(exp))
+                                {
+                                    Controllers.BaseController._userId = 0;
+                                    Controllers.BaseController._userName = string.Empty;
+                                    context.Fail("Unauthorized11");
+                                }
+                                else
+                                {
+                                    Controllers.BaseController._userId = ConvertHelper.Instance.ConvertToInt(userid);
+                                    Controllers.BaseController._userName = nameName.ToString();
+                                }
+                            }
+                        }
+                        return Task.CompletedTask;
+                    }
+                };
+
+                opts.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secretkey)),
+                    ValidateIssuer = true,
+                    ValidIssuer = jwtSettings.Issuer,
+                    ValidateAudience = true,
+                    ValidAudience = jwtSettings.Audience,
+                };
+            });
+        }
+
+        private void RegisterRedis()
+        {
+            //RedisRepository._connectionString = Configuration.GetConnectionString("Redis_Hfmall"); //appSettings.Redis_Hfmall;
+            //RedisRepository._databaseKey = Configuration.GetConnectionString("Redis_DatabaseKey"); //appSettings.Redis_DatabaseKey;
+            var cacheStr = Configuration.GetConnectionString("Redis_Hfmall");
+            var csredis = new CSRedis.CSRedisClient(cacheStr);
+            RedisHelper.Initialization(csredis);
         }
     }
 }

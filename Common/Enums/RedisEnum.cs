@@ -7,6 +7,8 @@ namespace Common.Enums
 {
     public enum RedisKeysEnum
     {
+        [Description("hfmall默认关键字")]
+        hfmall,
         [Description("String字符串测试")]
         TestString,
         [Description("Hash散列测试")]

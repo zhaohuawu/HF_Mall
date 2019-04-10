@@ -18,10 +18,10 @@ using Microsoft.IdentityModel.Tokens;
 using Bryan.WebApi.Models.AppSettings;
 using BryanWu.Domain.Model;
 
-namespace Bryan.WebApi.Areas.Role.Controllers
+namespace Bryan.WebApi.Controllers
 {
     [Authorize]
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class LoginController : BaseController
     {
@@ -42,7 +42,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// <param name="password">密码</param>
         /// <returns></returns>
         [AllowAnonymous]
-        [HttpPost]
+        [HttpPost("createtoken")]
         public async Task<IActionResult> CreateToken([FromForm]string username, [FromForm]string password)
         {
             try
@@ -59,9 +59,9 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                     var exp = now.AddHours(_jwtSettings.Expires);
                     var claims = new Claim[]
                     {
-                        new Claim(ClaimTypes.NameIdentifier,sysuser.Id.ToString()),
-                        new Claim(ClaimTypes.Name,username),
-                        new Claim(ClaimTypes.Expired,exp.ToString()),
+                        new Claim("userId",sysuser.Id.ToString()),
+                        new Claim("name",username),
+                        new Claim("source","1")
                     };
                     var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secretkey));
                     var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

@@ -28,7 +28,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// 获取全部菜单
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet("getmenulist")]
         public IActionResult GetMenuList()
         {
             string code = "000000";
@@ -43,7 +43,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet("getmenu")]
         public IActionResult GetMenu(int id)
         {
             string code = "000000";
@@ -58,7 +58,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost("addmemu")]
         public IActionResult AddMenu([FromBody]FromAddMenu model)
         {
             var sysAdminMenu = AutoMapperExt.MapTo<Sys_AdminMenu>(model);
@@ -100,7 +100,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// <param name="orders">将移动到的排序位置</param>
         /// <returns></returns>
         [AllowAnonymous]
-        [HttpPut]
+        [HttpPut("updatemenuorders")]
         public IActionResult UpdateMenuOrders(int mid, int orders)
         {
             string code = "000000";

@@ -10,9 +10,9 @@
       "request": "launch",
       "preLaunchTask": "build",
       // If you have changed target frameworks, make sure to update the program path.
-      "program": "${workspaceFolder}/Bryan.Test/bin/Debug/netcoreapp2.1/Bryan.Test.dll",
+      "program": "${workspaceFolder}/Bryan.WebApi/bin/Debug/netcoreapp2.1/Bryan.WebApi.dll",
       "args": [],
-      "cwd": "${workspaceFolder}/Bryan.Test",
+      "cwd": "${workspaceFolder}/Bryan.WebApi",
       "stopAtEntry": false,
       "internalConsoleOptions": "openOnSessionStart",
       "launchBrowser": {

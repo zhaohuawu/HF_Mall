@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Bryan.WebApi.Common;
+using Bryan.WebApi.Models;
 using BryanWu.Domain.Interface;
 using BryanWu.Domain.Model;
 using Common;
@@ -29,8 +31,6 @@ namespace Bryan.WebApi.Controllers
         public static string _userName = string.Empty;//用户名
         public static int _userId = 0;//用户ID
         public static int _role = 0;//用户角色ID
-                                    //private static IConfigurationRoot _msgCode = null;//保存msgcode.json数据
-
 
         #region ajax结果返回
         /// <summary>
@@ -77,18 +77,7 @@ namespace Bryan.WebApi.Controllers
         /// <returns></returns>
         protected IActionResult ReturnJson(string code, object obj = null)
         {
-            //TODO msg根据code获取
-            var redis = new RedisRepository();
-            string msg = redis.HashGet(RedisKeysEnum.ReturnCodeHash.ToString(), code);
-            if (string.IsNullOrEmpty(msg))
-            {
-                _log.Debug("sss");
-                var build = new ConfigurationBuilder().AddJsonFile("Config/msgCode.json");
-                var _msgCode = build.Build();
-                msg = _msgCode[code.ToString()];
-                if (!string.IsNullOrEmpty(msg))
-                    redis.HashSet(RedisKeysEnum.ReturnCodeHash.ToString(), code, msg);
-            }
+            string msg = RedisOptHelper.GetMsgCode(code);
             if (string.IsNullOrEmpty(msg))
                 msg = "未知类型";
             if (obj == null)
@@ -105,17 +94,8 @@ namespace Bryan.WebApi.Controllers
         /// <returns></returns>
         protected IActionResult ReturnJsonByParms(string code, object obj, params string[] param)
         {
-            //TODO msg根据code获取
-            var redis = new RedisRepository();
-            string msg = redis.HashGet(RedisKeysEnum.ReturnCodeHash.ToString(), code);
-            if (string.IsNullOrEmpty(msg))
-            {
-                var build = new ConfigurationBuilder().AddJsonFile("Config/msgCode.json");
-                var _msgCode = build.Build();
-                msg = _msgCode[code.ToString()];
-                if (!string.IsNullOrEmpty(msg))
-                    redis.HashSet(RedisKeysEnum.ReturnCodeHash.ToString(), code, msg);
-            }
+            string msg = RedisOptHelper.GetMsgCode(code);
+
             if (string.IsNullOrEmpty(msg))
             {
                 msg = "未知类型";
@@ -127,7 +107,5 @@ namespace Bryan.WebApi.Controllers
         }
 
         #endregion
-
-
     }
 }
