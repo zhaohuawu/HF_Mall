@@ -161,7 +161,7 @@ namespace Bryan.WebApi
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection(); //使用Https传输
             app.UseAuthentication();
             app.UseMvc(routes =>
             {
@@ -203,7 +203,7 @@ namespace Bryan.WebApi
                                 var nameName = payload.Where(p => p.Key == "name").Select(p => p.Value).FirstOrDefault();
                                 var userid = payload.Where(p => p.Key == "userId").Select(p => p.Value).FirstOrDefault();
                                 var exp = (long)payload.Where(p => p.Key == "exp").Select(p => p.Value).FirstOrDefault();
-                                //TODO 时间戳转换为时间
+
                                 if (DateTime.Now > DateTimeHelper.ConvertToCsharpTime(exp))
                                 {
                                     Controllers.BaseController._userId = 0;

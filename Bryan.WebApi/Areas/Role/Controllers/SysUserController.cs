@@ -18,6 +18,7 @@ using System.IO;
 using Microsoft.Extensions.Options;
 using Bryan.WebApi.Models.AppSettings;
 using BryanWu.Domain;
+using Bryan.WebApi.Common;
 
 namespace Bryan.WebApi.Areas.Role.Controllers
 {
@@ -27,6 +28,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
     [Authorize]
     [Route("api/Role/[controller]/[action]")]
     [ApiController]
+    [PermissionFilter]
     public class SysUserController : BaseController
     {
         private ISys_UserService _sysUserService { get; set; }
@@ -44,6 +46,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Permission("sysiuii")]
         [HttpGet]
         public IActionResult GetUserById(int id)
         {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Bryan.WebApi.Common;
 using Bryan.WebApi.Models;
 using BryanWu.Domain.Interface;
 using BryanWu.Domain.Model;
@@ -76,19 +77,7 @@ namespace Bryan.WebApi.Controllers
         /// <returns></returns>
         protected IActionResult ReturnJson(string code, object obj = null)
         {
-            //TODO msg根据code获取
-            //var redis = new RedisRepository();
-            string msg = RedisHelper.HGet(RedisKeysEnum.ReturnCodeHash.GetHFMallKey(), code);//redis.HashGet(RedisKeysEnum.ReturnCodeHash.ToString(), code);
-
-            if (string.IsNullOrEmpty(msg))
-            {
-                _log.Debug(code);
-                var build = new ConfigurationBuilder().AddJsonFile("Config/msgCode.json");
-                var _msgCode = build.Build();
-                msg = _msgCode[code.ToString()];
-                if (!string.IsNullOrEmpty(msg))
-                    RedisHelper.HSet(RedisKeysEnum.ReturnCodeHash.GetHFMallKey(), code, msg);
-            }
+            string msg = RedisOptHelper.GetMsgCode(code);
             if (string.IsNullOrEmpty(msg))
                 msg = "未知类型";
             if (obj == null)
@@ -105,17 +94,7 @@ namespace Bryan.WebApi.Controllers
         /// <returns></returns>
         protected IActionResult ReturnJsonByParms(string code, object obj, params string[] param)
         {
-            //TODO msg根据code获取
-            string msg = RedisHelper.HGet(RedisKeysEnum.ReturnCodeHash.GetHFMallKey(), code);
-            if (string.IsNullOrEmpty(msg))
-            {
-                _log.Debug(code);
-                var build = new ConfigurationBuilder().AddJsonFile("Config/msgCode.json");
-                var _msgCode = build.Build();
-                msg = _msgCode[code.ToString()];
-                if (!string.IsNullOrEmpty(msg))
-                    RedisHelper.HSet(RedisKeysEnum.ReturnCodeHash.GetHFMallKey(), code, msg);
-            }
+            string msg = RedisOptHelper.GetMsgCode(code);
 
             if (string.IsNullOrEmpty(msg))
             {

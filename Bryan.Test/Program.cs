@@ -18,6 +18,9 @@ namespace Bryan.Test
             //注册redis
             var csredis = new CSRedis.CSRedisClient("193.112.41.35:6379,allowAdmin=true,password=wzh920706");
             RedisHelper.Initialization(csredis);
+            string result = "{\"code\":\"200\",\"msg\":\"kkk\"}";
+            var statecode = ((Newtonsoft.Json.Linq.JValue)((Newtonsoft.Json.Linq.JProperty)((Newtonsoft.Json.Linq.JContainer)Newtonsoft.Json.JsonConvert.DeserializeObject(result)).First).Value).Value;
+            Console.WriteLine(statecode.ToString());
             //var user = new Sys_User();
             //user.HeadImgUrl = "sgdsg";
 
