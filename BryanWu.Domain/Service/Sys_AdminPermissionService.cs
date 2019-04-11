@@ -109,12 +109,11 @@ namespace BryanWu.Domain.Service
                             inner join sys_adminmenu sam on sam.Id=sap.MenuId
                             where 1=1
                             and sap.Type='url'
-                            and sam.`Status`=1
-                            and sar.IsForbidden=1";
+                            and sam.`Status`=1";
             string mWhereSql = "";
 
             //按钮数据
-            string bSql = @"union all
+            string bSql = @" union all
                             SELECT sap.RoleId,sap.MenuId,samb.`Code` as Tag,sap.Type
                             FROM sys_adminrole sar
                             inner join sys_adminpermission sap on sap.RoleId=sar.Id
@@ -122,10 +121,10 @@ namespace BryanWu.Domain.Service
                             inner join sys_adminmenu sam on sam.Id=samb.MenuId
                             where 1=1
                             and sap.Type='btn'
-                            and samb.IsForbidden=0
-                            and sar.IsForbidden=1";
+                            and samb.IsForbidden=0";
             string bWhereSql = "";
             var whereDic = new Dictionary<string, object>();
+            
             if (menuId > 0)
             {
                 mWhereSql += " and sam.Id=@menuId";

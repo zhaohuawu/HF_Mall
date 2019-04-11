@@ -24,6 +24,7 @@ namespace Bryan.WebApi.Common
             if (actionAttr != null)
             {
                 var arr = actionAttr.PermissionArray;
+                
                 List<string> permissionList = new List<string>();
                 permissionList.Add("sysiuii");
                 if (permissionList.Where(s => arr.Contains(s)).ToList().Count == 0)
