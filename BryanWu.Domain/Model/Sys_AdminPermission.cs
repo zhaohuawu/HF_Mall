@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
@@ -65,5 +66,13 @@ namespace BryanWu.Domain.Model
         /// 选中状态（checkd：选中，half：半选中）
         /// </summary>
         public string CheckStatus { get; set; }
+    }
+
+    public enum MenuTypeEnum
+    {
+        [Description("URL")]
+        url,
+        [Description("按钮")]
+        btn,
     }
 }

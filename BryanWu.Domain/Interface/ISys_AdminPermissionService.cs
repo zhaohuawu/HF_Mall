@@ -1,4 +1,5 @@
-﻿using BryanWu.Domain.Model;
+﻿using BryanWu.Domain.Dto;
+using BryanWu.Domain.Model;
 using Common.Autofac;
 using Common.Interface;
 using Common.Repository;
@@ -26,5 +27,7 @@ namespace BryanWu.Domain.Interface
         List<Sys_AdminPermission> GetList(Expression<Func<Sys_AdminPermission, bool>> where, Expression<Func<Sys_AdminPermission, object>> orderBy, bool isDesc = false);
         PageList<Sys_AdminPermission> GetPageList(Expression<Func<Sys_AdminPermission, bool>> where, PageSet pageSet, Expression<Func<Sys_AdminPermission, object>> orderBy, bool isDesc = false, bool isPageNavStr = false);
         TResult GetOneKey<TResult>(Expression<Func<Sys_AdminPermission, bool>> where, Expression<Func<Sys_AdminPermission, TResult>> filed);
+
+        List<RoleToPermissionDto> GetRolePerList(int menuId, int btnId);
     }
 }

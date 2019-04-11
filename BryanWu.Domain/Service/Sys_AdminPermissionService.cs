@@ -1,4 +1,5 @@
-﻿using BryanWu.Domain.Interface;
+﻿using BryanWu.Domain.Dto;
+using BryanWu.Domain.Interface;
 using BryanWu.Domain.Model;
 using Common.Interface;
 using Common.Repository;
@@ -91,6 +92,53 @@ namespace BryanWu.Domain.Service
         public int DeleteBatch(Expression<Func<Sys_AdminPermission, bool>> where)
         {
             return _repository.SqlSugarDB.Deleteable(where).ExecuteCommand();
+        }
+
+        /// <summary>
+        /// 获取角色菜单列表
+        /// </summary>
+        /// <param name="menuId"></param>
+        /// <param name="btnId"></param>
+        /// <returns></returns>
+        public List<RoleToPermissionDto> GetRolePerList(int menuId, int btnId)
+        {
+            //菜单数据
+            string mSql = @"SELECT sap.RoleId,sap.MenuId,sam.Tag,sap.Type
+                            FROM sys_adminrole sar
+                            inner join sys_adminpermission sap on sap.RoleId=sar.Id
+                            inner join sys_adminmenu sam on sam.Id=sap.MenuId
+                            where 1=1
+                            and sap.Type='url'
+                            and sam.`Status`=1
+                            and sar.IsForbidden=1";
+            string mWhereSql = "";
+
+            //按钮数据
+            string bSql = @"union all
+                            SELECT sap.RoleId,sap.MenuId,samb.`Code` as Tag,sap.Type
+                            FROM sys_adminrole sar
+                            inner join sys_adminpermission sap on sap.RoleId=sar.Id
+                            inner join sys_adminmenubtn samb on samb.Id=sap.MenuId
+                            inner join sys_adminmenu sam on sam.Id=samb.MenuId
+                            where 1=1
+                            and sap.Type='btn'
+                            and samb.IsForbidden=0
+                            and sar.IsForbidden=1";
+            string bWhereSql = "";
+            var whereDic = new Dictionary<string, object>();
+            if (menuId > 0)
+            {
+                mWhereSql += " and sam.Id=@menuId";
+                whereDic.Add("@menuId", menuId);
+            }
+
+            if (btnId > 0)
+            {
+                bWhereSql += " and samb.Id=@btnId";
+                whereDic.Add("@btnId", btnId);
+            }
+
+            return _repository.ExcuteGetList<RoleToPermissionDto>(mSql + mWhereSql + bSql + bWhereSql, whereDic);
         }
     }
 }

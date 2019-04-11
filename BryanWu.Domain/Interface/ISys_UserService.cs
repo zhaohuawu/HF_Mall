@@ -1,4 +1,5 @@
-﻿using BryanWu.Domain.Model;
+﻿using BryanWu.Domain.Dto;
+using BryanWu.Domain.Model;
 using Common.Autofac;
 using Common.Interface;
 using Common.Repository;
@@ -32,6 +33,6 @@ namespace BryanWu.Domain.Interface
         int DeleteByIdArray(params int[] idArr);
         List<TResult> GetList<TResult>(Expression<Func<Sys_UserRole, bool>> where, Expression<Func<Sys_UserRole, TResult>> obj, Expression<Func<Sys_UserRole, object>> orderBy, bool isDesc = false);
         List<Sys_UserRole> GetUserRoleList(int userId, int roleId);
-
+        
     }
 }

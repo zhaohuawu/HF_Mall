@@ -15,6 +15,9 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using Common.Autofac;
 using Bryan.WebApi.Areas.Role.Models.SysRole;
+using Common.Enums;
+using Bryan.WebApi.Models;
+using BryanWu.Domain.Dto;
 
 namespace Bryan.WebApi.Areas.Role.Controllers
 {
@@ -505,6 +508,104 @@ namespace Bryan.WebApi.Areas.Role.Controllers
 
             return ReturnJson(code);
         }
+
+        /// <summary>
+        /// 添加或修改账号角色列表Redis
+        /// </summary>
+        /// <param name="isAdd">1:增加，0：停用</param>
+        /// <param name="menuId"></param>
+        /// <param name="btnId"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> UpdateRolePerToRedis([FromForm]int isAdd, [FromForm]int menuId, [FromForm]int btnId)
+        {
+            var result = await Task.Run(() =>
+            {
+                var list = new List<RoleToPermissionDto>();
+                var dicList = new Dictionary<int, List<RoleToPermissionDto>>();
+                if (menuId > 0 && isAdd == 1)
+                {
+                    //给角色新增了菜单权限
+                    list = _sysAdminPermissionService.GetRolePerList(menuId, 0);
+                    var arr = list.Select(n => n.RoleId).Distinct().ToList();
+                    foreach (var role in arr)
+                    {
+                        if (RedisHelper.HExists(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), role.ToString()))
+                            RedisHelper.HDel(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), role.ToString());
+                        var roleMenuList = list.Where(p => p.RoleId == role).ToList();
+                        RedisHelper.HSet(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), role.ToString(), roleMenuList);
+                        dicList.Add(role, roleMenuList);
+                    }
+                }
+                else if (menuId > 0 && isAdd == 0)
+                {
+                    //停用菜单
+                    var hDic = RedisHelper.HGetAll<List<RoleToPermissionDto>>(RedisKeysEnum.RoleMenuHash.GetHFMallKey());
+                    Parallel.ForEach(hDic, item =>
+                    {
+                        var roleList = item.Value;
+                        var roleRedis = roleList.Where(p => p.MenuId == menuId && p.Type == MenuTypeEnum.url.ToString()).FirstOrDefault();
+                        if (roleRedis != null)
+                        {
+                            if (RedisHelper.HExists(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), item.Key))
+                                RedisHelper.HDel(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), item.Key);
+                            roleList.Remove(roleRedis);
+                            RedisHelper.HSet(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), item.Key, roleList);
+                            dicList.Add(Convert.ToInt32(item.Key), roleList);
+                        }
+                    });
+                }
+                else if (btnId > 0 && isAdd == 1)
+                {
+                    //给角色新增了菜单权限
+                    list = _sysAdminPermissionService.GetRolePerList(0, btnId);
+                    var arr = list.Select(n => n.RoleId).Distinct().ToList();
+                    foreach (var role in arr)
+                    {
+                        if (RedisHelper.HExists(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), role.ToString()))
+                            RedisHelper.HDel(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), role.ToString());
+                        var roleMenuList = list.Where(p => p.RoleId == role).ToList();
+                        RedisHelper.HSet(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), role.ToString(), roleMenuList);
+                        dicList.Add(role, roleMenuList);
+                    }
+                }
+                else if (btnId > 0 && isAdd == 0)
+                {
+                    //停用菜单
+                    var hDic = RedisHelper.HGetAll<List<RoleToPermissionDto>>(RedisKeysEnum.RoleMenuHash.GetHFMallKey());
+                    Parallel.ForEach(hDic, item =>
+                    {
+                        var roleList = item.Value;
+                        var roleRedis = roleList.Where(p => p.MenuId == menuId && p.Type == MenuTypeEnum.url.ToString()).FirstOrDefault();
+                        if (roleRedis != null)
+                        {
+                            if (RedisHelper.HExists(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), item.Key))
+                                RedisHelper.HDel(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), item.Key);
+                            roleList.Remove(roleRedis);
+                            RedisHelper.HSet(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), item.Key, roleList);
+                            dicList.Add(Convert.ToInt32(item.Key), roleList);
+                        }
+                    });
+                }
+                else
+                {
+                    //全部账号角色数据覆盖
+                    //list = _sysUserService.GetUserRoleList(0, 0);
+                    //var userList = list.Select(p => p.UserId).Distinct().ToList();
+                    //RedisHelper.HDel(RedisKeysEnum.RoleMenuHash.GetHFMallKey());
+                    //Parallel.ForEach(userList, item =>
+                    //{
+                    //    var arr = list.Where(p => p.UserId == item).Select(n => n.RoleId).Distinct().ToList();
+                    //    RedisHelper.HSet(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), item.ToString(), arr);
+                    //    dicList.Add(item, arr);
+                    //});
+                }
+
+                return ("000030", dicList).ToTuple();
+            });
+            return ReturnJson(result.Item1, result.Item2);
+        }
+
         #endregion
 
     }

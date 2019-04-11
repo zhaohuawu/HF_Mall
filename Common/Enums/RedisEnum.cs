@@ -25,5 +25,7 @@ namespace Common.Enums
         ReturnCodeHash,
         [Description("账号角色列表")]
         AdminRoleHash,
+        [Description("角色菜单列表")]
+        RoleMenuHash,
     }
 }

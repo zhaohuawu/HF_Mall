@@ -294,6 +294,15 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:Bryan.WebApi.Areas.Role.Controllers.SysRoleController.UpdateRolePerToRedis(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            添加或修改账号角色列表Redis
+            </summary>
+            <param name="isAdd">1:增加，0：停用</param>
+            <param name="menuId"></param>
+            <param name="btnId"></param>
+            <returns></returns>
+        </member>
         <member name="T:Bryan.WebApi.Areas.Role.Controllers.SysUserController">
             <summary>
             用户api
@@ -346,10 +355,11 @@
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Areas.Role.Controllers.SysUserController.UpdateUserRoleToRedis(System.Int32,System.Int32)">
+        <member name="M:Bryan.WebApi.Areas.Role.Controllers.SysUserController.UpdateUserRoleToRedis(System.Int32,System.Int32,System.Int32)">
             <summary>
             添加或修改账号角色列表Redis
             </summary>
+            <param name="isAdd">1:增加，0：停用</param>
             <param name="userId"></param>
             <param name="roleId"></param>
             <returns></returns>
@@ -498,10 +508,17 @@
             菜单路径
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Areas.Role.Models.SysRole.FromAddMenu.BtnJson">
+        <member name="P:Bryan.WebApi.Areas.Role.Models.SysRole.FromAddMenu.Status">
             <summary>
-            页面中按钮Json[{"code":"btn","type":"button/uri","name":"添加","description":"按钮描述","isForbidden":0,"url":"http://localhost/index"}]
+            是否禁用，0:启用，1:禁用
             </summary>
+        </member>
+        <member name="P:Bryan.WebApi.Areas.Role.Models.SysRole.FromAddMenu.IsShow">
+            <summary>
+            Desc:是否显示（0:显示,1:隐藏）
+            Default:1
+            Nullable:False
+            </summary>           
         </member>
         <member name="P:Bryan.WebApi.Areas.Role.Models.SysRole.FromAddMenuBtn.MenuId">
             <summary>

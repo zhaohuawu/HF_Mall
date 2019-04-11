@@ -14,6 +14,7 @@ namespace BryanWu.Domain.Model
             this.Level = 1;
             this.ChildNum = 0;
             this.IsShow = 1;
+            this.Status = 1;
         }
         /// <summary>
         /// Desc:
@@ -105,6 +106,11 @@ namespace BryanWu.Domain.Model
         /// Nullable:True
         /// </summary>           
         public string BtnJson { get; set; }
+
+        /// <summary>
+        /// 是否禁用，0:启用，1:禁用
+        /// </summary>
+        public int Status { get; set; }
 
     }
 }

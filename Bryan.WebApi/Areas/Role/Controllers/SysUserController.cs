@@ -293,7 +293,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// <summary>
         /// 添加或修改账号角色列表Redis
         /// </summary>
-        /// <param name="isAdd">1:增加，0减少</param>
+        /// <param name="isAdd">1:增加，0：停用</param>
         /// <param name="userId"></param>
         /// <param name="roleId"></param>
         /// <returns></returns>
@@ -304,8 +304,9 @@ namespace Bryan.WebApi.Areas.Role.Controllers
             {
                 var list = new List<Sys_UserRole>();
                 var dicList = new Dictionary<int, List<int>>();
-                if (userId > 0 && isAdd != 1)
+                if (userId > 0 && isAdd == 1)
                 {
+                    //给账号修改角色
                     if (RedisHelper.HExists(RedisKeysEnum.AdminRoleHash.GetHFMallKey(), userId.ToString()))
                         RedisHelper.HDel(RedisKeysEnum.AdminRoleHash.GetHFMallKey(), userId.ToString());
                     list = _sysUserService.GetUserRoleList(userId, 0);
@@ -313,10 +314,14 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                     RedisHelper.HSet(RedisKeysEnum.AdminRoleHash.GetHFMallKey(), userId.ToString(), arr);
                     dicList.Add(userId, arr);
                 }
-                else if (roleId > 0 && isAdd != 1)
+                else if (userId > 0 && isAdd == 0)
                 {
-                    list = _sysUserService.GetUserRoleList(0, roleId);
-
+                    //停用账号
+                    if (RedisHelper.HExists(RedisKeysEnum.AdminRoleHash.GetHFMallKey(), userId.ToString()))
+                        RedisHelper.HDel(RedisKeysEnum.AdminRoleHash.GetHFMallKey(), userId.ToString());
+                }
+                else if (roleId > 0)
+                {
                     var hDic = RedisHelper.HGetAll<List<int>>(RedisKeysEnum.AdminRoleHash.GetHFMallKey());
                     Parallel.ForEach(hDic, item =>
                     {
@@ -333,6 +338,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                 }
                 else
                 {
+                    //全部账号角色数据覆盖
                     list = _sysUserService.GetUserRoleList(0, 0);
                     var userList = list.Select(p => p.UserId).Distinct().ToList();
                     RedisHelper.HDel(RedisKeysEnum.AdminRoleHash.GetHFMallKey());

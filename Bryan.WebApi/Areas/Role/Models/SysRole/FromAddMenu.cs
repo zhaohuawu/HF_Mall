@@ -47,9 +47,17 @@ namespace Bryan.WebApi.Areas.Role.Models.SysRole
         /// 菜单路径
         /// </summary>
         public string Url { get; set; }
+        
         /// <summary>
-        /// 页面中按钮Json[{"code":"btn","type":"button/uri","name":"添加","description":"按钮描述","isForbidden":0,"url":"http://localhost/index"}]
+        /// 是否禁用，0:启用，1:禁用
         /// </summary>
-        public string BtnJson { get; set; }
+        public int Status { get; set; }
+
+        /// <summary>
+        /// Desc:是否显示（0:显示,1:隐藏）
+        /// Default:1
+        /// Nullable:False
+        /// </summary>           
+        public int IsShow { get; set; }
     }
 }
