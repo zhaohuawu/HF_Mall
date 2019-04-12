@@ -6,22 +6,22 @@ using BryanWu.Domain.Interface;
 using BryanWu.Domain.Model;
 using Bryan.WebApi.Areas.Role.Models;
 using Bryan.WebApi.Controllers;
-using Common;
-using Common.Interface;
-using Common.Net;
+using Bryan.Common;
+using Bryan.Common.Interface;
+using Bryan.Common.Net;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Common.Repository;
+using Bryan.Common.Repository;
 using Bryan.WebApi.Areas.Role.Models.SysUser;
 using System.IO;
 using Microsoft.Extensions.Options;
 using Bryan.WebApi.Models.AppSettings;
 using BryanWu.Domain;
 using Bryan.WebApi.Common;
-using Common.Enums;
+using Bryan.Common.Enums;
 using Bryan.WebApi.Models;
-using Common.Extension;
+using Bryan.Common.Extension;
 
 namespace Bryan.WebApi.Areas.Role.Controllers
 {
@@ -36,6 +36,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
     {
         private ISys_UserService _sysUserService { get; set; }
         private ISys_UploadFileService _sysUploadService { get; set; }
+        protected ILog_AdminService _logAdmin;//操作数据记录（数据库）
         public SysUserController(ISys_UserService sysUserService, ISys_UploadFileService sysUploadService, ILog_AdminService logAdmin, ILog log)
         {
             _logAdmin = logAdmin;
@@ -49,7 +50,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Permission("sysiuii")]
+        [Permission("sys:user")]
         [HttpGet]
         public IActionResult GetUserById(int id)
         {
@@ -109,6 +110,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
+        [Permission("sys:user")]
         [HttpPost]
         public IActionResult AddSysUser([FromBody]FromAddSysUser model)
         {
@@ -127,7 +129,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
             {
                 user.LastIp = HttpContextExtension.GetIp(HttpContext);
                 user.LastLogDate = now;
-                user.CrtUser = _userName;
+                user.CrtUser = GetJwtIEntity().Name;
                 user.CrtDate = now;
                 user.Id = _sysUserService.Insert(user, false);
 
@@ -162,8 +164,8 @@ namespace Bryan.WebApi.Areas.Role.Controllers
             }
 
             logAdmin.OtherId = user.Id.ToString();
-            logAdmin.CrtUserId = _userId;
-            logAdmin.CrtUserName = _userName;
+            logAdmin.CrtUserId = GetJwtIEntity().UserId;
+            logAdmin.CrtUserName = GetJwtIEntity().Name;
             _logAdmin.LogAdmin(logAdmin, HttpContext);
             return ReturnJson(code);
 
@@ -322,6 +324,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                 }
                 else if (roleId > 0)
                 {
+                    //角色的修改
                     var hDic = RedisHelper.HGetAll<List<int>>(RedisKeysEnum.AdminRoleHash.GetHFMallKey());
                     Parallel.ForEach(hDic, item =>
                     {

@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
-namespace Common
+namespace Bryan.Common
 {
     /// <summary>
     /// Md5辅助类

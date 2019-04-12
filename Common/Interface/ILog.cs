@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Common.Interface
+namespace Bryan.Common.Interface
 {
     public interface ILog
     {

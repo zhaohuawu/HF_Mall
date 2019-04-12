@@ -6,9 +6,9 @@ using Bryan.WebApi.Models;
 using Bryan.WebApi.Models.AppSettings;
 using BryanWu.Domain.Interface;
 using BryanWu.Domain;
-using Common;
-using Common.Interface;
-using Common.Net;
+using Bryan.Common;
+using Bryan.Common.Interface;
+using Bryan.Common.Net;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -49,7 +49,7 @@ namespace Bryan.WebApi.Controllers
                 }
                 else
                 {
-                    string uploadStr = _uploadFileService.UploadImg(Files[0], _uploadSettings.path, _uploadSettings.avatar, HttpContext.GetIp(), _userId);
+                    string uploadStr = _uploadFileService.UploadImg(Files[0], _uploadSettings.path, _uploadSettings.avatar, HttpContext.GetIp(), GetJwtIEntity().UserId);
                     returnUpload = JSONHelper.Dseriallize<ReturnUpload>(uploadStr);
                 }
             }

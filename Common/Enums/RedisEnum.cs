@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
-namespace Common.Enums
+namespace Bryan.Common.Enums
 {
     public enum RedisKeysEnum
     {

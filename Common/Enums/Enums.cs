@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
-namespace Common
+namespace Bryan.Common
 {
     /// <summary>
     /// 用户角色枚举

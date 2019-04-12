@@ -6,18 +6,19 @@ using BryanWu.Domain.Interface;
 using BryanWu.Domain.Model;
 using Bryan.WebApi.Areas.Role.Models;
 using Bryan.WebApi.Controllers;
-using Common;
-using Common.Interface;
-using Common.Repository;
+using Bryan.Common;
+using Bryan.Common.Interface;
+using Bryan.Common.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
-using Common.Autofac;
+using Bryan.Common.Autofac;
 using Bryan.WebApi.Areas.Role.Models.SysRole;
-using Common.Enums;
+using Bryan.Common.Enums;
 using Bryan.WebApi.Models;
 using BryanWu.Domain.Dto;
+using Bryan.Common.Extension;
 
 namespace Bryan.WebApi.Areas.Role.Controllers
 {
@@ -30,6 +31,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         private ISys_AdminMenuService _sysAdminMenuService;
         private ISys_AdminPermissionService _sysAdminPermissionService;
         private ISys_AdminMenuBtnService _sysAdminMenuBtnService;
+        private ILog_AdminService _logAdmin;
         public SysRoleController(ISys_AdminRoleService adminRole, ISys_AdminMenuService sysAdminMenuService, ISys_AdminPermissionService adminPermissionService, ISys_AdminMenuBtnService sysAdminMenuBtnService, ILog_AdminService logAdmin, ILog log)
         {
             _logAdmin = logAdmin;
@@ -114,7 +116,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
             if (!_sysAdminRoleService.IsAny(p => p.RoleName == role.RoleName))
             {
                 role.CrtDate = DateTime.Now;
-                role.UserId = _userId;
+                role.UserId = GetJwtIEntity().UserId;
                 role.Id = _sysAdminRoleService.Insert(role, true);
 
                 if (role.Id > 0 && model.MenuList.Count > 0)
@@ -130,7 +132,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                             perModel.CrtDate = role.CrtDate;
                             perModel.MenuId = item.MenuId;
                             perModel.RoleId = role.Id;
-                            perModel.UserId = _userId;
+                            perModel.UserId = role.UserId;
                             perModel.Type = item.Type;
                             perModel.CheckStatus = item.CheckStatus;
                             perList.Add(perModel);
@@ -188,6 +190,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
             {
                 try
                 {
+                    var userId = GetJwtIEntity().UserId;
                     var now = DateTime.Now;
                     //异步更新角色相关
                     Task.Run(() =>
@@ -216,7 +219,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                                 perModel.BtnJson = item.BtnJson;
                                 perModel.CrtDate = now;
                                 perModel.RoleId = model.RoleId;
-                                perModel.UserId = _userId;
+                                perModel.UserId = userId;
                                 perModel.CheckStatus = item.CheckStatus;
                                 perList.Add(perModel);
                             }
@@ -239,7 +242,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                                 perModel.BtnJson = item.BtnJson;
                                 perModel.CrtDate = now;
                                 perModel.RoleId = model.RoleId;
-                                perModel.UserId = _userId;
+                                perModel.UserId = userId;
                                 perModel.Type = item.Type;
                                 perModel.CheckStatus = item.CheckStatus;
                                 perList.Add(perModel);
@@ -372,7 +375,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                     sysAdminMenu.Orders = maxMenu.Orders + 1;
                     sysAdminMenu.Level = maxMenu.Level;
                 }
-                sysAdminMenu.CrtUser = _userName;
+                sysAdminMenu.CrtUser = GetJwtIEntity().Name;
                 sysAdminMenu.CrtDate = DateTime.Now;
                 logAdmin.OtherId = _sysAdminMenuService.Insert(sysAdminMenu).ToString();
             }
@@ -400,8 +403,8 @@ namespace Bryan.WebApi.Areas.Role.Controllers
 
             }
 
-            logAdmin.CrtUserId = _userId;
-            logAdmin.CrtUserName = _userName;
+            logAdmin.CrtUserId = GetJwtIEntity().UserId;
+            logAdmin.CrtUserName = GetJwtIEntity().Name;
             _logAdmin.LogAdmin(logAdmin, HttpContext);
             return ReturnJson(code);
         }
@@ -509,6 +512,8 @@ namespace Bryan.WebApi.Areas.Role.Controllers
             return ReturnJson(code);
         }
 
+        #endregion
+
         /// <summary>
         /// 添加或修改账号角色列表Redis
         /// </summary>
@@ -606,7 +611,6 @@ namespace Bryan.WebApi.Areas.Role.Controllers
             return ReturnJson(result.Item1, result.Item2);
         }
 
-        #endregion
 
     }
 }

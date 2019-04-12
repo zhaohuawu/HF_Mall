@@ -1,10 +1,11 @@
 ﻿using Bryan.WebApi.Models;
-using Common.Enums;
+using Bryan.Common.Enums;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Bryan.Common.Extension;
 
 namespace Bryan.WebApi.Common
 {

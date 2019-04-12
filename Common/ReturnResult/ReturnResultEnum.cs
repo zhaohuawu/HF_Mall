@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
-namespace Common
+namespace Bryan.Common
 {
     /// <summary>
     /// API请求结果代码枚举

@@ -1,5 +1,5 @@
-﻿using Common;
-using Common.Repository;
+﻿using Bryan.Common;
+using Bryan.Common.Repository;
 using SqlSugar;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataTable = System.Data.DataTable;
 
-namespace Common.Interface
+namespace Bryan.Common.Interface
 {
     public interface IRepository
     {

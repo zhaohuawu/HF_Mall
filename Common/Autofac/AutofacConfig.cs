@@ -5,11 +5,11 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Http;
 using IContainer = Autofac.IContainer;
-using Common;
-using Common.Interface;
+using Bryan.Common;
+using Bryan.Common.Interface;
 using System;
 
-namespace Common.Autofac
+namespace Bryan.Common.Autofac
 {
     public class AutofacConfig
     {

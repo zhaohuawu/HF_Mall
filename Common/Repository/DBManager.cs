@@ -1,6 +1,6 @@
-﻿using Common;
-using Common.Interface;
-using Common.Log;
+﻿using Bryan.Common;
+using Bryan.Common.Interface;
+using Bryan.Common.Log;
 using SqlSugar;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Repository
+namespace Bryan.Common.Repository
 {
     public class DBManager
     {

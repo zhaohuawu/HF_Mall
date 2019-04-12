@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BryanWu.Domain.Interface;
-using Common;
-using Common.Interface;
+using Bryan.Common;
+using Bryan.Common.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
@@ -18,6 +18,7 @@ namespace Bryan.WebApi.Controllers
     [ApiController]
     public class TestController : BaseController
     {
+        private ILog_AdminService _logAdmin;
         public TestController(ILog_AdminService logAdmin, ILog log)
         {
             _logAdmin = logAdmin;

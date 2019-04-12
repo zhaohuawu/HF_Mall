@@ -1,6 +1,6 @@
 ﻿using BryanWu.Domain.Interface;
 using BryanWu.Domain.Model;
-using Common.Repository;
+using Bryan.Common.Repository;
 using System;
 using System.Collections.Generic;
 using System.Text;

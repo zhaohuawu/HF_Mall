@@ -17,7 +17,7 @@ using AutoMapper;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Common
+namespace Bryan.Common
 {
     public static class AutoMapperExt
     {

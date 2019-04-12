@@ -847,37 +847,12 @@
             状态（1：添加，2：删除）
             </summary>
         </member>
-        <member name="T:Bryan.WebApi.Controllers.BaseController">
+        <member name="T:Bryan.WebApi.Controllers.BaseKKController">
             <summary>
             基类
             </summary>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.BaseController.ToJson(Common.ReturnResultEnum,System.String)">
-            <summary>
-            返回json数据（enum）
-            </summary>
-            <param name="code"></param>
-            <param name="msg"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Bryan.WebApi.Controllers.BaseController.ToJson(Common.ReturnResultEnum,System.Object)">
-            <summary>
-            返回json数据（enum）
-            </summary>
-            <param name="code"></param>
-            <param name="obj"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Bryan.WebApi.Controllers.BaseController.ToJson(Common.ReturnResultEnum,System.String,System.Object)">
-            <summary>
-            返回json数据（enum）
-            </summary>
-            <param name="code"></param>
-            <param name="msg"></param>
-            <param name="obj"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Bryan.WebApi.Controllers.BaseController.ReturnJson(System.String,System.Object)">
+        <member name="M:Bryan.WebApi.Controllers.BaseKKController.ReturnJson(System.String,System.Object)">
             <summary>
             返回json数据（int）
             </summary>
@@ -885,7 +860,7 @@
             <param name="obj"></param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.BaseController.ReturnJsonByParms(System.String,System.Object,System.String[])">
+        <member name="M:Bryan.WebApi.Controllers.BaseKKController.ReturnJsonByParms(System.String,System.Object,System.String[])">
             <summary>
             返回json数据（int）
             </summary>
@@ -966,42 +941,10 @@
             基本参数
             </summary>
         </member>
-        <member name="T:Bryan.WebApi.Models.AppSettings.JwtSettings">
-            <summary>
-            Jwt认证参数
-            </summary>
-        </member>
-        <member name="P:Bryan.WebApi.Models.AppSettings.JwtSettings.Secretkey">
-            <summary>
-            加密字符串(至少16位)
-            </summary>
-        </member>
-        <member name="P:Bryan.WebApi.Models.AppSettings.JwtSettings.Issuer">
-            <summary>
-            证书颁发者
-            </summary>
-        </member>
-        <member name="P:Bryan.WebApi.Models.AppSettings.JwtSettings.Audience">
-            <summary>
-            允许使用的角色
-            </summary>
-        </member>
-        <member name="P:Bryan.WebApi.Models.AppSettings.JwtSettings.Expires">
-            <summary>
-            token过期时间（单位：小时）
-            </summary>
-        </member>
         <member name="T:Bryan.WebApi.Models.RedisKeyExtension">
             <summary>
             RedisKey扩展方法
             </summary>
-        </member>
-        <member name="M:Bryan.WebApi.Models.RedisKeyExtension.GetHFMallKey(Common.Enums.RedisKeysEnum)">
-            <summary>
-            HFMall的Redis关键字
-            </summary>
-            <param name="key"></param>
-            <returns></returns>
         </member>
         <member name="P:Bryan.WebApi.Models.ReturnUpload.url">
             <summary>

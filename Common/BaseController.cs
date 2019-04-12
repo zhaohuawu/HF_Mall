@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Bryan.WebApi.Common;
-using BryanWu.Domain.Interface;
-using Bryan.Common;
+﻿using Bryan.Common.Enums;
+using Bryan.Common.Extension;
 using Bryan.Common.Interface;
+using Bryan.Common.Jwt;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using System.IdentityModel.Tokens.Jwt;
-using Bryan.Common.Jwt;
+using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace Bryan.WebApi.Controllers
+namespace Bryan.Common
 {
     /// <summary>
     /// 基类
@@ -19,9 +19,8 @@ namespace Bryan.WebApi.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("any")] //设置跨域处理的 代理
-    public class BaseKKController : Controller
+    public class BaseController : Controller
     {
-        protected ILog_AdminService _logAdmin;//操作数据记录（数据库）
         protected ILog _log;//操作日志（log4Net）
 
         #region ajax结果返回
@@ -33,7 +32,7 @@ namespace Bryan.WebApi.Controllers
         /// <returns></returns>
         protected IActionResult ReturnJson(string code, object obj = null)
         {
-            string msg = RedisOptHelper.GetMsgCode(code);
+            string msg = GetMsgCode(code);
             if (string.IsNullOrEmpty(msg))
                 msg = "未知类型";
             if (obj == null)
@@ -51,7 +50,7 @@ namespace Bryan.WebApi.Controllers
         /// <returns></returns>
         protected IActionResult ReturnJsonByParms(string code, object obj, params string[] param)
         {
-            string msg = RedisOptHelper.GetMsgCode(code);
+            string msg = GetMsgCode(code);
 
             if (string.IsNullOrEmpty(msg))
             {
@@ -76,5 +75,19 @@ namespace Bryan.WebApi.Controllers
             return jwtEntity;
         }
 
+        protected string GetMsgCode(string code)
+        {
+            string msg = RedisHelper.HGet(RedisKeysEnum.ReturnCodeHash.GetHFMallKey(), code);
+
+            if (string.IsNullOrEmpty(msg))
+            {
+                var build = new ConfigurationBuilder().AddJsonFile("Config/msgCode.json");
+                var _msgCode = build.Build();
+                msg = _msgCode[code.ToString()];
+                if (!string.IsNullOrEmpty(msg))
+                    RedisHelper.HSet(RedisKeysEnum.ReturnCodeHash.GetHFMallKey(), code, msg);
+            }
+            return msg;
+        }
     }
 }

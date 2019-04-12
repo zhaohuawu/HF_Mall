@@ -7,8 +7,8 @@ using Autofac.Extensions.DependencyInjection;
 using BryanWu.Domain.Interface;
 using BryanWu.Domain.Service;
 using Bryan.WebApi.Common;
-using Common.Autofac;
-using Common.Repository;
+using Bryan.Common.Autofac;
+using Bryan.Common.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -21,15 +21,16 @@ using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Common.Log;
+using Bryan.Common.Log;
 using log4net;
-using Common;
+using Bryan.Common;
 using log4net.Config;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using Bryan.WebApi.Models.AppSettings;
+using Bryan.Common.Jwt;
 
 namespace Bryan.WebApi
 {
@@ -64,7 +65,8 @@ namespace Bryan.WebApi
             XmlConfigurator.Configure(LogHelper._repository, new FileInfo("log4net.config"));
 
             //中突出显示的代码设置了 2.1 兼容性标志
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddJsonOptions(opts => opts.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss");
 
             // Register the Swagger generator, defining 1 or more Swagger documents
@@ -192,30 +194,11 @@ namespace Bryan.WebApi
                 {
                     OnMessageReceived = context =>
                     {
-                        var auth = context.Request.Headers["Authorization"].FirstOrDefault();
-                        if (!string.IsNullOrEmpty(auth))
+                        var header = context.Request.Headers["Authorization"].FirstOrDefault();
+                        var jwtEntity = JwtEntity.GetJwtIEntity(header);
+                        if (DateTime.Now > DateTimeHelper.ConvertToCsharpTime(jwtEntity.Exp))
                         {
-                            var token = auth.Split(' ');
-                            if (token.Length > 1)
-                            {
-                                var jwtToken = new JwtSecurityToken(token[1]);
-                                var payload = jwtToken.Payload;
-                                var nameName = payload.Where(p => p.Key == "name").Select(p => p.Value).FirstOrDefault();
-                                var userid = payload.Where(p => p.Key == "userId").Select(p => p.Value).FirstOrDefault();
-                                var exp = (long)payload.Where(p => p.Key == "exp").Select(p => p.Value).FirstOrDefault();
-
-                                if (DateTime.Now > DateTimeHelper.ConvertToCsharpTime(exp))
-                                {
-                                    Controllers.BaseController._userId = 0;
-                                    Controllers.BaseController._userName = string.Empty;
-                                    context.Fail("Unauthorized11");
-                                }
-                                else
-                                {
-                                    Controllers.BaseController._userId = ConvertHelper.Instance.ConvertToInt(userid);
-                                    Controllers.BaseController._userName = nameName.ToString();
-                                }
-                            }
+                            context.Fail("token已过期");
                         }
                         return Task.CompletedTask;
                     }

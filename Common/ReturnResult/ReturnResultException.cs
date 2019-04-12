@@ -5,7 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common
+namespace Bryan.Common
 {
     /// <summary>
     /// 返回结果异常

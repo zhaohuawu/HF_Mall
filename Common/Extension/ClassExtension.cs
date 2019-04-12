@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Reflection;
 
-namespace Common.Extension
+namespace Bryan.Common.Extension
 {
     public static class ClassExtension
     {

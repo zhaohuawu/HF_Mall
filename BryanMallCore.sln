@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bryan.WebApi", "Bryan.WebAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bryan.Mvc", "Bryan.Mvc\Bryan.Mvc.csproj", "{DFE6D295-9C36-445A-ACAA-5154A8AEA463}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{54F22720-2BD6-40F3-A64B-CE92F3F19067}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bryan.Common", "Common\Bryan.Common.csproj", "{54F22720-2BD6-40F3-A64B-CE92F3F19067}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BryanWu.Domain", "BryanWu.Domain\BryanWu.Domain.csproj", "{AF5F1675-BBC6-4085-BA90-C67C87F2FF06}"
 EndProject

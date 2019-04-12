@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace Common
+namespace Bryan.Common
 {
     public class FileHelper
     {

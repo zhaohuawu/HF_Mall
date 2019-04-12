@@ -6,17 +6,15 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using BryanWu.Domain.Interface;
-using Bryan.WebApi.Controllers;
-using Common;
-using Common.Interface;
+using Bryan.Common;
+using Bryan.Common.Interface;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Bryan.WebApi.Models.AppSettings;
 using BryanWu.Domain.Model;
+using Bryan.Common.Jwt;
 
 namespace Bryan.WebApi.Controllers
 {
@@ -26,6 +24,7 @@ namespace Bryan.WebApi.Controllers
     public class LoginController : BaseController
     {
         private ISys_UserService _sysUserService;
+        private ILog_AdminService _logAdmin;
         private JwtSettings _jwtSettings;
         public LoginController(ISys_UserService sysUserService, IOptions<JwtSettings> jwtSettings, ILog_AdminService logAdmin, ILog log)
         {
@@ -59,6 +58,9 @@ namespace Bryan.WebApi.Controllers
                     var exp = now.AddHours(_jwtSettings.Expires);
                     var claims = new Claim[]
                     {
+                        //new Claim("iss", _jwtSettings.Issuer),
+                        //new Claim("aut", _jwtSettings.Audience),
+                        //new Claim("exp", now.ToString("yyyy-MM-dd HH:mm:ss")),
                         new Claim("userId",sysuser.Id.ToString()),
                         new Claim("name",username),
                         new Claim("source","1")
@@ -77,7 +79,7 @@ namespace Bryan.WebApi.Controllers
                     return ReturnJson("000000", new { expires_in = exp, token_type = JwtBearerDefaults.AuthenticationScheme, access_token = new JwtSecurityTokenHandler().WriteToken(token) });
                 }
                 else
-                    return ToJson(ReturnResultEnum.user_psw, "");
+                    return ReturnJson("000106");
             }
             catch (Exception ex)
             {

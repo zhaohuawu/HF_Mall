@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Bryan.Common.Interface
+namespace Bryan.Common.Extension
 {
-    public interface IRedisRepository : IDenpendency
+    class MvcOptionExtensions
     {
-
     }
 }

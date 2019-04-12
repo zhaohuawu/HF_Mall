@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
 
-namespace Common
+namespace Bryan.Common
 {
     /// <summary>
     /// 枚举辅助类

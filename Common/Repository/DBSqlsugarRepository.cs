@@ -1,4 +1,4 @@
-﻿using Common.Interface;
+﻿using Bryan.Common.Interface;
 using SqlSugar;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Data;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace Common.Repository
+namespace Bryan.Common.Repository
 {
     public class DBSqlsugarRepository<T> where T : class, IDBRepository<T>, new()
     {

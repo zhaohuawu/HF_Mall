@@ -6,7 +6,7 @@ using Bryan.WebApi.Areas.Product.Models.Category;
 using Bryan.WebApi.Controllers;
 using BryanWu.Domain.Interface;
 using BryanWu.Domain.Model;
-using Common;
+using Bryan.Common;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

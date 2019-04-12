@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 
-namespace Common.Repository
+namespace Bryan.Common.Repository
 {
     /// <summary>
     /// 分页后的数据集合

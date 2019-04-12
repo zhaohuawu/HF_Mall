@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Bryan.WebApi.Models;
-using Common.Enums;
-using Common.Interface;
+using Bryan.Common.Enums;
+using Bryan.Common.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Bryan.Common;
+using Bryan.Common.Extension;
 
 namespace Bryan.WebApi.Controllers
 {

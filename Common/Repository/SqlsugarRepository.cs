@@ -1,11 +1,11 @@
-﻿using Common.Interface;
+﻿using Bryan.Common.Interface;
 using SqlSugar;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq.Expressions;
 
-namespace Common.Repository
+namespace Bryan.Common.Repository
 {
     public class SqlsugarRepository : IRepository
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace Common
+namespace Bryan.Common
 {
     /// <summary>
     /// 单例基类，集成自它的对象，都可以是单例对象。

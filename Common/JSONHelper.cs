@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common
+namespace Bryan.Common
 {
     /// <summary>
     /// JSON帮助类

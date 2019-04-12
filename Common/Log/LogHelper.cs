@@ -7,7 +7,7 @@ using log4net;
 using log4net.Repository;
 using System.Threading.Tasks;
 
-namespace Common.Log
+namespace Bryan.Common.Log
 {
     /// <summary>
     /// 日志帮助类

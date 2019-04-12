@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Common.Repository
+namespace Bryan.Common.Repository
 {
     /// <summary>
     /// 分页参数设置

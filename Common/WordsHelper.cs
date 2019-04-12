@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Common
+namespace Bryan.Common
 {
     public class WordsHelper
     {
@@ -505,7 +505,7 @@ namespace Common
                 ,"yi","qu","du","li","qing","can","an","fen","you","wu","yan","xi","qiu","han","zha"
            };
         #endregion
-        
+
         #region 将指定中文字符串转换为拼音形,0 全拼，  1 首字母，  2 前面声母，最后一个汉字全拼。
         /// <summary>
         /// 将指定中文字符串转换为拼音形式。

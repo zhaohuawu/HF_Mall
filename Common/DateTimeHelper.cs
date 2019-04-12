@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common
+namespace Bryan.Common
 {
     /// <summary>
     /// 时间日期辅助类

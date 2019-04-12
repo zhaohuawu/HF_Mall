@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Bryan.WebApi.Models
+namespace Bryan.Common.Extension
 {
     /// <summary>
     /// RedisKey扩展方法
@@ -16,9 +16,9 @@ namespace Bryan.WebApi.Models
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        //public static string GetHFMallKey(this RedisKeysEnum key)
-        //{
-        //    return "hfmall:" + key.ToString();
-        //}
+        public static string GetHFMallKey(this RedisKeysEnum key)
+        {
+            return "hfmall:" + key.ToString();
+        }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace Common
+namespace Bryan.Common
 {
     public class ParameterRebinder : ExpressionVisitor
     {

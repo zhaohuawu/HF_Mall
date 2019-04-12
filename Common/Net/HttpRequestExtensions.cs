@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Common.Net
+namespace Bryan.Common.Net
 {
     public static class HttpRequestExtensions
     {

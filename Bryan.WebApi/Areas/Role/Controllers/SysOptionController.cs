@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using BryanWu.Domain.Interface;
-using Common.Interface;
-using Common.Repository;
-using Common;
+using Bryan.Common.Interface;
+using Bryan.Common.Repository;
+using Bryan.Common;
 using BryanWu.Domain.Model;
 using Bryan.WebApi.Areas.Role.Models.SysOption;
 
@@ -21,6 +21,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
     public class SysOptionController : BaseController
     {
         private ISys_OptionService _sysOptionService;
+        private ILog_AdminService _logAdmin;
         public SysOptionController(ISys_OptionService sysOptionService, ILog_AdminService logAdmin, ILog log)
         {
             _logAdmin = logAdmin;

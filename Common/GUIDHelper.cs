@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Common
+namespace Bryan.Common
 {
     /// <summary>
     /// GUID辅助类

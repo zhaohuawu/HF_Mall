@@ -1,7 +1,7 @@
 ﻿using BryanWu.Domain.Model;
 using BryanWu.Domain.Service;
-using Common.Interface;
-using Common.Repository;
+using Bryan.Common.Interface;
+using Bryan.Common.Repository;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;

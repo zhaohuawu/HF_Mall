@@ -2,7 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Common
+namespace Bryan.Common
 {
     /// <summary>
     /// 数据验证辅助类

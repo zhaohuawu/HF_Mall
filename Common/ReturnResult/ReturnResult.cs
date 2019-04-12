@@ -1,10 +1,10 @@
-﻿using Common.Extension;
+﻿using Bryan.Common.Extension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Common
+namespace Bryan.Common
 {
     /// <summary>
     /// API请求结果

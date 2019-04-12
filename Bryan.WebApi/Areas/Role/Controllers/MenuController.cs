@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using BryanWu.Domain.Interface;
 using BryanWu.Domain.Model;
 using Bryan.WebApi.Controllers;
-using Common;
+using Bryan.Common;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -79,7 +79,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                 {
                     sysAdminMenu.Orders = maxMenu.Orders + 1;
                 }
-                sysAdminMenu.CrtUser = _userName;
+                sysAdminMenu.CrtUser = GetJwtIEntity().Name;
                 sysAdminMenu.CrtDate = DateTime.Now;
                 _sysAdminMenuService.Insert(sysAdminMenu);
             }

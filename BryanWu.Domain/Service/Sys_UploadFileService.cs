@@ -1,8 +1,8 @@
 ﻿using BryanWu.Domain.Interface;
 using BryanWu.Domain.Model;
-using Common;
-using Common.Interface;
-using Common.Repository;
+using Bryan.Common;
+using Bryan.Common.Interface;
+using Bryan.Common.Repository;
 using Microsoft.AspNetCore.Http;
 using SqlSugar;
 using System;
