@@ -1,5 +1,5 @@
 ﻿using Bryan.Test.DTO;
-using Common;
+using Bryan.Common;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;

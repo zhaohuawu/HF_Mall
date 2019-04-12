@@ -38,3 +38,5 @@
 /.vs/config
 /Bryan.Test/obj
 /Bryan.Test/bin/Debug/netcoreapp2.1
+/Bryan.Common/bin
+/Bryan.Common/obj

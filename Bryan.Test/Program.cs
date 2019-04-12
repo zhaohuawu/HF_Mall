@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Reflection;
 using BryanWu.Domain.Model;
-using Common;
-using Common.Enums;
-using Common.Repository;
+using Bryan.Common;
+using Bryan.Common.Enums;
+using Bryan.Common.Repository;
 
 namespace Bryan.Test
 {

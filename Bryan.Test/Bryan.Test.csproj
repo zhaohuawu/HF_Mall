@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Bryan.Common\Bryan.Common.csproj" />
     <ProjectReference Include="..\BryanWu.Domain\BryanWu.Domain.csproj" />
-    <ProjectReference Include="..\Common\Bryan.Common.csproj" />
   </ItemGroup>
 
 </Project>
