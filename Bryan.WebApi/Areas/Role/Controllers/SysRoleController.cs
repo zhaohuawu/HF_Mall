@@ -19,6 +19,8 @@ using Bryan.Common.Enums;
 using Bryan.WebApi.Models;
 using BryanWu.Domain.Dto;
 using Bryan.Common.Extension;
+using System.Collections.Concurrent;
+using Bryan.WebApi.Common;
 
 namespace Bryan.WebApi.Areas.Role.Controllers
 {
@@ -65,6 +67,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// <param name="RoleName">角色名称（可以为空，但是必须传该参数到后台）</param>
         /// <param name="IsForbidden">是否禁用，0：全部，1：正常，5：禁用</param>
         /// <returns></returns>
+        [Permission("sys:role:index")]
         [HttpGet]
         public IActionResult GetAdminRolesList(int PageIndex, int PageSize, int IsForbidden, string RoleName)
         {
@@ -108,6 +111,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
+        [Permission("sys:role:addrole")]
         [HttpPost]
         public IActionResult AddRole([FromBody]FromAddRole model)
         {
@@ -156,6 +160,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// </summary>
         /// <param name="roleId">角色ID</param>
         /// <returns></returns>
+        [Permission("sys:role:forbidden")]
         [HttpPost]
         public IActionResult ForbiddenRole(int roleId)
         {
@@ -182,6 +187,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
+        [Permission("sys:role:editrole")]
         [HttpPost]
         public IActionResult UpdateRole([FromBody]FromUpdateRole model)
         {
@@ -278,6 +284,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// 获取全部菜单
         /// </summary>
         /// <returns></returns>
+        [Permission("sys:menu:index")]
         [HttpGet]
         public IActionResult GetMenuList()
         {
@@ -349,6 +356,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
+        [Permission("sys:menu:addmenu|sys:menu:editmenu")]
         [HttpPost]
         public IActionResult AddMenu([FromBody]FromAddMenu model)
         {
@@ -399,8 +407,6 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                 }
                 else
                     code = "100005";
-
-
             }
 
             logAdmin.CrtUserId = GetJwtIEntity().UserId;
@@ -415,6 +421,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// <param name="mid">菜单ID</param>
         /// <param name="orders">将移动到的排序位置</param>
         /// <returns></returns>
+        [Permission("sys:menu:editmenuorders")]
         [HttpPost]
         public IActionResult UpdateMenuOrders([FromForm]int mid, [FromForm]int orders)
         {
@@ -473,6 +480,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
+        [Permission("sys:menu:addmenubtn")]
         [HttpPost]
         public IActionResult AddMenuBtn([FromBody]FromAddMenuBtn model)
         {
@@ -498,6 +506,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Permission("sys:menu:deletemenubtn")]
         [HttpDelete]
         public IActionResult DeleteMenuBtn(int id)
         {
@@ -521,26 +530,28 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// <param name="menuId"></param>
         /// <param name="btnId"></param>
         /// <returns></returns>
+        [Permission("sys:cache:redis|sys:menu:editmenu|sys:menu:deletemenubtn")]
         [HttpPost]
         public async Task<IActionResult> UpdateRolePerToRedis([FromForm]int isAdd, [FromForm]int menuId, [FromForm]int btnId)
         {
             var result = await Task.Run(() =>
             {
                 var list = new List<RoleToPermissionDto>();
-                var dicList = new Dictionary<int, List<RoleToPermissionDto>>();
+                var dicList = new ConcurrentBag<Dictionary<int, List<RoleToPermissionDto>>>();
                 if (menuId > 0 && isAdd == 1)
                 {
                     //给角色新增了菜单权限
                     list = _sysAdminPermissionService.GetRolePerList(menuId, 0);
                     var arr = list.Where(p => p.Type == MenuTypeEnum.url.ToString()).Select(n => n.RoleId).Distinct().ToList();
-                    foreach (var role in arr)
+                    Parallel.ForEach(arr, role =>
                     {
                         if (RedisHelper.HExists(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), role.ToString()))
                             RedisHelper.HDel(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), role.ToString());
                         var roleMenuList = list.Where(p => p.RoleId == role).ToList();
                         RedisHelper.HSet(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), role.ToString(), roleMenuList);
-                        dicList.Add(role, roleMenuList);
-                    }
+                        var dic = new Dictionary<int, List<RoleToPermissionDto>> { { role, roleMenuList } };
+                        dicList.Add(dic);
+                    });
                 }
                 else if (menuId > 0 && isAdd == 0)
                 {
@@ -556,7 +567,8 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                                 RedisHelper.HDel(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), item.Key);
                             roleList.Remove(roleRedis);
                             RedisHelper.HSet(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), item.Key, roleList);
-                            dicList.Add(Convert.ToInt32(item.Key), roleList);
+                            var dic = new Dictionary<int, List<RoleToPermissionDto>> { { Convert.ToInt32(item.Key), roleList } };
+                            dicList.Add(dic);
                         }
                     });
                 }
@@ -565,14 +577,15 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                     //给角色新增了菜单按钮权限
                     list = _sysAdminPermissionService.GetRolePerList(0, btnId);
                     var arr = list.Where(p => p.Type == MenuTypeEnum.btn.ToString()).Select(n => n.RoleId).Distinct().ToList();
-                    foreach (var role in arr)
+                    Parallel.ForEach(arr, role =>
                     {
                         if (RedisHelper.HExists(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), role.ToString()))
                             RedisHelper.HDel(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), role.ToString());
                         var roleMenuList = list.Where(p => p.RoleId == role).ToList();
                         RedisHelper.HSet(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), role.ToString(), roleMenuList);
-                        dicList.Add(role, roleMenuList);
-                    }
+                        var dic = new Dictionary<int, List<RoleToPermissionDto>> { { role, roleMenuList } };
+                        dicList.Add(dic);
+                    });
                 }
                 else if (btnId > 0 && isAdd == 0)
                 {
@@ -588,7 +601,8 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                                 RedisHelper.HDel(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), item.Key);
                             roleList.Remove(roleRedis);
                             RedisHelper.HSet(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), item.Key, roleList);
-                            dicList.Add(Convert.ToInt32(item.Key), roleList);
+                            var dic = new Dictionary<int, List<RoleToPermissionDto>> { { Convert.ToInt32(item.Key), roleList } };
+                            dicList.Add(dic);
                         }
                     });
                 }
@@ -602,7 +616,8 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                     {
                         var arr = list.Where(p => p.RoleId == item).Distinct().ToList();
                         RedisHelper.HSet(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), item.ToString(), arr);
-                        dicList.Add(item, arr);
+                        var dic = new Dictionary<int, List<RoleToPermissionDto>> { { item, arr } };
+                        dicList.Add(dic);
                     });
                 }
 

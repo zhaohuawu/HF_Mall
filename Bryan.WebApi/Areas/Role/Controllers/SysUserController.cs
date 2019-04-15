@@ -22,6 +22,7 @@ using Bryan.WebApi.Common;
 using Bryan.Common.Enums;
 using Bryan.WebApi.Models;
 using Bryan.Common.Extension;
+using System.Collections.Concurrent;
 
 namespace Bryan.WebApi.Areas.Role.Controllers
 {
@@ -50,7 +51,6 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Permission("sys:user")]
         [HttpGet]
         public IActionResult GetUserById(int id)
         {
@@ -84,6 +84,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
+        [Permission("sys:user:index")]
         [HttpGet]
         public IActionResult GetPageList([FromQuery]FromGetSysUser model)
         {
@@ -110,7 +111,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [Permission("sys:user")]
+        [Permission("sys:user:adduser")]
         [HttpPost]
         public IActionResult AddSysUser([FromBody]FromAddSysUser model)
         {
@@ -177,6 +178,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
+        [Permission("sys:user:forbidden")]
         [HttpPost]
         public IActionResult FrobiddenSysUser(int userId)
         {
@@ -219,6 +221,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
+        [Permission("sys:user:edituser")]
         [HttpPost]
         public IActionResult UpdateUserRole([FromBody]FromUpdateSysUser model)
         {
@@ -299,13 +302,14 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// <param name="userId"></param>
         /// <param name="roleId"></param>
         /// <returns></returns>
+        [Permission("sys:cache:redis|sys:user:edituser|sys:role:forbidden")]
         [HttpPost]
         public async Task<IActionResult> UpdateUserRoleToRedis([FromForm]int isAdd, [FromForm]int userId, [FromForm]int roleId)
         {
             var result = await Task.Run(() =>
             {
                 var list = new List<Sys_UserRole>();
-                var dicList = new Dictionary<int, List<int>>();
+                var dicList = new ConcurrentBag<Dictionary<int, List<int>>>();
                 if (userId > 0 && isAdd == 1)
                 {
                     //给账号修改角色
@@ -314,7 +318,11 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                     list = _sysUserService.GetUserRoleList(userId, 0);
                     var arr = list.Select(n => n.RoleId).Distinct().ToList();
                     RedisHelper.HSet(RedisKeysEnum.AdminRoleHash.GetHFMallKey(), userId.ToString(), arr);
-                    dicList.Add(userId, arr);
+                    var dic = new Dictionary<int, List<int>>
+                    {
+                        { userId, arr }
+                    };
+                    dicList.Add(dic);
                 }
                 else if (userId > 0 && isAdd == 0)
                 {
@@ -322,9 +330,36 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                     if (RedisHelper.HExists(RedisKeysEnum.AdminRoleHash.GetHFMallKey(), userId.ToString()))
                         RedisHelper.HDel(RedisKeysEnum.AdminRoleHash.GetHFMallKey(), userId.ToString());
                 }
-                else if (roleId > 0)
+                else if (roleId > 0 && isAdd == 1)
                 {
-                    //角色的修改
+                    //角色的启用
+                    list = _sysUserService.GetUserRoleList(0, roleId);//授权该角色的账号
+                    if (list.Count > 0)
+                    {
+                        var hDic = RedisHelper.HGetAll<List<int>>(RedisKeysEnum.AdminRoleHash.GetHFMallKey());//redis中所有的账号角色权限
+                        var userList = list.Select(p => p.UserId).Distinct().ToList();
+                        Parallel.ForEach(userList, item =>
+                        {
+                            //如果该用户在现有的redis中存在并且该角色不存在该用户的角色权限中
+                            if (hDic.ContainsKey(item.ToString()) && !hDic[item.ToString()].Contains(roleId))
+                            {
+                                if (RedisHelper.HExists(RedisKeysEnum.AdminRoleHash.GetHFMallKey(), item.ToString()))
+                                    RedisHelper.HDel(RedisKeysEnum.AdminRoleHash.GetHFMallKey(), item.ToString());
+                                var arr = hDic[item.ToString()];
+                                arr.Add(roleId);
+                                RedisHelper.HSet(RedisKeysEnum.AdminRoleHash.GetHFMallKey(), item.ToString(), arr);
+                                var dic = new Dictionary<int, List<int>>
+                                {
+                                { Convert.ToInt32(item.ToString()), arr }
+                                };
+                                dicList.Add(dic);
+                            }
+                        });
+                    }
+                }
+                else if (roleId > 0 && isAdd == 0)
+                {
+                    //角色的停用
                     var hDic = RedisHelper.HGetAll<List<int>>(RedisKeysEnum.AdminRoleHash.GetHFMallKey());
                     Parallel.ForEach(hDic, item =>
                     {
@@ -335,7 +370,11 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                                 RedisHelper.HDel(RedisKeysEnum.AdminRoleHash.GetHFMallKey(), item.Key);
                             arr.Remove(roleId);
                             RedisHelper.HSet(RedisKeysEnum.AdminRoleHash.GetHFMallKey(), item.Key, arr);
-                            dicList.Add(Convert.ToInt32(item.Key), arr);
+                            var dic = new Dictionary<int, List<int>>
+                            {
+                                { Convert.ToInt32(item.Key), arr }
+                            };
+                            dicList.Add(dic);
                         }
                     });
                 }
@@ -349,7 +388,11 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                     {
                         var arr = list.Where(p => p.UserId == item).Select(n => n.RoleId).Distinct().ToList();
                         RedisHelper.HSet(RedisKeysEnum.AdminRoleHash.GetHFMallKey(), item.ToString(), arr);
-                        dicList.Add(item, arr);
+                        var dic = new Dictionary<int, List<int>>
+                            {
+                                { item, arr }
+                            };
+                        dicList.Add(dic);
                     });
                 }
 

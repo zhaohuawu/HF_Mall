@@ -16,7 +16,7 @@ namespace Bryan.WebApi.Common
         {
             get
             {
-                return PermissionStr.ToSafeStrArray(',');
+                return PermissionStr.ToSafeStrArray('|');
             }
         }
 
