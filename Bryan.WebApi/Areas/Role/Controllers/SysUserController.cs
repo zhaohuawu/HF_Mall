@@ -52,6 +52,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
+        [ProducesResponseType(typeof(Sys_User), 200)]
         public IActionResult GetUserById(int id)
         {
             string code = "000000";
@@ -70,6 +71,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// <returns></returns>
         [AllowAnonymous]
         [HttpGet]
+        [ProducesResponseType(typeof(Sys_User), 200)]
         public IActionResult GetAllUser()
         {
             string code = "000000";

@@ -8,6 +8,7 @@ using Bryan.Common.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
+using Bryan.WebApi.Models;
 
 namespace Bryan.WebApi.Controllers
 {
@@ -30,6 +31,7 @@ namespace Bryan.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("get")]
+        [ProducesResponseType(typeof(TestDto), 200)]
         public IActionResult Get(string code)
         {
             return ReturnJson(code);
@@ -93,5 +95,6 @@ namespace Bryan.WebApi.Controllers
             else
                 return ReturnJsonByParms(code, null, paramStr.Split(','));
         }
+        
     }
 }

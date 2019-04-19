@@ -847,28 +847,6 @@
             状态（1：添加，2：删除）
             </summary>
         </member>
-        <member name="T:Bryan.WebApi.Controllers.BaseKKController">
-            <summary>
-            基类
-            </summary>
-        </member>
-        <member name="M:Bryan.WebApi.Controllers.BaseKKController.ReturnJson(System.String,System.Object)">
-            <summary>
-            返回json数据（int）
-            </summary>
-            <param name="code"></param>
-            <param name="obj"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Bryan.WebApi.Controllers.BaseKKController.ReturnJsonByParms(System.String,System.Object,System.String[])">
-            <summary>
-            返回json数据（int）
-            </summary>
-            <param name="code"></param>
-            <param name="obj"></param>
-            <param name="param"></param>
-            <returns></returns>
-        </member>
         <member name="M:Bryan.WebApi.Controllers.LoginController.CreateToken(System.String,System.String)">
             <summary>
             生成token
@@ -954,6 +932,16 @@
         <member name="P:Bryan.WebApi.Models.ReturnUpload.uploadId">
             <summary>
             上传文件Id
+            </summary>
+        </member>
+        <member name="P:Bryan.WebApi.Models.TestDto.Code">
+            <summary>
+            返回code
+            </summary>
+        </member>
+        <member name="P:Bryan.WebApi.Models.TestDto.Msg">
+            <summary>
+            返回信息
             </summary>
         </member>
     </members>

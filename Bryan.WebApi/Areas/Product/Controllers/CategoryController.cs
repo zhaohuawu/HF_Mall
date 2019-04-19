@@ -29,6 +29,7 @@ namespace Bryan.WebApi.Areas.Product.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("getcategorylist")]
+        [ProducesResponseType(typeof(Gd_GoodsCategory), 200)]
         public IActionResult GetCategoryList()
         {
             string code = "000000";
@@ -44,6 +45,7 @@ namespace Bryan.WebApi.Areas.Product.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("getcategory")]
+        [ProducesResponseType(typeof(Gd_GoodsCategory), 200)]
         public IActionResult GetCategory(int id)
         {
             string code = "000000";
@@ -59,6 +61,7 @@ namespace Bryan.WebApi.Areas.Product.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost("addcategory")]
+        [ProducesResponseType(typeof(Gd_GoodsCategory), 200)]
         public IActionResult AddCategory([FromBody]FromAddCategory model)
         {
             string code = "000000";
