@@ -19,17 +19,23 @@ using Bryan.Common;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using Bryan.WebApi.Models.AppSettings;
 using Bryan.Common.Jwt;
+using Microsoft.Extensions.Logging;
 
 namespace Bryan.WebApi
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment env
+            , ILogger<Startup> logger)
         {
             Configuration = configuration;
+            Env = env;
+            _logger = logger;
         }
 
         public IConfiguration Configuration { get; }
+        private IHostingEnvironment Env { get; }
+        private ILogger _logger;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
@@ -45,6 +51,7 @@ namespace Bryan.WebApi
             //注册数据库服务
             DBManager.ConnectionString = Configuration.GetConnectionString("mysql_hfmall");
             DBManager.isLocal = appSettings.IsLocal;
+            _logger.LogWarning($"连接字符串串:{DBManager.ConnectionString}");
             //注册redis
             RegisterRedis();
 
@@ -143,7 +150,7 @@ namespace Bryan.WebApi
                 //页面API文档格式 Full=全部展开， List=只展开列表, None=都不展开
                 opts.DocExpansion(DocExpansion.None);
             });
-
+            //app.UseExceptionMiddleware();
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseCookiePolicy();

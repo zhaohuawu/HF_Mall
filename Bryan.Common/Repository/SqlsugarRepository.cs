@@ -9,7 +9,11 @@ namespace Bryan.Common.Repository
 {
     public class SqlsugarRepository : IRepository
     {
-        public SqlSugarClient SqlSugarDB => DBManager.GetInstance();
+        public SqlSugarClient SqlSugarDB { get; set; }
+        public SqlsugarRepository(IDBManager db)
+        {
+            SqlSugarDB = db.GetClient();
+        }
 
         public void BeginTran()
         {

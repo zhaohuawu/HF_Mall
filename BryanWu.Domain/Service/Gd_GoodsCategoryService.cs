@@ -12,11 +12,9 @@ namespace BryanWu.Domain.Service
     public class Gd_GoodsCategoryService : IGd_GoodsCategoryService
     {
         public IRepository _repository { get; set; }
-        private ILog _log;
-        public Gd_GoodsCategoryService(IRepository repository, ILog log)
+        public Gd_GoodsCategoryService(IRepository repository)
         {
             _repository = repository;
-            _log = log;
         }
 
         public bool DeleteById(int id)
