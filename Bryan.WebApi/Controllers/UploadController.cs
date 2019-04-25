@@ -8,11 +8,12 @@ using BryanWu.Domain.Interface;
 using BryanWu.Domain;
 using Bryan.Common;
 using Bryan.Common.Interface;
-using Bryan.Common.Net;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Logging;
+using Bryan.Common.Extension;
 
 namespace Bryan.WebApi.Controllers
 {
@@ -23,7 +24,7 @@ namespace Bryan.WebApi.Controllers
     {
         private ISys_UploadFileService _uploadFileService;
         private UploadSettings _uploadSettings;
-        public UploadController(ISys_UploadFileService uploadFileService, IOptions<UploadSettings> uploadSettings, ILog log)
+        public UploadController(ISys_UploadFileService uploadFileService, IOptions<UploadSettings> uploadSettings, ILogger<UploadController> log)
         {
             _log = log;
             this._uploadFileService = uploadFileService;
@@ -56,7 +57,7 @@ namespace Bryan.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                _log.Error(ex.Message);
+                _log.LogError(ex.Message);
                 code = "100050";
             }
             return ReturnJson(code, returnUpload);

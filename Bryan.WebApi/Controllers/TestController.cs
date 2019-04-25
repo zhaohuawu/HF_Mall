@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using Bryan.WebApi.Models;
+using Microsoft.Extensions.Logging;
 
 namespace Bryan.WebApi.Controllers
 {
@@ -20,7 +21,7 @@ namespace Bryan.WebApi.Controllers
     public class TestController : BaseController
     {
         private ILog_AdminService _logAdmin;
-        public TestController(ILog_AdminService logAdmin, ILog log)
+        public TestController(ILog_AdminService logAdmin, ILogger<TestController> log)
         {
             _logAdmin = logAdmin;
             _log = log;

@@ -4,30 +4,18 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Autofac.Extensions.DependencyInjection;
-using BryanWu.Domain.Interface;
-using BryanWu.Domain.Service;
-using Bryan.WebApi.Common;
 using Bryan.Common.Autofac;
 using Bryan.Common.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Bryan.Common.Log;
-using log4net;
 using Bryan.Common;
-using log4net.Config;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Http;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using Bryan.WebApi.Models.AppSettings;
 using Bryan.Common.Jwt;
@@ -59,10 +47,6 @@ namespace Bryan.WebApi
             DBManager.isLocal = appSettings.IsLocal;
             //注册redis
             RegisterRedis();
-
-            //加载log4net日志配置文件
-            LogHelper._repository = LogManager.CreateRepository(EnumLoggerReository.NETCoreRepository.ToString());
-            XmlConfigurator.Configure(LogHelper._repository, new FileInfo("log4net.config"));
 
             //中突出显示的代码设置了 2.1 兼容性标志
             services.AddMvc()
@@ -196,9 +180,12 @@ namespace Bryan.WebApi
                     {
                         var header = context.Request.Headers["Authorization"].FirstOrDefault();
                         var jwtEntity = JwtEntity.GetJwtIEntity(header);
-                        if (DateTime.Now > DateTimeHelper.ConvertToCsharpTime(jwtEntity.Exp))
+                        if (jwtEntity != null)
                         {
-                            context.Fail("token已过期");
+                            if (DateTime.Now > DateTimeHelper.ConvertToCsharpTime(jwtEntity.Exp))
+                            {
+                                context.Fail("token已过期");
+                            }
                         }
                         return Task.CompletedTask;
                     }
@@ -218,8 +205,6 @@ namespace Bryan.WebApi
 
         private void RegisterRedis()
         {
-            //RedisRepository._connectionString = Configuration.GetConnectionString("Redis_Hfmall"); //appSettings.Redis_Hfmall;
-            //RedisRepository._databaseKey = Configuration.GetConnectionString("Redis_DatabaseKey"); //appSettings.Redis_DatabaseKey;
             var cacheStr = Configuration.GetConnectionString("Redis_Hfmall");
             var csredis = new CSRedis.CSRedisClient(cacheStr);
             RedisHelper.Initialization(csredis);

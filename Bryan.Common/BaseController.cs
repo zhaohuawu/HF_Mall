@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace Bryan.Common
     [EnableCors("any")] //设置跨域处理的 代理
     public class BaseController : Controller
     {
-        protected ILog _log;//操作日志（log4Net）
+        protected ILogger _log;//操作日志
 
         #region ajax结果返回
         /// <summary>

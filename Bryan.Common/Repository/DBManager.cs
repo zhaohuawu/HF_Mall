@@ -1,6 +1,5 @@
 ﻿using Bryan.Common;
 using Bryan.Common.Interface;
-using Bryan.Common.Log;
 using SqlSugar;
 using System;
 using System.Collections.Generic;
@@ -36,8 +35,8 @@ namespace Bryan.Common.Repository
             {
                 db.Aop.OnLogExecuting = (sql, pars) =>//SQL执行前事件
                 {
-                    LogHelper.Log("【Sql】:" + sql, "sql.txt");
-                    LogHelper.Log("【Sql】【ConnectionString】:" + db.Ado.Connection.ConnectionString, "sql.txt");
+                    //LogHelper.Log("【Sql】:" + sql, "sql.txt");
+                    //LogHelper.Log("【Sql】【ConnectionString】:" + db.Ado.Connection.ConnectionString, "sql.txt");
                 };
                 //db.Aop.OnLogExecuted = (sql, pars) => //SQL执行完事件
                 //{
@@ -47,7 +46,7 @@ namespace Bryan.Common.Repository
 
             db.Aop.OnError = (exp) =>//执行SQL 错误事件
             {
-                LogHelper.Log("【Sql】:" + exp);
+                //LogHelper.Log("【Sql】:" + exp);
             };
             return db;
         }

@@ -14,15 +14,12 @@ namespace Bryan.Common.Autofac
     public class AutofacConfig
     {
         private static IContainer _container;
-
-
+        
         public static IContainer Init(IServiceCollection services)
         {
             var builder = new ContainerBuilder();
 
             // 注册数据库基础操作和工作单元
-            //services.AddScoped(typeof(IUnitWork), typeof(UnitWork));
-            services.AddScoped(typeof(ILog), typeof(Log.LogHelper));
             services.AddScoped(typeof(IRepository), typeof(Repository.SqlsugarRepository));
 
             if (services.All(u => u.ServiceType != typeof(IHttpContextAccessor)))

@@ -12,6 +12,7 @@ using Bryan.Common.Repository;
 using Bryan.Common;
 using BryanWu.Domain.Model;
 using Bryan.WebApi.Areas.Role.Models.SysOption;
+using Microsoft.Extensions.Logging;
 
 namespace Bryan.WebApi.Areas.Role.Controllers
 {
@@ -22,7 +23,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
     {
         private ISys_OptionService _sysOptionService;
         private ILog_AdminService _logAdmin;
-        public SysOptionController(ISys_OptionService sysOptionService, ILog_AdminService logAdmin, ILog log)
+        public SysOptionController(ISys_OptionService sysOptionService, ILog_AdminService logAdmin, ILogger<SysOptionController> log)
         {
             _logAdmin = logAdmin;
             _log = log;

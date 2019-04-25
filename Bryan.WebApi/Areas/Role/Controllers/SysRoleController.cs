@@ -21,6 +21,7 @@ using BryanWu.Domain.Dto;
 using Bryan.Common.Extension;
 using System.Collections.Concurrent;
 using Bryan.WebApi.Common;
+using Microsoft.Extensions.Logging;
 
 namespace Bryan.WebApi.Areas.Role.Controllers
 {
@@ -34,7 +35,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         private ISys_AdminPermissionService _sysAdminPermissionService;
         private ISys_AdminMenuBtnService _sysAdminMenuBtnService;
         private ILog_AdminService _logAdmin;
-        public SysRoleController(ISys_AdminRoleService adminRole, ISys_AdminMenuService sysAdminMenuService, ISys_AdminPermissionService adminPermissionService, ISys_AdminMenuBtnService sysAdminMenuBtnService, ILog_AdminService logAdmin, ILog log)
+        public SysRoleController(ISys_AdminRoleService adminRole, ISys_AdminMenuService sysAdminMenuService, ISys_AdminPermissionService adminPermissionService, ISys_AdminMenuBtnService sysAdminMenuBtnService, ILog_AdminService logAdmin, ILogger<SysRoleController> log)
         {
             _logAdmin = logAdmin;
             _log = log;
@@ -268,7 +269,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                 }
                 catch (Exception ex)
                 {
-                    _log.Error(ex.ToString());
+                    _log.LogError(ex.ToString());
                     code = "000100";
                 }
             }

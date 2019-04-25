@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Bryan.Common;
 using Bryan.Common.Extension;
+using Microsoft.Extensions.Logging;
 
 namespace Bryan.WebApi.Controllers
 {
@@ -17,7 +18,7 @@ namespace Bryan.WebApi.Controllers
     [ApiController]
     public class RedisController : BaseController
     {
-        public RedisController(ILog log)
+        public RedisController(ILogger<RedisController> log)
         {
             _log = log;
         }

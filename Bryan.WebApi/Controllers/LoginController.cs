@@ -15,6 +15,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using BryanWu.Domain.Model;
 using Bryan.Common.Jwt;
+using Microsoft.Extensions.Logging;
 
 namespace Bryan.WebApi.Controllers
 {
@@ -26,7 +27,7 @@ namespace Bryan.WebApi.Controllers
         private ISys_UserService _sysUserService;
         private ILog_AdminService _logAdmin;
         private JwtSettings _jwtSettings;
-        public LoginController(ISys_UserService sysUserService, IOptions<JwtSettings> jwtSettings, ILog_AdminService logAdmin, ILog log)
+        public LoginController(ISys_UserService sysUserService, IOptions<JwtSettings> jwtSettings, ILog_AdminService logAdmin, ILogger<LoginController> log)
         {
             _logAdmin = logAdmin;
             _log = log;
@@ -83,7 +84,7 @@ namespace Bryan.WebApi.Controllers
             }
             catch (Exception ex)
             {
-                _log.Error(ex.ToString());
+                _log.LogError(ex.ToString());
                 return ReturnJson("000105");
             }
         }

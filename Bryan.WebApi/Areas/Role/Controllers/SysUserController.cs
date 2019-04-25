@@ -8,7 +8,6 @@ using Bryan.WebApi.Areas.Role.Models;
 using Bryan.WebApi.Controllers;
 using Bryan.Common;
 using Bryan.Common.Interface;
-using Bryan.Common.Net;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +22,7 @@ using Bryan.Common.Enums;
 using Bryan.WebApi.Models;
 using Bryan.Common.Extension;
 using System.Collections.Concurrent;
+using Microsoft.Extensions.Logging;
 
 namespace Bryan.WebApi.Areas.Role.Controllers
 {
@@ -38,11 +38,11 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         private ISys_UserService _sysUserService { get; set; }
         private ISys_UploadFileService _sysUploadService { get; set; }
         protected ILog_AdminService _logAdmin;//操作数据记录（数据库）
-        public SysUserController(ISys_UserService sysUserService, ISys_UploadFileService sysUploadService, ILog_AdminService logAdmin, ILog log)
+        public SysUserController(ISys_UserService sysUserService, ISys_UploadFileService sysUploadService, ILog_AdminService logAdmin, ILogger<SysUserController> log)
         {
             _logAdmin = logAdmin;
             _log = log;
-            this._sysUserService = sysUserService;
+            this._sysUserService = Bryan.Common.Autofac.AutofacConfig.GetFromFac<ISys_UserService>();
             this._sysUploadService = sysUploadService;
         }
 
@@ -288,7 +288,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
                 }
                 catch (Exception ex)
                 {
-                    _log.Error(ex.ToString());
+                    _log.LogError(ex.ToString());
                     code = "000100";
                 }
             }

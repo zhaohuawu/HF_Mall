@@ -1,7 +1,6 @@
 ﻿using BryanWu.Domain.Interface;
 using BryanWu.Domain.Model;
 using Bryan.Common.Interface;
-using Bryan.Common.Net;
 using Bryan.Common.Repository;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -9,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Bryan.Common.Extension;
 
 namespace BryanWu.Domain.Service
 {
