@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Bryan.Common.Extension
 {
-    class MvcOptionExtensions
+    class MvcOptionExtension
     {
     }
 }

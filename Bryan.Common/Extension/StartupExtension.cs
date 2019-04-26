@@ -13,7 +13,7 @@ namespace Bryan.Common.Extension
     /// <summary>
     /// Startup扩展类
     /// </summary>
-    public static class StartupExtensions
+    public static class StartupExtension
     {
         public static void AddService(this IServiceCollection services, SysConfig systemConfig)
         {
@@ -40,21 +40,20 @@ namespace Bryan.Common.Extension
                 });
             });
         }
-
-        // Token: 0x06000062 RID: 98 RVA: 0x00002FCC File Offset: 0x000011CC
-        //public static IApplicationBuilder UseService(this IApplicationBuilder app, IHostingEnvironment env, IApplicationLifetime lifetime, SysConfig systemConfig)
-        //{
-        //    app.UseMicroService(env, lifetime, systemConfig);
-        //    if (string.IsNullOrEmpty(systemConfig.CacheConnectionString))
-        //    {
-        //        throw new Exception("请指定Redis连接字符串");
-        //    }
-        //    RedisHelper.Initialization(new CSRedisClient(systemConfig.CacheConnectionString));
-        //    app.UseCors("AllowDomain");
-        //    app.UseMiddleware(Array.Empty<object>());
-        //    app.UseMiddleware(Array.Empty<object>());
-        //    app.UseMiddleware(Array.Empty<object>());
-        //    return app;
-        //}
+        
+        public static IApplicationBuilder UseService(this IApplicationBuilder app, IHostingEnvironment env, IApplicationLifetime lifetime, SysConfig systemConfig)
+        {
+            //MicroServiceExtension.UseMicroService(app, env, lifetime, systemConfig);
+            //if (string.IsNullOrEmpty(systemConfig.CacheConnectionString))
+            //{
+            //    throw new Exception("请指定Redis连接字符串");
+            //}
+            //RedisHelper.Initialization(new CSRedisClient(systemConfig.CacheConnectionString));
+            app.UseCors("AllowDomain");
+            //app.UseMiddleware(Array.Empty<object>());
+            //app.UseMiddleware(Array.Empty<object>());
+            //app.UseMiddleware(Array.Empty<object>());
+            return app;
+        }
     }
 }
