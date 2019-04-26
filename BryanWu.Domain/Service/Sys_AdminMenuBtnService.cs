@@ -12,11 +12,9 @@ namespace BryanWu.Domain.Service
     public class Sys_AdminMenuBtnService : ISys_AdminMenuBtnService
     {
         public IRepository _repository { get; set; }
-        public ILog _log;
-        public Sys_AdminMenuBtnService(IRepository repository, ILog log)
+        public Sys_AdminMenuBtnService(IRepository repository)
         {
             _repository = repository;
-            _log = log;
         }
 
         public bool DeleteById(int id)

@@ -12,11 +12,9 @@ namespace BryanWu.Domain.Service
     public class Sys_OptionService : ISys_OptionService
     {
         public IRepository _repository { get; set; }
-        private ILog _log;
-        public Sys_OptionService(IRepository repository, ILog log)
+        public Sys_OptionService(IRepository repository)
         {
             _repository = repository;
-            _log = log;
         }
 
         public bool DeleteById(int id)
@@ -190,7 +188,6 @@ namespace BryanWu.Domain.Service
             catch (Exception ex)
             {
                 _repository.RollBackTran();
-                _log.Exception(ex);
                 return false;
             }
 
@@ -245,7 +242,6 @@ namespace BryanWu.Domain.Service
             catch (Exception ex)
             {
                 _repository.RollBackTran();
-                _log.Exception(ex);
                 return false;
             }
         }

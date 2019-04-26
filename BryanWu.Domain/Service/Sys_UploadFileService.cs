@@ -16,11 +16,9 @@ namespace BryanWu.Domain.Service
     public class Sys_UploadFileService : ISys_UploadFileService
     {
         public IRepository _repository { get; set; }
-        private ILog _log;
-        public Sys_UploadFileService(IRepository repository, ILog log)
+        public Sys_UploadFileService(IRepository repository)
         {
             _repository = repository;
-            this._log = log;
         }
 
         #region Service
@@ -165,7 +163,6 @@ namespace BryanWu.Domain.Service
         /// <param name="statusEnum"></param>
         public async void UpdateUploadStatusAsync(UploadTypeEnum typeEnum, string filePath, UploadStatusEnum statusEnum)
         {
-            _log.Debug(typeEnum.ToString() + "--" + filePath + "---" + statusEnum.ToString() + "---" + (int)statusEnum);
             if (filePath.StartsWith("upload/"))
             {
                 var lastIndex = filePath.LastIndexOf('/');

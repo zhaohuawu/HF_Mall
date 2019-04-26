@@ -12,11 +12,9 @@ namespace BryanWu.Domain.Service
     public class Sys_AdminMenuService : ISys_AdminMenuService
     {
         public IRepository _repository { get; set; }
-        public ILog _log;
-        public Sys_AdminMenuService(IRepository repository, ILog log)
+        public Sys_AdminMenuService(IRepository repository)
         {
             _repository = repository;
-            _log = log;
         }
 
         public bool DeleteById(int id)
@@ -195,7 +193,6 @@ namespace BryanWu.Domain.Service
             catch (Exception ex)
             {
                 _repository.RollBackTran();
-                _log.Exception(ex);
                 return false;
             }
         }

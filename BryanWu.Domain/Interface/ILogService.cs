@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BryanWu.Domain.Interface
 {
-    public interface ILogService : IDBRepository<Log_Admin>
+    public interface ILogService 
     {
 
     }

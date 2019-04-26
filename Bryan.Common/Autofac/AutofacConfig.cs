@@ -5,7 +5,6 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Http;
 using IContainer = Autofac.IContainer;
-using Bryan.Common;
 using Bryan.Common.Interface;
 using System;
 
@@ -20,6 +19,7 @@ namespace Bryan.Common.Autofac
             var builder = new ContainerBuilder();
 
             // 注册数据库基础操作和工作单元
+            services.AddScoped(typeof(IDBManager), typeof(Repository.DBManager));
             services.AddScoped(typeof(IRepository), typeof(Repository.SqlsugarRepository));
 
             if (services.All(u => u.ServiceType != typeof(IHttpContextAccessor)))

@@ -42,7 +42,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         {
             _logAdmin = logAdmin;
             _log = log;
-            this._sysUserService = Bryan.Common.Autofac.AutofacConfig.GetFromFac<ISys_UserService>();
+            this._sysUserService = sysUserService;
             this._sysUploadService = sysUploadService;
         }
 
