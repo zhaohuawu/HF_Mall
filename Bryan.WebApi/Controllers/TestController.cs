@@ -31,7 +31,7 @@ namespace Bryan.WebApi.Controllers
         /// 测试代码sssss
         /// </summary>
         /// <returns></returns>
-        [HttpGet("get")]
+        [HttpGet]
         [ProducesResponseType(typeof(TestDto), 200)]
         public IActionResult Get(string code)
         {

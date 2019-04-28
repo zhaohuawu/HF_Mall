@@ -14,7 +14,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Bryan.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class RedisController : BaseController
     {
@@ -27,7 +27,7 @@ namespace Bryan.WebApi.Controllers
         /// 覆盖返回码redis
         /// </summary>
         /// <returns></returns>
-        [HttpPost("updatemsgcodetoredis")]
+        [HttpPost]
         public async Task<IActionResult> UpdateMsgCodeToRedis()
         {
             RedisHelper.HDel(RedisKeysEnum.ReturnCodeHash.GetHFMallKey());

@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Bryan.WebApi.Areas.Product.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class CategoryController : BaseController
     {
@@ -28,7 +28,7 @@ namespace Bryan.WebApi.Areas.Product.Controllers
         /// 获取商品分类list
         /// </summary>
         /// <returns></returns>
-        [HttpGet("getcategorylist")]
+        [HttpGet]
         [ProducesResponseType(typeof(Gd_GoodsCategory), 200)]
         public IActionResult GetCategoryList()
         {
@@ -44,7 +44,7 @@ namespace Bryan.WebApi.Areas.Product.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("getcategory")]
+        [HttpGet]
         [ProducesResponseType(typeof(Gd_GoodsCategory), 200)]
         public IActionResult GetCategory(int id)
         {
@@ -60,7 +60,7 @@ namespace Bryan.WebApi.Areas.Product.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [HttpPost("addcategory")]
+        [HttpPost]
         [ProducesResponseType(typeof(Gd_GoodsCategory), 200)]
         public IActionResult AddCategory([FromBody]FromAddCategory model)
         {

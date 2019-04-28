@@ -26,7 +26,7 @@ using Microsoft.Extensions.Logging;
 namespace Bryan.WebApi.Areas.Role.Controllers
 {
     [Authorize]
-    [Route("api/Role/[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class SysRoleController : BaseController
     {

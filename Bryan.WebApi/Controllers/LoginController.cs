@@ -20,7 +20,7 @@ using Microsoft.Extensions.Logging;
 namespace Bryan.WebApi.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class LoginController : BaseController
     {
@@ -42,7 +42,7 @@ namespace Bryan.WebApi.Controllers
         /// <param name="password">密码</param>
         /// <returns></returns>
         [AllowAnonymous]
-        [HttpPost("createtoken")]
+        [HttpPost]
         public async Task<IActionResult> CreateToken([FromForm]string username, [FromForm]string password)
         {
             try

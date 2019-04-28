@@ -19,6 +19,7 @@ namespace Bryan.Common.Extension
             {
                 opt.UseCentralRoutePrefix(new RouteAttribute(systemConfig.Name));
             }))
+            //services.AddMvc()
             .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
             .AddJsonOptions(x =>
             {

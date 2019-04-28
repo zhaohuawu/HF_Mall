@@ -14,7 +14,7 @@ namespace Bryan.Common
         {
             this.prefix = new AttributeRouteModel(routeTemplateProvider);
             AttributeRouteModel attributeRouteModel = this.prefix;
-            attributeRouteModel.Template += "/[controller]";
+            attributeRouteModel.Template += "/[controller]/[action]";
         }
 
         // Token: 0x060000BC RID: 188 RVA: 0x0000481C File Offset: 0x00002A1C

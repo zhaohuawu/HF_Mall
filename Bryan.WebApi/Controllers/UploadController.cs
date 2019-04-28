@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Bryan.WebApi.Models;
 using Bryan.WebApi.Models.AppSettings;
 using BryanWu.Domain.Interface;
 using BryanWu.Domain;
 using Bryan.Common;
-using Bryan.Common.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +15,7 @@ using Bryan.Common.Extension;
 namespace Bryan.WebApi.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class UploadController : BaseController
     {
@@ -36,7 +33,7 @@ namespace Bryan.WebApi.Controllers
         /// 上传头像
         /// </summary>
         /// <returns></returns>
-        [HttpPost("uploadavatar")]
+        [HttpPost]
         [ProducesResponseType(typeof(ReturnUpload), 200)]
         public IActionResult UploadAvatar()
         {
@@ -68,7 +65,7 @@ namespace Bryan.WebApi.Controllers
         /// </summary>
         /// <param name="filePath">图片路径</param>
         /// <returns></returns>
-        [HttpPost("updatestatus")]
+        [HttpPost]
         public async Task<IActionResult> DeleteUploadStatusAsync(string filePath)
         {
             if (filePath.StartsWith("upload/"))

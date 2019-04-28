@@ -14,7 +14,7 @@ using Bryan.WebApi.Areas.Role.Models.SysRole;
 namespace Bryan.WebApi.Areas.Role.Controllers
 {
     [Authorize]
-    [Route("api/Role/[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class MenuController : BaseController
     {

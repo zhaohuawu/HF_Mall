@@ -30,7 +30,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
     /// 用户api
     /// </summary>
     [Authorize]
-    [Route("api/Role/[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     [PermissionFilter]
     public class SysUserController : BaseController
