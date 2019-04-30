@@ -48,6 +48,7 @@ namespace Bryan.Common.Extension
         {
             MicroServiceExtension.UseMicroService(app, env, lifetime, systemConfig);
             app.UseCors("AllowDomain");
+            app.UseExceptionMiddleware();
             //app.UseMiddleware(Array.Empty<object>());
             //app.UseMiddleware(Array.Empty<object>());
             //app.UseMiddleware(Array.Empty<object>());

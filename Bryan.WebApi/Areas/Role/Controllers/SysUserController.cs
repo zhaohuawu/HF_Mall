@@ -57,6 +57,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         {
             string code = "000000";
             var data = _sysUserService.GetUserById(id);
+             
             if (data == null)
                 code = "000200";
             else

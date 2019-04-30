@@ -55,8 +55,6 @@ namespace Bryan.WebApi
         {
             //AppSettings 参数配置
             var appSettingsSection = Configuration.GetSection("AppSettings");
-
-
             var appSettings = appSettingsSection.Get<AppSettings>();
             services.Configure<AppSettings>(appSettingsSection);
             services.Configure<UploadSettings>(Configuration.GetSection("Upload"));
@@ -67,58 +65,9 @@ namespace Bryan.WebApi
             _logger.LogWarning($"连接字符串串:{DBManager.ConnectionString}");
             //注册redis
             RegisterRedis();
-
-            //中突出显示的代码设置了 2.1 兼容性标志
-            //services.AddMvc()
-            //    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-            //    .AddJsonOptions(opts => opts.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss");
-
+            
             services.AddService(config);
-
-            // Register the Swagger generator, defining 1 or more Swagger documents
-            //services.AddSwaggerGen(options =>
-            //{
-            //    options.SwaggerDoc("v1", new Info
-            //    {
-            //        Version = "v1",
-            //        Title = " Bryan.WebApi",
-            //        Description = "by Bryan",
-            //        TermsOfService = "None",
-            //        Contact = new Contact
-            //        {
-            //            Name = "BryanWu",
-            //            Email = string.Empty,
-            //            Url = "http://www.cnblogs.com/yilezhu/"
-            //        },
-            //        License = new License
-            //        {
-            //            Name = "许可证名字",
-            //            Url = "http://www.cnblogs.com/yilezhu/"
-            //        }
-            //    });
-
-            //    #region Token绑定到ConfigureServices
-            //    //添加header验证信息
-            //    //Json Token认证方式，此方式为全局添加
-            //    var security = new Dictionary<string, IEnumerable<string>> { { "Bearer", new string[] { } }, };
-            //    options.AddSecurityRequirement(security);
-            //    //方案名称“Bryan.WebApi”可自定义，上下一致即可
-            //    options.AddSecurityDefinition("Bearer", new ApiKeyScheme
-            //    {
-            //        Description = "JWT授权(数据将在请求头中进行传输) 直接在下框中输入{token}\"",
-            //        Name = "Authorization",//jwt默认的参数名称
-            //        In = "header",//jwt默认存放Authorization信息的位置(请求头中)
-            //        Type = "apiKey"
-            //    });
-            //    #endregion
-
-            //    // 为 Swagger JSON and UI设置xml文档注释路径
-            //    var basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);//获取应用程序所在目录（绝对，不受工作目录影响，建议采用此方法获取路径）
-            //    var xmlPath = Path.Combine(basePath, "Bryan.WebApi.xml");
-            //    options.IncludeXmlComments(xmlPath);
-
-            //});
-
+            
             //JWT认证  
             JwtValidation(services);
 
@@ -157,14 +106,7 @@ namespace Bryan.WebApi
                 app.UseHsts();
             }
             app.UseService(env, lifetime, config);
-            //app.UseSwagger();
-            //app.UseSwaggerUI(opts =>
-            //{
-            //    opts.SwaggerEndpoint("/swagger/v1/swagger.json", "Bryan.Webapi V1");
-            //    opts.RoutePrefix = string.Empty;//开启默认swagger/index.html路径
-            //    //页面API文档格式 Full=全部展开， List=只展开列表, None=都不展开
-            //    opts.DocExpansion(DocExpansion.None);
-            //});
+            
             //app.UseExceptionMiddleware();
             app.UseDefaultFiles();
             app.UseStaticFiles();
@@ -179,16 +121,13 @@ namespace Bryan.WebApi
             //      template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
             //    );
             //});
-
-
-
         }
 
         private void JwtValidation(IServiceCollection services)
         {
             var jwtSettingsSection = Configuration.GetSection("JwtSettings");
             services.Configure<JwtSettings>(jwtSettingsSection);
-            //TOMO 令牌过期后刷新，以及更改密码后令牌未过期的处理问题
+            //TODO 令牌过期后刷新，以及更改密码后令牌未过期的处理问题
             var jwtSettings = jwtSettingsSection.Get<JwtSettings>();
             services.AddAuthentication(opts =>
             {
