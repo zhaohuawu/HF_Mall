@@ -32,7 +32,6 @@ namespace Bryan.WebApi.Areas.Role.Controllers
     [Authorize]
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [PermissionFilter]
     public class SysUserController : BaseController
     {
         private ISys_UserService _sysUserService { get; set; }
@@ -89,6 +88,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// <returns></returns>
         [Permission("sys:user:index")]
         [HttpGet]
+        [ProducesResponseType(typeof(Sys_User), 200)]
         public IActionResult GetPageList([FromQuery]FromGetSysUser model)
         {
             string code = "000000";
@@ -207,6 +207,7 @@ namespace Bryan.WebApi.Areas.Role.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [ProducesResponseType(typeof(Sys_UserRole), 200)]
         public IActionResult GetUserRolesList(int userId)
         {
             string code = "000000";

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Text;
 
 namespace Bryan.Common.Jwt
 {
@@ -28,13 +26,13 @@ namespace Bryan.Common.Jwt
                     {
                         var jwtToken = new JwtSecurityToken(token[1]);
                         var paloadStr = JSONHelper.Seriallize(jwtToken.Payload);
-                        jwtEntity = JSONHelper.Dseriallize<Bryan.Common.Jwt.JwtEntity>(paloadStr);
+                        jwtEntity = JSONHelper.Dseriallize<JwtEntity>(paloadStr);
                         return jwtEntity;
                     }
                 }
                 catch (Exception ex)
                 {
-                    return null;
+                    throw ex;
                 }
             }
             return null;

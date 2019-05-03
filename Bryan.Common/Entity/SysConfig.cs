@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Bryan.Common.Jwt;
+using System;
 using System.Text.RegularExpressions;
 
 namespace Bryan.Common.Entity
@@ -48,6 +47,16 @@ namespace Bryan.Common.Entity
         /// 服务地址
         /// </summary>
         public string ServiceDiscoveryAddress { get; set; }
+
+        /// <summary>
+        /// Redis链接字符串
+        /// </summary>
+        public string RedisConnectionString { get; set; }
+
+        /// <summary>
+        /// JWT认证参数
+        /// </summary>
+        public JwtSettings JwtSettings { get; set; }
 
     }
 }

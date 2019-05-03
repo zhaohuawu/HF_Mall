@@ -95,10 +95,6 @@ namespace Bryan.Common
             stringBuilder.Append("//*******************************************************\r\n");
             return stringBuilder.ToString();
         }
-
-        
-
-
     }
 
     /// <summary>

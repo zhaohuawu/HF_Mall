@@ -1,11 +1,10 @@
-﻿using BryanWu.Domain.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BryanWu.Domain.Dto
+namespace Bryan.Common
 {
-    public class RoleToPermissionDto
+    public class PermissionDto
     {
         /// <summary>
         /// Desc:菜单ID

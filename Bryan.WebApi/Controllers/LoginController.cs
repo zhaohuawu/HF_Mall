@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using BryanWu.Domain.Interface;
 using Bryan.Common;
-using Bryan.Common.Interface;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -59,9 +56,6 @@ namespace Bryan.WebApi.Controllers
                     var exp = now.AddHours(_jwtSettings.Expires);
                     var claims = new Claim[]
                     {
-                        //new Claim("iss", _jwtSettings.Issuer),
-                        //new Claim("aut", _jwtSettings.Audience),
-                        //new Claim("exp", now.ToString("yyyy-MM-dd HH:mm:ss")),
                         new Claim("userId",sysuser.Id.ToString()),
                         new Claim("name",username),
                         new Claim("source","1")

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Bryan.Common.Extension;
 
-namespace Bryan.WebApi.Common
+namespace Bryan.Common
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
     public class PermissionAttribute : Attribute, IFilterMetadata

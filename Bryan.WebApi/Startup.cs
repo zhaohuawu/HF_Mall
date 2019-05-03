@@ -39,11 +39,12 @@ namespace Bryan.WebApi
             config.DisplayName = "基础服务";
             config.Version = "1.0";
             config.XmlName = "Bryan.WebApi.xml"; //当前项目 ->属性->生成->输出->勾选XML文档文件,并将XML文件名赋值在这.  
-
             //宿主机物理网卡地址
             config.LocalAddress = HttpContextExtension.GetLocalIP() + ":" + Configuration.GetSection("ServiceAddress").Value.Split(':')[1];
             //服务发现地址
-            config.ServiceDiscoveryAddress = Configuration.GetSection("DCAddress").Value;            //从配置文件中取值 
+            config.ServiceDiscoveryAddress = Configuration.GetSection("DCAddress").Value;
+            config.RedisConnectionString = Configuration.GetConnectionString("Redis_Hfmall");
+            config.JwtSettings = Configuration.GetSection("JwtSettings").Get<JwtSettings>();
         }
 
         public IConfiguration Configuration { get; }
@@ -64,31 +65,21 @@ namespace Bryan.WebApi
             DBManager.isLocal = appSettings.IsLocal;
             _logger.LogWarning($"连接字符串串:{DBManager.ConnectionString}");
             //注册redis
-            RegisterRedis();
-            
-            services.AddService(config);
-            
-            //JWT认证  
-            JwtValidation(services);
+            //RegisterRedis();
 
-            //配置跨域处理
-            //services.AddCors(options =>
-            //{
-            //    options.AddPolicy("any", builder =>
-            //    {
-            //        builder.AllowAnyOrigin() //允许任何来源的主机访问
-            //        .AllowAnyMethod()
-            //        .AllowAnyHeader()
-            //        .AllowCredentials();//指定处理cookie
-            //    });
-            //    //options.AddPolicy("any", builder =>
-            //    //{
-            //    //    builder.WithOrigins("https://localhost:5001")
-            //    //    .AllowAnyMethod()
-            //    //    .AllowAnyHeader()
-            //    //    .AllowCredentials();
-            //    //});
-            //});
+            services.AddService(config);
+
+            //JWT配置注入
+            services.Configure<JwtSettings>(opt =>
+            {
+                opt.Audience = config.JwtSettings.Audience;
+                opt.Expires = config.JwtSettings.Expires;
+                opt.Issuer = config.JwtSettings.Issuer;
+                opt.PrivateKey = config.JwtSettings.PrivateKey;
+                opt.PublicKey = config.JwtSettings.PublicKey;
+                opt.Secretkey = config.JwtSettings.Secretkey;
+            });
+            //JwtValidation(services);
 
             //autofac 注入
             return new AutofacServiceProvider(AutofacConfig.Init(services));
@@ -106,21 +97,10 @@ namespace Bryan.WebApi
                 app.UseHsts();
             }
             app.UseService(env, lifetime, config);
-            
-            //app.UseExceptionMiddleware();
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
-            app.UseCookiePolicy();
-            //app.UseHttpsRedirection(); //使用Https传输
-            //app.UseAuthentication();
+            //app.UseDefaultFiles();
+            //app.UseStaticFiles();
+            //app.UseCookiePolicy();
             app.UseMvc();
-            //app.UseMvc(routes =>
-            //{
-            //    routes.MapRoute(
-            //      name: "areas",
-            //      template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-            //    );
-            //});
         }
 
         private void JwtValidation(IServiceCollection services)

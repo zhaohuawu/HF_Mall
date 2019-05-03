@@ -11,10 +11,7 @@ namespace Bryan.Common.Jwt
     /// </summary>
     public class JwtSettings
     {
-        // Token: 0x04000025 RID: 37
         private string _publicKey = string.Empty;
-
-        // Token: 0x04000026 RID: 38
         private string _privateKey = string.Empty;
 
 

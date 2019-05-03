@@ -1,4 +1,4 @@
-﻿using BryanWu.Domain.Dto;
+﻿using Bryan.Common;
 using BryanWu.Domain.Model;
 using Bryan.Common.Autofac;
 using Bryan.Common.Interface;
@@ -28,6 +28,6 @@ namespace BryanWu.Domain.Interface
         PageList<Sys_AdminPermission> GetPageList(Expression<Func<Sys_AdminPermission, bool>> where, PageSet pageSet, Expression<Func<Sys_AdminPermission, object>> orderBy, bool isDesc = false, bool isPageNavStr = false);
         TResult GetOneKey<TResult>(Expression<Func<Sys_AdminPermission, bool>> where, Expression<Func<Sys_AdminPermission, TResult>> filed);
 
-        List<RoleToPermissionDto> GetRolePerList(int menuId, int btnId);
+        List<PermissionDto> GetRolePerList(int menuId, int btnId);
     }
 }

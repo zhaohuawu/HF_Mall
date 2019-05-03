@@ -22,6 +22,15 @@ namespace Bryan.Common.Extension
     {
         public static void AddMicroService(this IServiceCollection services, SysConfig serviceConfig)
         {
+            //redis注册
+            if (string.IsNullOrEmpty(serviceConfig.RedisConnectionString))
+            {
+                throw new Exception("Redis链接字符串不能为空");
+            }
+            var csredis = new CSRedis.CSRedisClient(serviceConfig.RedisConnectionString);
+            RedisHelper.Initialization(csredis);
+
+            //添加swagger
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc(serviceConfig.Name.ToLower(), new Info
@@ -47,13 +56,6 @@ namespace Bryan.Common.Extension
 
                 string filePath = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, serviceConfig.XmlName);
                 options.IncludeXmlComments(filePath);
-            });
-            services.AddCors(delegate (CorsOptions opt)
-            {
-                opt.AddPolicy("AllowDomain", delegate (CorsPolicyBuilder builder)
-                {
-                    builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials();
-                });
             });
         }
 
