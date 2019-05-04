@@ -11,21 +11,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Areas\Admin\**" />
-    <Compile Remove="Areas\Role\Data\**" />
-    <Content Remove="Areas\Admin\**" />
-    <Content Remove="Areas\Role\Data\**" />
-    <EmbeddedResource Remove="Areas\Admin\**" />
-    <EmbeddedResource Remove="Areas\Role\Data\**" />
-    <None Remove="Areas\Admin\**" />
-    <None Remove="Areas\Role\Data\**" />
+    <None Remove="Dockerfile" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Product\Data\" />
-    <Folder Include="Areas\Product\Views\" />
-    <Folder Include="Areas\Role\Models\Category\" />
-    <Folder Include="Areas\Role\Views\" />
+    <Content Include="Dockerfile">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

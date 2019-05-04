@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace Bryan.WebApi
+namespace HF.Order
 {
     public class Program
     {
@@ -19,13 +19,6 @@ namespace Bryan.WebApi
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .ConfigureLogging((context, log) =>
-                {
-                    log.AddConfiguration(context.Configuration.GetSection("Logging"));
-                    log.AddConsole();
-
-                })
-                .UseUrls("http://*:5010")
                 .UseStartup<Startup>();
     }
 }
