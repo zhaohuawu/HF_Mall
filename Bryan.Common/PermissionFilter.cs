@@ -49,7 +49,7 @@ namespace Bryan.Common
                         {
                             //查询账号所有的角色
                             var roleList = RedisHelper.HGet<List<string>>(RedisKeysEnum.AdminRoleHash.GetHFMallKey(), jwtEntity.UserId.ToString());
-                            if (roleList.Count > 0)
+                            if (roleList != null)
                             {
                                 //查询角色下面的菜单和按钮权限
                                 var menuStrList = RedisHelper.HMGet<string>(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), roleList.ToArray());

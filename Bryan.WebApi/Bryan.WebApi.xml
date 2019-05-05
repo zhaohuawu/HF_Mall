@@ -330,11 +330,6 @@
             后台操作日志
             </summary>
         </member>
-        <member name="T:Bryan.WebApi.Models.RedisKeyExtension">
-            <summary>
-            RedisKey扩展方法
-            </summary>
-        </member>
         <member name="P:Bryan.WebApi.Models.ReturnUpload.url">
             <summary>
             上传文件路径

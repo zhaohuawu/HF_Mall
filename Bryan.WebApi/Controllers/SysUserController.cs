@@ -48,7 +48,7 @@ namespace Bryan.WebApi.Controllers
         {
             string code = "000000";
             var data = _sysUserService.GetUserById(id);
-             
+
             if (data == null)
                 code = "000200";
             else
@@ -346,7 +346,7 @@ namespace Bryan.WebApi.Controllers
                                 RedisHelper.HSet(RedisKeysEnum.AdminRoleHash.GetHFMallKey(), item.ToString(), arr);
                                 var dic = new Dictionary<int, List<int>>
                                 {
-                                { Convert.ToInt32(item.ToString()), arr }
+                                    { item, arr }
                                 };
                                 dicList.Add(dic);
                             }
@@ -368,7 +368,7 @@ namespace Bryan.WebApi.Controllers
                             RedisHelper.HSet(RedisKeysEnum.AdminRoleHash.GetHFMallKey(), item.Key, arr);
                             var dic = new Dictionary<int, List<int>>
                             {
-                                { Convert.ToInt32(item.Key), arr }
+                                { item.Key.ToSafeInt(), arr }
                             };
                             dicList.Add(dic);
                         }
