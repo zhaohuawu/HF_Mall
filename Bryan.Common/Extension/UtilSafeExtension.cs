@@ -30,8 +30,7 @@ namespace Bryan.Common.Extension
             sbyte.TryParse(o.ToString(), out i);
             return i;
         }
-
-
+        
         public static long ToSafeLong(object o, long i = 0)
         {
             long.TryParse(o.ToString(), out i);
