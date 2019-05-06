@@ -144,7 +144,7 @@ namespace Bryan.WebApi
                         var jwtEntity = JwtEntity.GetJwtIEntity(header);
                         if (jwtEntity != null)
                         {
-                            if (DateTime.Now > DateTimeHelper.ConvertToCsharpTime(jwtEntity.Exp))
+                            if (DateTime.Now > DateTimeExtension.ConvertToCsharpTime(jwtEntity.Exp))
                             {
                                 context.Fail("token已过期");
                             }

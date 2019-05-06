@@ -5,7 +5,7 @@ namespace Bryan.Common
     /// <summary>
     /// 时间日期辅助类
     /// </summary>
-    public static class DateTimeHelper
+    public static class DateTimeExtension
     {
         private static readonly DateTime baseDate = new DateTime(1970, 1, 1);
 
