@@ -113,19 +113,21 @@ namespace Bryan.Common.Extension
             //        await context.Response.WriteAsync("ok", default(CancellationToken));
             //    });
             //});
-            if (!env.IsProduction())
+
+            //if (!env.IsProduction())
+            //{
+            app.UseSwagger(delegate (SwaggerOptions opt)
             {
-                app.UseSwagger(delegate (SwaggerOptions opt)
-                {
-                    opt.RouteTemplate = "{documentName}-swagger.json";
-                });
-                app.UseSwaggerUI(delegate (SwaggerUIOptions opt)
-                {
-                    opt.SwaggerEndpoint("/" + serviceInfo.Name.ToLower() + "-swagger.json", serviceInfo.DisplayName);
-                    opt.RoutePrefix = string.Empty;//开启默认swagger/index.html路径
-                    opt.DocExpansion(DocExpansion.None);
-                });
-            }
+                opt.RouteTemplate = "swagger/{documentName}/swagger.json";
+            });
+            //app.UseSwagger();
+            app.UseSwaggerUI(delegate (SwaggerUIOptions opt)
+            {
+                opt.SwaggerEndpoint("/swagger/" + serviceInfo.Name.ToLower() + "/swagger.json", serviceInfo.DisplayName);
+                opt.RoutePrefix = string.Empty;//开启默认swagger/index.html路径
+                opt.DocExpansion(DocExpansion.None);
+            });
+            //}
             app.UseAuthentication();
         }
 

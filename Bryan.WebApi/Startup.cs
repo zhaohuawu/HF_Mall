@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Autofac.Extensions.DependencyInjection;
@@ -8,15 +6,12 @@ using Bryan.Common.Autofac;
 using Bryan.Common.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Bryan.Common;
-using Swashbuckle.AspNetCore.SwaggerUI;
 using Bryan.WebApi.Models.AppSettings;
 using Bryan.Common.Jwt;
 using Microsoft.Extensions.Logging;
@@ -64,22 +59,8 @@ namespace Bryan.WebApi
             DBManager.ConnectionString = Configuration.GetConnectionString("mysql_hfmall");
             DBManager.isLocal = appSettings.IsLocal;
             _logger.LogWarning($"连接字符串串:{DBManager.ConnectionString}");
-            //注册redis
-            //RegisterRedis();
 
             services.AddService(config);
-
-            //JWT配置注入
-            services.Configure<JwtSettings>(opt =>
-            {
-                opt.Audience = config.JwtSettings.Audience;
-                opt.Expires = config.JwtSettings.Expires;
-                opt.Issuer = config.JwtSettings.Issuer;
-                opt.PrivateKey = config.JwtSettings.PrivateKey;
-                opt.PublicKey = config.JwtSettings.PublicKey;
-                opt.Secretkey = config.JwtSettings.Secretkey;
-            });
-            //JwtValidation(services);
 
             //autofac 注入
             return new AutofacServiceProvider(AutofacConfig.Init(services));

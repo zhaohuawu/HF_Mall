@@ -45,13 +45,13 @@ namespace Bryan.WebApi.Controllers
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
+                    _log.LogError(ex.Message);
                     return "000031";
                 }
             });
             return ReturnJson(code);
         }
 
-        
+
     }
 }

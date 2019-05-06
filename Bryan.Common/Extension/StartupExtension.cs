@@ -35,6 +35,16 @@ namespace Bryan.Common.Extension
             });
 
             #region JWT认证
+            //JWT配置注入
+            services.Configure<JwtSettings>(opt =>
+            {
+                opt.Audience = systemConfig.JwtSettings.Audience;
+                opt.Expires = systemConfig.JwtSettings.Expires;
+                opt.Issuer = systemConfig.JwtSettings.Issuer;
+                opt.PrivateKey = systemConfig.JwtSettings.PrivateKey;
+                opt.PublicKey = systemConfig.JwtSettings.PublicKey;
+                opt.Secretkey = systemConfig.JwtSettings.Secretkey;
+            });
             //TODO 令牌过期后刷新，以及更改密码后令牌未过期的处理问题
             services.AddAuthentication(opts =>
             {
@@ -51,7 +61,7 @@ namespace Bryan.Common.Extension
                         var jwtEntity = JwtEntity.GetJwtIEntity(header);
                         if (jwtEntity != null)
                         {
-                            if (DateTime.Now > DateTimeHelper.ConvertToCsharpTime(jwtEntity.Exp))
+                            if (DateTime.Now > DateTimeExtension.ConvertToCsharpTime(jwtEntity.Exp))
                             {
                                 context.Fail("token已过期");
                             }
