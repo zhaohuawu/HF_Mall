@@ -1,18 +1,4 @@
-﻿// ***********************************************************************
-// Assembly         : FairUtility
-// Author           : Bryan Wu
-// Created          : 01-09-2019
-//
-// Last Modified By : Bryan Wu
-// Last Modified On : 01-09-2019
-// ***********************************************************************
-// <copyright file="AutoMapperExt.cs" company="">
-//     Copyright (c) . All rights reserved.
-// </copyright>
-// <summary></summary>
-// ***********************************************************************
-
-using System;
+﻿using System;
 using AutoMapper;
 using System.Collections;
 using System.Collections.Generic;

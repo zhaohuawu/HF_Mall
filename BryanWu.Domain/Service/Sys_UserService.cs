@@ -1,5 +1,4 @@
-﻿using BryanWu.Domain.Dto;
-using BryanWu.Domain.Interface;
+﻿using BryanWu.Domain.Interface;
 using BryanWu.Domain.Model;
 using Bryan.Common.Interface;
 using Bryan.Common.Repository;

@@ -1,4 +1,4 @@
-﻿using BryanWu.Domain.Dto;
+﻿using Bryan.Common;
 using BryanWu.Domain.Interface;
 using BryanWu.Domain.Model;
 using Bryan.Common.Interface;
@@ -100,7 +100,7 @@ namespace BryanWu.Domain.Service
         /// <param name="menuId"></param>
         /// <param name="btnId"></param>
         /// <returns></returns>
-        public List<RoleToPermissionDto> GetRolePerList(int menuId, int btnId)
+        public List<PermissionDto> GetRolePerList(int menuId, int btnId)
         {
             //菜单数据
             string mSql = @"SELECT sap.RoleId,sap.MenuId,sam.Tag,sap.Type
@@ -137,7 +137,7 @@ namespace BryanWu.Domain.Service
                 whereDic.Add("@btnId", btnId);
             }
 
-            return _repository.ExcuteGetList<RoleToPermissionDto>(mSql + mWhereSql + bSql + bWhereSql, whereDic);
+            return _repository.ExcuteGetList<PermissionDto>(mSql + mWhereSql + bSql + bWhereSql, whereDic);
         }
     }
 }

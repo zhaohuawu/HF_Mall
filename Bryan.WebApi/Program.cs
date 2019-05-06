@@ -25,7 +25,7 @@ namespace Bryan.WebApi
                     log.AddConsole();
 
                 })
-                .UseUrls("http://*:5000")
+                .UseUrls("http://*:5010")
                 .UseStartup<Startup>();
     }
 }

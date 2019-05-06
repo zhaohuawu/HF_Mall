@@ -1,12 +1,9 @@
-﻿using BryanWu.Domain.Dto;
-using BryanWu.Domain.Model;
-using Bryan.Common.Autofac;
+﻿using BryanWu.Domain.Model;
 using Bryan.Common.Interface;
 using Bryan.Common.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace BryanWu.Domain.Interface
 {

@@ -1,13 +1,7 @@
-﻿using Bryan.Common;
-using Bryan.Common.Interface;
+﻿using Bryan.Common.Interface;
 using Microsoft.Extensions.Logging;
 using SqlSugar;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bryan.Common.Repository
 {

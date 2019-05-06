@@ -1,16 +1,12 @@
 ﻿using Bryan.Common.Enums;
 using Bryan.Common.Extension;
-using Bryan.Common.Interface;
 using Bryan.Common.Jwt;
+using Bryan.Common.ReturnResult;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Bryan.Common
 {
@@ -20,6 +16,7 @@ namespace Bryan.Common
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("any")] //设置跨域处理的 代理
+    [PermissionFilter]
     public class BaseController : Controller
     {
         protected ILogger _log;//操作日志
@@ -33,7 +30,7 @@ namespace Bryan.Common
         /// <returns></returns>
         protected IActionResult ReturnJson(string code, object obj = null)
         {
-            string msg = GetMsgCode(code);
+            string msg = MsgCode.GetMsgCode(code);
             if (string.IsNullOrEmpty(msg))
                 msg = "未知类型";
             if (obj == null)
@@ -51,7 +48,7 @@ namespace Bryan.Common
         /// <returns></returns>
         protected IActionResult ReturnJsonByParms(string code, object obj, params string[] param)
         {
-            string msg = GetMsgCode(code);
+            string msg = MsgCode.GetMsgCode(code);
 
             if (string.IsNullOrEmpty(msg))
             {
