@@ -6,7 +6,6 @@ using Bryan.Common.Entity;
 using Bryan.Common.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -107,7 +106,7 @@ namespace Bryan.Common.Extension
         {
             MicroServiceExtension.UseMicroService(app, env, lifetime, systemConfig);
             //app.UseCors("AllowDomain");
-            app.UseExceptionMiddleware();
+            app.UseMiddleware<ExceptionMiddleware>();
             return app;
         }
     }

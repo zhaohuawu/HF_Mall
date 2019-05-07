@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>BryanWu</Authors>
     <Product>Bryan.Common</Product>
-    <Version>1.5.7</Version>
+    <Version>1.5.7.10</Version>
   </PropertyGroup>
 
   <ItemGroup>

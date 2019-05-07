@@ -47,3 +47,5 @@
 /HF.Goods/obj
 /HF.Order/bin/Debug/netcoreapp2.2
 /HF.Order/obj
+/Bryan.Gateway/obj
+/Bryan.Gateway/bin/Debug/netcoreapp2.2

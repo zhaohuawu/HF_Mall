@@ -96,20 +96,6 @@ namespace Bryan.Common
             return stringBuilder.ToString();
         }
     }
-
-    /// <summary>
-    ///     异常中间件扩展
-    /// </summary>
-    public static class ExceptionMiddlewareExtensions
-    {
-        /// <summary>
-        /// </summary>
-        /// <param name="builder"></param>
-        /// <returns></returns>
-        public static IApplicationBuilder UseExceptionMiddleware(this IApplicationBuilder builder)
-        {
-            return builder.UseMiddleware<ExceptionMiddleware>();
-        }
-    }
+    
 }
 
