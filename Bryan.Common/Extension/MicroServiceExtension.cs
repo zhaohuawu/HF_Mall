@@ -28,6 +28,7 @@ namespace Bryan.Common.Extension
                 throw new Exception("Redis链接字符串不能为空");
             }
             var csredis = new CSRedis.CSRedisClient(serviceConfig.RedisConnectionString);
+            RedisKeyExtension._defaultKey = serviceConfig.RedisDefaultKey;
             RedisHelper.Initialization(csredis);
 
             //添加swagger

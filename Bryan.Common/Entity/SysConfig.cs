@@ -54,6 +54,11 @@ namespace Bryan.Common.Entity
         public string RedisConnectionString { get; set; }
 
         /// <summary>
+        /// Redis默认关键字
+        /// </summary>
+        public string RedisDefaultKey { get; set; }
+
+        /// <summary>
         /// JWT认证参数
         /// </summary>
         public JwtSettings JwtSettings { get; set; }

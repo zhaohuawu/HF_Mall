@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Bryan.Common.ReturnResult
+namespace Bryan.Common
 {
     /// <summary>
     /// Api请求结果

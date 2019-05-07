@@ -11,6 +11,8 @@ namespace Bryan.Common.Extension
     /// </summary>
     public static class RedisKeyExtension
     {
+        public static string _defaultKey = string.Empty;
+
         /// <summary>
         /// HFMall的Redis关键字
         /// </summary>
@@ -18,7 +20,7 @@ namespace Bryan.Common.Extension
         /// <returns></returns>
         public static string GetHFMallKey(this RedisKeysEnum key)
         {
-            return "hfmall:" + key.ToString();
+            return _defaultKey + key.ToString();
         }
     }
 }

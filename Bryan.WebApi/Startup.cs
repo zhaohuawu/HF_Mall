@@ -39,6 +39,7 @@ namespace Bryan.WebApi
             //服务发现地址
             config.ServiceDiscoveryAddress = Configuration.GetSection("DCAddress").Value;
             config.RedisConnectionString = Configuration.GetConnectionString("Redis_Hfmall");
+            config.RedisDefaultKey = Configuration.GetConnectionString("RedisDafaultKey");
             config.JwtSettings = Configuration.GetSection("JwtSettings").Get<JwtSettings>();
         }
 

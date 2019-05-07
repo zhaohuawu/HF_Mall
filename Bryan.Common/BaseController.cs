@@ -1,11 +1,11 @@
 ﻿using Bryan.Common.Enums;
 using Bryan.Common.Extension;
 using Bryan.Common.Jwt;
-using Bryan.Common.ReturnResult;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System.IO;
 using System.Linq;
 
 namespace Bryan.Common
@@ -30,7 +30,7 @@ namespace Bryan.Common
         /// <returns></returns>
         protected IActionResult ReturnJson(string code, object obj = null)
         {
-            string msg = MsgCode.GetMsgCode(code);
+            string msg = GetMsgCode(code);
             if (string.IsNullOrEmpty(msg))
                 msg = "未知类型";
             if (obj == null)
@@ -48,7 +48,7 @@ namespace Bryan.Common
         /// <returns></returns>
         protected IActionResult ReturnJsonByParms(string code, object obj, params string[] param)
         {
-            string msg = MsgCode.GetMsgCode(code);
+            string msg = GetMsgCode(code);
 
             if (string.IsNullOrEmpty(msg))
             {
@@ -79,7 +79,7 @@ namespace Bryan.Common
 
             if (string.IsNullOrEmpty(msg))
             {
-                var build = new ConfigurationBuilder().AddJsonFile("Config/msgCode.json");
+                var build = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("Config/msgCode.json");
                 var _msgCode = build.Build();
                 msg = _msgCode[code.ToString()];
                 if (!string.IsNullOrEmpty(msg))
@@ -87,5 +87,6 @@ namespace Bryan.Common
             }
             return msg;
         }
+
     }
 }

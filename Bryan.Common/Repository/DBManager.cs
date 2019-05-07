@@ -41,15 +41,14 @@ namespace Bryan.Common.Repository
 
             if (Convert.ToBoolean(isLocal))
             {
-                db.Aop.OnLogExecuting = (sql, pars) =>//SQL执行前事件
-                {
-                    //LogHelper.Log("【Sql】:" + sql, "sql.txt");
-                    //LogHelper.Log("【Sql】【ConnectionString】:" + db.Ado.Connection.ConnectionString, "sql.txt");
-                };
-                db.Aop.OnLogExecuted = (sql, pars) => //SQL执行完事件
-                {
-                    //_log.LogDebug("【Sql】:" + sql);
-                };
+                //db.Aop.OnLogExecuting = (sql, pars) =>//SQL执行前事件
+                //{
+                //    _log.LogDebug("【Sql】:" + sql, "sql.txt");
+                //};
+                //db.Aop.OnLogExecuted = (sql, pars) => //SQL执行完事件
+                //{
+                //    //_log.LogDebug("【Sql】:" + sql);
+                //};
             }
 
             db.Aop.OnError = (exp) =>//执行SQL 错误事件

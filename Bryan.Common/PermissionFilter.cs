@@ -1,5 +1,4 @@
-﻿using Bryan.Common.ReturnResult;
-using Bryan.Common.Enums;
+﻿using Bryan.Common.Enums;
 using Bryan.Common.Extension;
 using Bryan.Common.Jwt;
 using Microsoft.AspNetCore.Mvc;
@@ -41,8 +40,7 @@ namespace Bryan.Common
                         {
                             //测试账号只有get权限
                             isPermission = false;
-                            string code = "000052";
-                            filterContext.Result = new JsonResult(new ReturnMsgCode(code, MsgCode.GetMsgCode(code)));
+                            filterContext.Result = new JsonResult(new ReturnMsgCode("000052", "测试账号没有操作数据权限，只有查询权限"));
                             return;
                         }
                         else
@@ -68,15 +66,13 @@ namespace Bryan.Common
                         }
                         if (!isPermission)
                         {
-                            string code = "000050";
-                            filterContext.Result = new JsonResult(new ReturnMsgCode(code, MsgCode.GetMsgCode(code)));
+                            filterContext.Result = new JsonResult(new ReturnMsgCode("000050", "账号没有操作权限"));
                             return;
                         }
                     }
                     else
                     {
-                        string code = "000051";
-                        filterContext.Result = new JsonResult(new ReturnMsgCode(code, MsgCode.GetMsgCode(code)));
+                        filterContext.Result = new JsonResult(new ReturnMsgCode("000051", "无法识别的Authorization类型"));
                         return;
                     }
                 }

@@ -4,6 +4,13 @@
         <name>Bryan.WebApi</name>
     </assembly>
     <members>
+        <member name="M:Bryan.WebApi.Common.Encrypt.EncryptPsw(System.String)">
+            <summary>
+            注册密码加密
+            </summary>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
         <member name="M:Bryan.WebApi.Common.Util.MenuTree(Bryan.WebApi.Models.SysRole.ReturnMenuTree,System.Collections.Generic.List{BryanWu.Domain.Model.Sys_AdminMenu},System.Int32)">
             <summary>
             菜单递归
