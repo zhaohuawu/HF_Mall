@@ -15,6 +15,7 @@ using Bryan.Common.Enums;
 using Bryan.Common.Extension;
 using System.Collections.Concurrent;
 using Microsoft.Extensions.Logging;
+using Bryan.WebApi.Common;
 
 namespace Bryan.WebApi.Controllers
 {
@@ -112,7 +113,7 @@ namespace Bryan.WebApi.Controllers
         {
             string code = "000000";
             var user = AutoMapperExt.MapTo<Sys_User>(model);
-            user.Password = AESUtil.EncryptPsw(user.Password);
+            user.Password = Encrypt.EncryptPsw(user.Password);
 
             Log_Admin logAdmin = new Log_Admin();
 
@@ -240,7 +241,7 @@ namespace Bryan.WebApi.Controllers
                         }
                         else
                         {
-                            user.Password = AESUtil.EncryptPsw(model.Password);
+                            user.Password = Encrypt.EncryptPsw(model.Password);
                             _sysUserService.UpdateColumns(p => new { p.UserName, p.RealName, p.Password, p.Email, p.HeadImgUrl, p.Mobile, p.Sex, p.ModifyDate }, user, true);
                         }
 

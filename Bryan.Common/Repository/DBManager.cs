@@ -2,14 +2,15 @@
 using Microsoft.Extensions.Logging;
 using SqlSugar;
 using System;
+using System.Collections.Generic;
 
 namespace Bryan.Common.Repository
 {
     public class DBManager : IDBManager
     {
         //TODO 改为配置的方式
-        public static string ConnectionString;
-        public static string ConnectionString2;
+        public static string ConnectionString = string.Empty;
+        public static string ConnectionString2 = string.Empty;
         public static bool isLocal = true;
         private ILogger _log;
 
@@ -20,17 +21,22 @@ namespace Bryan.Common.Repository
 
         public SqlSugarClient GetClient()
         {
-            SqlSugarClient db = new SqlSugarClient(new ConnectionConfig()
+            var conn = new ConnectionConfig()
             {
                 ConnectionString = ConnectionString,
                 DbType = DbType.MySql,
                 IsAutoCloseConnection = true,
                 IsShardSameThread = true, //设为true相同线程是同一个SqlConnection
-                //SlaveConnectionConfigs = new List<SlaveConnectionConfig>()
-                //{
-                //    new SlaveConnectionConfig(){ HitRate=10,ConnectionString=Config.ConnectionString2 }
-                //}
-            });
+            };
+            //从库
+            if (!string.IsNullOrEmpty(ConnectionString2))
+            {
+                conn.SlaveConnectionConfigs = new List<SlaveConnectionConfig>()
+                {
+                    new SlaveConnectionConfig(){ HitRate=10,ConnectionString=ConnectionString2 }
+                };
+            }
+            SqlSugarClient db = new SqlSugarClient(conn);
             db.Ado.IsEnableLogEvent = true;
 
             if (Convert.ToBoolean(isLocal))
@@ -42,7 +48,7 @@ namespace Bryan.Common.Repository
                 };
                 db.Aop.OnLogExecuted = (sql, pars) => //SQL执行完事件
                 {
-                    _log.LogDebug("【Sql】:" + sql);
+                    //_log.LogDebug("【Sql】:" + sql);
                 };
             }
 

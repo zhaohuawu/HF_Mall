@@ -13,6 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using BryanWu.Domain.Model;
 using Bryan.Common.Jwt;
 using Microsoft.Extensions.Logging;
+using Bryan.WebApi.Common;
 
 namespace Bryan.WebApi.Controllers
 {
@@ -47,7 +48,7 @@ namespace Bryan.WebApi.Controllers
                 if (string.IsNullOrEmpty(username)) return ReturnJson("000101");
                 else if (string.IsNullOrEmpty(password)) return ReturnJson("000102");
 
-                string psw = AESUtil.EncryptPsw(password);
+                string psw = Encrypt.EncryptPsw(password);
                 var sysuser = await Task.Run(() => { return _sysUserService.GetEntity(p => p.UserName == username && p.Password == psw); });
                 if (sysuser != null)
                 {

@@ -13,26 +13,6 @@ namespace Bryan.Common
         private static string _iv = "BW7NEZw53R4sQMNZ";//必须为16的倍数
 
         /// <summary>
-        /// 使用AESUtil固定的key和iv
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public static string EncryptToHex(string data)
-        {
-            return EncryptToHex(data, _key, _iv);
-        }
-
-        /// <summary>
-        /// 使用AESUtil固定的key和iv
-        /// </summary>
-        /// <param name="hexStr"></param>
-        /// <returns></returns>
-        public static string DecryptHex(string hexStr)
-        {
-            return DecryptHex(hexStr, _key, _iv);
-        }
-
-        /// <summary>
         /// 使用传入的key且iv=key
         /// </summary>
         /// <param name="data"></param>
@@ -89,16 +69,6 @@ namespace Bryan.Common
         }
 
         /// <summary>
-        /// 使用AESUtil固定的key和iv，加密的结果为加密后的原始字符串
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public static string Encrypt(string data)
-        {
-            return Convert.ToBase64String(AesEncrypt(data, _key, _iv));
-        }
-
-        /// <summary>
         /// 使用传入的key且iv=key，加密的结果为加密后的原始字符串
         /// </summary>
         /// <param name="data"></param>
@@ -119,16 +89,6 @@ namespace Bryan.Common
         public static string Encrypt(string data, string key, string iv)
         {
             return Convert.ToBase64String(AesEncrypt(data, key, iv));
-        }
-
-        /// <summary>
-        /// 使用AESUtil固定的key和iv
-        /// </summary>
-        /// <param name="encryptStr"></param>
-        /// <returns></returns>
-        public static string Decrypt(string encryptStr)
-        {
-            return Decrypt(encryptStr, _key, _iv);
         }
 
         /// <summary>
@@ -224,24 +184,7 @@ namespace Bryan.Common
             return Encoding.UTF8.GetString(resultArray).Trim('\0');
         }
 
-        /// <summary>
-        /// 注册密码加密
-        /// </summary>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        public static string EncryptPsw(string password)
-        {
-            string iv = "nk7TWCsj275NMNfp";
-            string key = "ATKTyyZ3EN3FiCSWMxVeE3d4kP7MvSnt";
-            return EncryptToHex(password, key, iv);
-        }
 
-        public static string DecryptPsw(string password)
-        {
-            string iv = "nk7TWCsj275NMNfp";
-            string key = "ATKTyyZ3EN3FiCSWMxVeE3d4kP7MvSnt";
-            return DecryptHex(password, key, iv);
-        }
 
     }
 }
