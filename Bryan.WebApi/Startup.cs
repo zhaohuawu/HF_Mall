@@ -17,6 +17,7 @@ using Bryan.Common.Jwt;
 using Microsoft.Extensions.Logging;
 using Bryan.Common.Entity;
 using Bryan.Common.Extension;
+using System.Reflection;
 
 namespace Bryan.WebApi
 {
@@ -63,8 +64,10 @@ namespace Bryan.WebApi
 
             services.AddService(config);
 
+            // 获取所有相关类库的程序集,通过命名空间和反射获取Assembly
+            Assembly[] assemblyArr = { Assembly.Load("BryanWu.Domain") };
             //autofac 注入
-            return new AutofacServiceProvider(AutofacConfig.Init(services));
+            return new AutofacServiceProvider(AutofacConfig.Init(services, assemblyArr));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

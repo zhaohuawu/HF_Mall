@@ -13,8 +13,8 @@ namespace Bryan.Common.Autofac
     public class AutofacConfig
     {
         private static IContainer _container;
-        
-        public static IContainer Init(IServiceCollection services)
+
+        public static IContainer Init(IServiceCollection services, params Assembly[] assemblyArr)
         {
             var builder = new ContainerBuilder();
 
@@ -32,13 +32,13 @@ namespace Bryan.Common.Autofac
 
             // 批量注入，继承IAutoFacBase的所有接口
             Type baseType = typeof(IDenpendency);
-            // 获取所有相关类库的程序集,通过命名空间和反射获取Assembly
-            Assembly[] assemblyArr = { Assembly.Load("BryanWu.Domain") };
-            builder.RegisterAssemblyTypes(assemblyArr)
-                .Where(type => baseType.IsAssignableFrom(type) && !type.IsAbstract)
-                .AsImplementedInterfaces()
-                .InstancePerLifetimeScope();//InstancePerLifetimeScope 保证对象生命周期基于请求
-
+            if (assemblyArr.Count() > 0)
+            {
+                builder.RegisterAssemblyTypes(assemblyArr)
+                    .Where(type => baseType.IsAssignableFrom(type) && !type.IsAbstract)
+                    .AsImplementedInterfaces()
+                    .InstancePerLifetimeScope();//InstancePerLifetimeScope 保证对象生命周期基于请求
+            }
             builder.Populate(services);
 
             _container = builder.Build();
