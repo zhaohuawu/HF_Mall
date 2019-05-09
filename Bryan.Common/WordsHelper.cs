@@ -535,7 +535,6 @@ namespace Bryan.Common
             int i1 = 0;
             int i2 = 0;
             bool b = false;
-            string tmpStr;
             char[] noWChar = chs.ToCharArray();
             CultureInfo ci = Thread.CurrentThread.CurrentCulture;
             TextInfo ti = ci.TextInfo;
@@ -655,7 +654,6 @@ namespace Bryan.Common
             int i2 = 0;
             bool b = false;
             int last_no = 0;
-            string tmpStr;
             char[] noWChar = chs.ToCharArray();
             CultureInfo ci = Thread.CurrentThread.CurrentCulture;
             TextInfo ti = ci.TextInfo;

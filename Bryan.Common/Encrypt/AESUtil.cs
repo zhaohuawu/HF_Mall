@@ -9,8 +9,8 @@ namespace Bryan.Common
 {
     public class AESUtil
     {
-        private static string _key = "DVfRj6DUDMa5kyRr9AjfzxzWwhXWs5GM";//必须为16的倍数
-        private static string _iv = "BW7NEZw53R4sQMNZ";//必须为16的倍数
+        private static string _key = string.Empty;//必须为16的倍数
+        private static string _iv = string.Empty;// 必须为16的倍数
 
         /// <summary>
         /// 使用传入的key且iv=key

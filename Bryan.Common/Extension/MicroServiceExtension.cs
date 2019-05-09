@@ -90,25 +90,13 @@ namespace Bryan.Common.Extension
                     serviceInfo.DisplayName
                 };
                 consulClient.Agent.ServiceRegister(agentServiceRegistration, default(CancellationToken)).Wait();
-                //consulClient.Agent.ServiceRegister(agentServiceRegistration).GetAwaiter().GetResult();
-
-                //lifetime.ApplicationStopping.Register(() =>
-                //{
-                //    consulClient.Agent.ServiceDeregister(serviceId).GetAwaiter().GetResult();
-                //});
             }
-            Action<ConsulClientConfiguration> consul = null;
             lifetime.ApplicationStopped.Register(() =>
             {
-                Action<ConsulClientConfiguration> configOverride;
-                if ((configOverride = consul) == null)
+                using (ConsulClient consulClient2 = new ConsulClient(x =>
                 {
-                    configOverride = (consul = delegate (ConsulClientConfiguration x)
-                    {
-                        x.Address = new Uri(serviceInfo.ServiceDiscoveryAddress);
-                    });
-                }
-                using (ConsulClient consulClient2 = new ConsulClient(configOverride))
+                    x.Address = new Uri(serviceInfo.ServiceDiscoveryAddress);
+                }))
                 {
                     consulClient2.Agent.ServiceDeregister(serviceId, default(CancellationToken)).Wait();
                 }

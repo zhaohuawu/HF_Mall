@@ -190,7 +190,7 @@ namespace BryanWu.Domain.Service
                     _repository.RollBackTran();
                 return isNeedCommit;
             }
-            catch (Exception ex)
+            catch
             {
                 _repository.RollBackTran();
                 return false;

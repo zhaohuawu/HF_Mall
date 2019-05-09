@@ -239,7 +239,9 @@ namespace BryanWu.Domain.Service
                     _repository.RollBackTran();
                 return isNeedCommit;
             }
+#pragma warning disable CS0168 // 声明了变量“ex”，但从未使用过
             catch (Exception ex)
+#pragma warning restore CS0168 // 声明了变量“ex”，但从未使用过
             {
                 _repository.RollBackTran();
                 return false;

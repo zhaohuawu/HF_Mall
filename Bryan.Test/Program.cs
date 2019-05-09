@@ -15,7 +15,6 @@ namespace Bryan.Test
         {
             WordsHelper.why_pinyin = 1;
             WordsHelper.last_hz_no = 0;
-            string words = "伍昭华是的法规";
             DBManager.ConnectionString = "server=193.112.41.35;Database=hfmall;Uid=xintaoke;Pwd=xtk920706;SslMode=None";
             //注册redis
             //var csredis = new CSRedis.CSRedisClient("193.112.41.35:6379,allowAdmin=true,password=wzh920706");

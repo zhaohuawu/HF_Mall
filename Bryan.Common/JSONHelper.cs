@@ -108,7 +108,7 @@ namespace Bryan.Common
 
                 return (T)JsonConvert.DeserializeObject(json, typeof(T), bigintConverter);
             }
-            catch (Exception ex)
+            catch
             {
                 return default(T);
             }
