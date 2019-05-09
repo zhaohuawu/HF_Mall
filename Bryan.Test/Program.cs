@@ -29,7 +29,8 @@ namespace Bryan.Test
             Console.WriteLine(Enum.IsDefined(typeof(UploadStatusEnum), 1));
             Console.WriteLine(Enum.IsDefined(typeof(UploadStatusEnum), "1"));
             Console.WriteLine(Enum.IsDefined(typeof(UploadStatusEnum), "可删除")); 
-            //var user = new Sys_User();
+            
+            var user = new Sys_User();
             //user.HeadImgUrl = "sgdsg";
 
             //foreach (var info in user.GetType().GetProperties())

@@ -82,9 +82,6 @@ namespace Bryan.WebApi
                 app.UseHsts();
             }
             app.UseService(env, lifetime, config);
-            //app.UseDefaultFiles();
-            //app.UseStaticFiles();
-            //app.UseCookiePolicy();
             app.UseMvc();
         }
 

@@ -1,7 +1,7 @@
 {
   "ReRoutes": [
     {
-      "DownstreamPathTemplate": "/base/Test/",
+      "DownstreamPathTemplate": "/base/{url}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -9,11 +9,11 @@
           "Port": 5010
         }
       ],
-      "UpstreamPathTemplate": "/base",
+      "UpstreamPathTemplate": "/base/{url}",
       "UpstreamHttpMethod": [ "Get", "Post", "Delete", "Put" ]
     },
     {
-      "DownstreamPathTemplate": "/hfgoods/Values/Get",
+      "DownstreamPathTemplate": "/hfgoods/{url}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -21,12 +21,34 @@
           "Port": 5011
         }
       ],
-      "UpstreamPathTemplate": "/hfgoods/Values/Get",
+      "UpstreamPathTemplate": "/hfgoods/{url}",
       "UpstreamHttpMethod": [ "Get", "Post", "Delete", "Put" ]
+    },
+    {
+      "DownstreamPathTemplate": "/base/swagger.json",
+      "DownstreamScheme": "http",
+      "ServiceName": "userapi",
+      "LoadBalancer": "RoundRobin",
+      "UseServiceDiscovery": true,
+      "UpstreamPathTemplate": "/base/swagger.json",
+      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/hfgoods/swagger.json",
+      "DownstreamScheme": "http",
+      "ServiceName": "basedataapi",
+      "LoadBalancer": "RoundRobin",
+      "UseServiceDiscovery": true,
+      "UpstreamPathTemplate": "/hfgoods/swagger.json",
+      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ]
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "localhost:5009"
+    "BaseUrl": "localhost:5009",
+    "ServiceDiscoveryProvider": {
+      "Host": "localhost",
+      "Port": "8500"
+    }
   }
 }
 
