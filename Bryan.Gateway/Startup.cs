@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Bryan.Gateway.Models;
-using Consul;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using Ocelot.Provider.Consul;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace Bryan.Gateway
 {
@@ -39,17 +34,7 @@ namespace Bryan.Gateway
                 });
             });
 
-            services.AddOcelot(Configuration);
-            // 服务注册
-            //services.Configure<ServiceRegisterOptions>(Configuration.GetSection("ServiceRegister"));
-            //services.AddSingleton<IConsulClient>(x => new ConsulClient(cfg =>
-            //{
-            //    var serviceConfig = x.GetRequiredService<IOptions<ServiceRegisterOptions>>().Value;
-            //    if (!string.IsNullOrEmpty(serviceConfig.Register.HttpEndpoint))
-            //    {
-            //        cfg.Address = new Uri(serviceConfig.Register.HttpEndpoint);
-            //    }
-            //}));
+            services.AddOcelot(Configuration).AddConsul();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,7 +45,6 @@ namespace Bryan.Gateway
                 app.UseDeveloperExceptionPage();
             }
             
-            app.UseMvc();
             var apis = new List<string> { "base", "hfgoods" };
             app.UseSwagger()
                 .UseSwaggerUI(opt =>
@@ -68,11 +52,13 @@ namespace Bryan.Gateway
                     apis.ForEach(m =>
                     {
                         opt.SwaggerEndpoint($"/{m}/swagger.json", m);
+                        opt.DocExpansion(DocExpansion.None);
                     });
                 });
 
+          
 
-            //app.UseOcelot().Wait();
+            app.UseOcelot().Wait();
         }
 
 

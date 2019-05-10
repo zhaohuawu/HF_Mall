@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -23,7 +18,7 @@ namespace Bryan.Gateway
                  {
                      builder
                      .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
-                     .AddJsonFile("configuration.json");
+                     .AddJsonFile("configuration.json", optional: false, reloadOnChange: true);
                  })
                 .UseUrls("http://*:5009")
                 .UseStartup<Startup>();
