@@ -1,0 +1,118 @@
+【2019-02-01 09:32:06:370】 【Sql】:SELECT `Id`,`Status`,`UserName`,`RealName`,`Password`,`LastIp`,`RoleId`,`CrtDate`,`LastLogDate`,`HeadImgUrl`,`Sex`,`Mobile`,`CrtUser` FROM `Sys_User`   WHERE (( `UserName` = @UserName0 ) AND ( `Password` = @Password1 ))  ORDER BY NOW()  LIMIT 0,1
+【2019-02-01 09:32:06:417】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 09:52:36:956】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-01 09:52:36:958】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 11:17:24:008】 【Sql】:SELECT `Id`,`Status`,`UserName`,`RealName`,`Password`,`LastIp`,`RoleId`,`CrtDate`,`LastLogDate`,`HeadImgUrl`,`Sex`,`Mobile`,`CrtUser` FROM `Sys_User`   WHERE (( `UserName` = @UserName0 ) AND ( `Password` = @Password1 ))  ORDER BY NOW()  LIMIT 0,1
+【2019-02-01 11:17:25:092】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 11:17:30:381】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-01 11:17:30:383】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 11:18:19:608】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-01 11:18:19:652】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 11:20:20:532】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-01 11:20:20:538】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 11:21:06:386】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-01 11:21:06:400】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 11:21:32:051】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-01 11:21:32:052】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 11:31:48:022】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-01 11:31:48:022】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 11:34:02:516】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-01 11:34:02:550】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 11:34:12:621】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 11:34:12:622】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 11:34:35:256】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 11:34:35:256】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 14:06:06:458】 【Sql】:SELECT `Id`,`Status`,`UserName`,`RealName`,`Password`,`LastIp`,`RoleId`,`CrtDate`,`LastLogDate`,`HeadImgUrl`,`Sex`,`Mobile`,`CrtUser` FROM `Sys_User`   WHERE (( `UserName` = @UserName0 ) AND ( `Password` = @Password1 ))  ORDER BY NOW()  LIMIT 0,1
+【2019-02-01 14:06:06:496】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 14:06:14:630】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-01 14:06:14:632】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 14:06:24:002】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:06:24:002】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 14:06:57:236】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:06:57:238】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 14:06:58:710】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:06:58:722】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 14:07:02:279】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:07:02:280】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 14:07:10:536】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-01 14:07:10:537】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 14:07:39:117】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:07:39:118】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 14:07:41:818】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:07:41:819】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 14:07:42:678】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:07:42:680】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 14:24:35:471】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-01 14:24:35:504】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 14:24:38:495】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:24:38:498】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 14:24:41:216】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:24:41:238】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 14:24:42:445】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:24:42:447】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 14:24:43:413】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:24:43:415】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 14:24:45:457】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:24:45:458】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 14:24:45:971】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:24:45:972】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 14:27:01:589】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-01 14:27:01:598】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 14:27:05:237】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:27:05:238】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 14:27:06:658】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:27:06:658】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 14:27:07:461】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:27:07:462】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 14:27:07:973】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:27:07:974】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 14:27:08:776】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:27:08:776】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 14:27:09:576】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:27:09:577】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 14:27:10:027】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:27:10:028】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 14:27:12:637】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:27:12:638】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 14:27:13:550】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:27:13:551】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 14:27:14:122】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:27:14:122】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 14:27:14:552】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:27:14:553】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 14:27:14:956】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:27:14:957】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 14:32:00:165】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-01 14:32:00:166】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 14:32:03:608】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:32:03:608】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 14:32:44:585】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-01 14:32:44:586】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 14:33:10:268】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:33:10:271】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 14:33:12:036】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 14:33:12:036】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 14:40:31:053】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-01 14:40:31:054】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 14:40:55:915】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-01 14:40:55:926】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 14:41:53:919】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-01 14:41:53:920】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 17:50:09:455】 【Sql】:SELECT `Id`,`Status`,`UserName`,`RealName`,`Password`,`LastIp`,`RoleId`,`CrtDate`,`LastLogDate`,`HeadImgUrl`,`Sex`,`Mobile`,`CrtUser` FROM `Sys_User`   WHERE (( `UserName` = @UserName0 ) AND ( `Password` = @Password1 ))  ORDER BY NOW()  LIMIT 0,1
+【2019-02-01 17:50:09:535】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 17:50:22:140】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-01 17:50:22:140】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 17:50:27:733】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE `Id` IN (@InPara0)   
+【2019-02-01 17:50:27:733】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 17:52:39:790】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-01 17:52:39:791】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 17:52:41:796】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-01 17:52:41:797】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 17:52:53:855】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-01 17:52:53:856】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 17:59:08:850】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-01 17:59:08:851】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-01 18:04:08:806】 【Sql】: SELECT COUNT(1) FROM (SELECT `Id`,`Status`,`UserName`,`RealName`,`Password`,`LastIp`,`RoleId`,`CrtDate`,`LastLogDate`,`HeadImgUrl`,`Sex`,`Mobile`,`CrtUser` FROM `Sys_User`  WHERE ( 1 = 1 )  ) CountTable 
+【2019-02-01 18:04:08:806】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-01 18:04:08:942】 【Sql】:SELECT `Id`,`Status`,`UserName`,`RealName`,`Password`,`LastIp`,`RoleId`,`CrtDate`,`LastLogDate`,`HeadImgUrl`,`Sex`,`Mobile`,`CrtUser` FROM `Sys_User`   WHERE ( 1 = 1 )   ORDER BY `Status` ASC LIMIT 0,5
+【2019-02-01 18:04:08:943】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8

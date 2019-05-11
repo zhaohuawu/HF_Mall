@@ -5,9 +5,9 @@ VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{B143165C-FC66-4701-B576-BDF03AB4BE2D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bryan.Base", "Bryan.WebApi\Bryan.Base.csproj", "{DA37D243-B86C-4B7C-B0A4-9D574AB13144}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bryan.Base", "Bryan.Base\Bryan.Base.csproj", "{DA37D243-B86C-4B7C-B0A4-9D574AB13144}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bryan.BaseService", "BryanWu.Domain\Bryan.BaseService.csproj", "{AF5F1675-BBC6-4085-BA90-C67C87F2FF06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bryan.BaseService", "Bryan.BaseService\Bryan.BaseService.csproj", "{AF5F1675-BBC6-4085-BA90-C67C87F2FF06}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{7788916E-8B63-4D2F-8261-E7225C6A4F45}"
 EndProject

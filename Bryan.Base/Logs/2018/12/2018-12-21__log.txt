@@ -1,0 +1,5 @@
+【2018-12-21 17:20:23:344】 【Sql】:SqlSugar.UtilExceptions: MySql.Data.dll Nuget更新到 6.10.4 版本的(Core 2.0只支持当前版本), 再检查连接字符串是否正确，Timeout in IO operation
+   at SqlSugar.Check.Exception(Boolean isException, String message, String[] args)
+   at SqlSugar.MySqlProvider.CheckConnection()
+   at SqlSugar.MySqlProvider.GetCommand(String sql, SugarParameter[] parameters)
+   at SqlSugar.AdoProvider.ExecuteCommand(String sql, SugarParameter[] parameters)

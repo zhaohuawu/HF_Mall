@@ -5,13 +5,13 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>Bryan.WebApi.xml</DocumentationFile>
+    <DocumentationFile>Bryan.BaseService.xml</DocumentationFile>
     <OutputPath></OutputPath>
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Bryan.WebApi.xml" />
+    <None Remove="Bryan.BaseService.xml" />
     <None Remove="Dockerfile" />
   </ItemGroup>
 
@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Bryan.WebApi.xml">
+    <EmbeddedResource Include="Bryan.BaseService.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
@@ -41,8 +41,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Bryan.MicroService\Bryan.MicroService.csproj" />
-    <ProjectReference Include="..\BryanWu.Application\BryanWu.Application.csproj" />
-    <ProjectReference Include="..\BryanWu.Domain\BryanWu.Domain.csproj" />
+    <ProjectReference Include="..\Bryan.BaseService\Bryan.BaseService.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -35,7 +35,7 @@ namespace HF.Goods
             config.Name = "hfgoods";
             config.DisplayName = "HF商品服务";
             config.Version = "1.0";
-            config.XmlName = "HF.Goods.xml"; //当前项目 ->属性->生成->输出->勾选XML文档文件,并将XML文件名赋值在这.  
+            config.XmlName = "HF.GoodsService.xml"; //当前项目 ->属性->生成->输出->勾选XML文档文件,并将XML文件名赋值在这.  
             //宿主机物理网卡地址
             config.LocalAddress = HttpContextExtension.GetLocalIP() + ":" + Configuration.GetSection("ServiceAddress").Value.Split(':')[1];
             //服务发现地址

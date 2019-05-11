@@ -1,0 +1,6 @@
+【2018-12-19 17:16:43:878】 【Sql】:SELECT `Id`,`Status`,`UserName`,`RealName`,`Password`,`LastIp`,`RoleId`,`CrtDate`,`LastLogDate`,`HeadImgUrl`,`Sex`,`Mobile`,`CrtUser` FROM `Sys_User`   WHERE (( `UserName` = @UserName0 ) AND ( `Password` = @Password1 ))  ORDER BY NOW()  LIMIT 0,1
+【2018-12-19 17:16:43:910】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2018-12-19 17:50:45:004】 【Sql】:SELECT `Id`,`Status`,`UserName`,`RealName`,`Password`,`LastIp`,`RoleId`,`CrtDate`,`LastLogDate`,`HeadImgUrl`,`Sex`,`Mobile`,`CrtUser` FROM `Sys_User`   WHERE (( `UserName` = @UserName0 ) AND ( `Password` = @Password1 ))  ORDER BY NOW()  LIMIT 0,1
+【2018-12-19 17:50:45:040】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2018-12-19 17:54:05:807】 【Sql】:SELECT `Id`,`Status`,`UserName`,`RealName`,`Password`,`LastIp`,`RoleId`,`CrtDate`,`LastLogDate`,`HeadImgUrl`,`Sex`,`Mobile`,`CrtUser` FROM `Sys_User`  WHERE ( 1 = 1 )  
+【2018-12-19 17:54:05:813】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8

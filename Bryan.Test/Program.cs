@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Reflection;
-using BryanWu.Domain.Model;
 using Bryan.Common;
 using Bryan.Common.Enums;
 using Bryan.Common.Repository;
 using System.Collections.Generic;
-using BryanWu.Domain;
+using Bryan.BaseService;
+using Bryan.BaseService.Model;
 
 namespace Bryan.Test
 {

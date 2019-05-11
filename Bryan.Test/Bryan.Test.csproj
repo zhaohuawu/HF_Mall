@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Bryan.BaseService\Bryan.BaseService.csproj" />
     <ProjectReference Include="..\Bryan.Common\Bryan.Common.csproj" />
-    <ProjectReference Include="..\BryanWu.Domain\Bryan.BaseService.csproj" />
   </ItemGroup>
 
 </Project>

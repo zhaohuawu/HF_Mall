@@ -1,0 +1,53 @@
+【2018-12-21 16:46:00:093】 【Sql】:SELECT `Id`,`Status`,`UserName`,`RealName`,`Password`,`LastIp`,`RoleId`,`CrtDate`,`LastLogDate`,`HeadImgUrl`,`Sex`,`Mobile`,`CrtUser` FROM `Sys_User`   WHERE (( `UserName` = @UserName0 ) AND ( `Password` = @Password1 ))  ORDER BY NOW()  LIMIT 0,1
+【2018-12-21 16:46:00:122】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2018-12-21 16:53:39:584】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2018-12-21 16:53:39:585】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2018-12-21 16:55:46:598】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2018-12-21 16:55:46:629】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2018-12-21 17:05:22:821】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2018-12-21 17:05:22:855】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2018-12-21 17:10:50:541】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2018-12-21 17:10:50:574】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2018-12-21 17:12:11:848】 【Sql】: SELECT COUNT(1) FROM (SELECT `Id`,`RoleName`,`Remark`,`UserId`,`CrtDate`,`IsForbidden` FROM `Sys_AdminRole`  WHERE ( `RoleName` = @RoleName0 ) ) CountTable 
+【2018-12-21 17:12:11:850】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2018-12-21 17:12:13:378】 【Sql】:INSERT INTO `Sys_AdminRole`  
+           (`RoleName`,`Remark`,`UserId`,`CrtDate`,`IsForbidden`)
+     VALUES
+           (@RoleName,@Remark,@UserId,@CrtDate,@IsForbidden) ;SELECT LAST_INSERT_ID();
+【2018-12-21 17:12:13:380】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2018-12-21 17:14:20:554】 【Sql】: SELECT COUNT(1) FROM (SELECT `Id`,`RoleName`,`Remark`,`UserId`,`CrtDate`,`IsForbidden` FROM `Sys_AdminRole`  WHERE ( `RoleName` = @RoleName0 ) ) CountTable 
+【2018-12-21 17:14:20:556】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2018-12-21 17:14:26:848】 【Sql】:INSERT INTO `Sys_AdminRole`  
+           (`RoleName`,`Remark`,`UserId`,`CrtDate`,`IsForbidden`)
+     VALUES
+           (@RoleName,@Remark,@UserId,@CrtDate,@IsForbidden) ;SELECT LAST_INSERT_ID();
+【2018-12-21 17:14:26:850】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2018-12-21 17:15:11:871】 【Sql】:SELECT `Id`,`RoleName`,`Remark`,`UserId`,`CrtDate`,`IsForbidden` FROM `Sys_AdminRole`  WHERE `Id` IN (@InPara0)   
+【2018-12-21 17:15:11:873】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2018-12-21 17:15:11:931】 【Sql】:UPDATE `Sys_AdminRole`  SET
+           `IsForbidden`=@IsForbidden  WHERE `Id`=@Id
+【2018-12-21 17:15:11:931】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2018-12-21 17:17:44:036】 【Sql】: SELECT COUNT(1) FROM (SELECT `Id`,`RoleName`,`Remark`,`UserId`,`CrtDate`,`IsForbidden` FROM `Sys_AdminRole`  WHERE ( `Id` = @Id0 ) ) CountTable 
+【2018-12-21 17:17:44:036】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2018-12-21 17:17:44:117】 【Sql】:INSERT INTO `Sys_AdminPermission`  
+           (`MenuId`,`RoleId`,`CrtDate`,`UserId`,`BtnJson`)
+     VALUES
+           (@MenuId,@RoleId,@CrtDate,@UserId,@BtnJson) ;
+【2018-12-21 17:17:44:123】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2018-12-21 17:20:25:819】 【Sql】: SELECT COUNT(1) FROM (SELECT `Id`,`RoleName`,`Remark`,`UserId`,`CrtDate`,`IsForbidden` FROM `Sys_AdminRole`  WHERE ( 1 = 1 )  ) CountTable 
+【2018-12-21 17:20:25:819】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2018-12-21 17:20:25:856】 【Sql】:SELECT `Id`,`RoleName`,`Remark`,`UserId`,`CrtDate`,`IsForbidden` FROM `Sys_AdminRole`   WHERE ( 1 = 1 )   ORDER BY `CrtDate` DESC LIMIT 0,10
+【2018-12-21 17:20:25:856】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2018-12-21 17:21:51:885】 【Sql】: SELECT COUNT(1) FROM (SELECT `Id`,`RoleName`,`Remark`,`UserId`,`CrtDate`,`IsForbidden` FROM `Sys_AdminRole`  WHERE ( `Id` = @Id0 ) ) CountTable 
+【2018-12-21 17:21:51:886】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2018-12-21 17:22:29:934】 【Sql】:UPDATE `Sys_AdminRole`  SET
+           `RoleName`=@RoleName,`Remark`=@Remark  WHERE `Id`=@Id
+【2018-12-21 17:22:29:942】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2018-12-21 17:22:35:708】 【Sql】:UPDATE `Sys_AdminPermission`  SET
+           `MenuId`=@MenuId,`RoleId`=@RoleId,`CrtDate`=@CrtDate,`UserId`=@UserId,`BtnJson`=@BtnJson  WHERE `Id`=@Id
+【2018-12-21 17:22:41:519】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2018-12-21 17:22:44:494】 【Sql】:INSERT INTO `Sys_AdminPermission`  
+           (`MenuId`,`RoleId`,`CrtDate`,`UserId`,`BtnJson`)
+     VALUES
+           (@MenuId,@RoleId,@CrtDate,@UserId,@BtnJson) ;
+【2018-12-21 17:22:45:517】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8

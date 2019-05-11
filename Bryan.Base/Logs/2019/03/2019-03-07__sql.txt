@@ -1,0 +1,6 @@
+【2019-03-07 16:57:04:952】 【Sql】:SELECT `Id`,`Status`,`UserName`,`RealName`,`Password`,`LastIp`,`RoleId`,`CrtDate`,`ModifyDate`,`LastLogDate`,`HeadImgUrl`,`Sex`,`Mobile`,`Email`,`CrtUser` FROM `Sys_User`  WHERE ( 1 = 1 ) ORDER BY `Id` DESC 
+【2019-03-07 16:57:05:000】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-03-07 17:10:35:323】 【Sql】:SELECT `Id`,`Status`,`UserName`,`RealName`,`Password`,`LastIp`,`RoleId`,`CrtDate`,`ModifyDate`,`LastLogDate`,`HeadImgUrl`,`Sex`,`Mobile`,`Email`,`CrtUser` FROM `Sys_User`  WHERE ( 1 = 1 ) ORDER BY `Id` DESC 
+【2019-03-07 17:10:35:351】 【Sql】【ConnectionString】:server=114.116.182.73;database=hfmall;user id=bryan;password=Bryan920706!;sslmode=None;characterset=utf8
+【2019-03-07 17:37:01:735】 【Sql】:SELECT `Id`,`Status`,`UserName`,`RealName`,`Password`,`LastIp`,`RoleId`,`CrtDate`,`ModifyDate`,`LastLogDate`,`HeadImgUrl`,`Sex`,`Mobile`,`Email`,`CrtUser` FROM `Sys_User`  WHERE ( 1 = 1 ) ORDER BY `Id` DESC 
+【2019-03-07 17:37:01:764】 【Sql】【ConnectionString】:server=114.116.182.73;database=hfmall;user id=bryan;password=Bryan920706!;sslmode=None;characterset=utf8

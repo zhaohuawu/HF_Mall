@@ -1,0 +1,4 @@
+【2019-04-04 17:28:51:706】 【Sql】:SELECT `Id`,`Status`,`UserName`,`RealName`,`Password`,`LastIp`,`RoleId`,`CrtDate`,`ModifyDate`,`LastLogDate`,`HeadImgUrl`,`Sex`,`Mobile`,`Email`,`CrtUser` FROM `Sys_User`   WHERE (( `UserName` = @UserName0 ) AND ( `Password` = @Password1 ))  ORDER BY NOW()  LIMIT 0,1
+【2019-04-04 17:28:51:757】 【Sql】【ConnectionString】:server=114.116.182.73;database=hfmall;user id=bryan;password=Bryan920706!;sslmode=None;characterset=utf8
+【2019-04-04 20:18:53:312】 【Sql】:SELECT `Id`,`Status`,`UserName`,`RealName`,`Password`,`LastIp`,`RoleId`,`CrtDate`,`ModifyDate`,`LastLogDate`,`HeadImgUrl`,`Sex`,`Mobile`,`Email`,`CrtUser` FROM `Sys_User`   WHERE (( `UserName` = @UserName0 ) AND ( `Password` = @Password1 ))  ORDER BY NOW()  LIMIT 0,1
+【2019-04-04 20:18:53:355】 【Sql】【ConnectionString】:server=114.116.182.73;database=hfmall;user id=bryan;password=Bryan920706!;sslmode=None;characterset=utf8

@@ -1,0 +1,97 @@
+【2019-02-27 09:11:55:329】 【Sql】:SELECT `Id`,`Status`,`UserName`,`RealName`,`Password`,`LastIp`,`RoleId`,`CrtDate`,`LastLogDate`,`HeadImgUrl`,`Sex`,`Mobile`,`CrtUser` FROM `Sys_User`   WHERE (( `UserName` = @UserName0 ) AND ( `Password` = @Password1 ))  ORDER BY NOW()  LIMIT 0,1
+【2019-02-27 09:11:55:369】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-27 09:12:19:164】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-27 09:12:19:165】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-27 09:12:19:166】 【Sql】: SELECT COUNT(1) FROM (SELECT `Id`,`RoleName`,`Remark`,`UserId`,`CrtDate`,`IsForbidden`,`ModifyDate` FROM `Sys_AdminRole`  WHERE ( 1 = 1 )  ) CountTable 
+【2019-02-27 09:12:19:173】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-27 09:12:19:204】 【Sql】:SELECT `Id`,`MenuId`,`Code`,`Type`,`Name`,`Description`,`Url`,`IsForbidden` FROM `Sys_AdminMenuBtn`  WHERE ( `IsForbidden` = @IsForbidden0 )ORDER BY `MenuId` ASC 
+【2019-02-27 09:12:19:206】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-27 09:12:19:311】 【Sql】:SELECT `Id`,`RoleName`,`Remark`,`UserId`,`CrtDate`,`IsForbidden`,`ModifyDate` FROM `Sys_AdminRole`   WHERE ( 1 = 1 )   ORDER BY `CrtDate` DESC LIMIT 0,10
+【2019-02-27 09:12:19:312】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-27 09:12:24:117】 【Sql】:SELECT `Id`,`MenuId`,`RoleId`,`Type`,`CrtDate`,`UserId`,`BtnJson`,`CheckStatus` FROM `Sys_AdminPermission`  WHERE ( `RoleId` = @RoleId0 )ORDER BY `Id` ASC 
+【2019-02-27 09:12:24:118】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-27 09:12:32:834】 【Sql】:SELECT `Id`,`MenuId`,`RoleId`,`Type`,`CrtDate`,`UserId`,`BtnJson`,`CheckStatus` FROM `Sys_AdminPermission`  WHERE ( `RoleId` = @RoleId0 )ORDER BY `Id` ASC 
+【2019-02-27 09:12:32:835】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-27 09:32:02:503】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-27 09:32:02:506】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-27 09:32:02:639】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-27 09:32:02:730】 【Sql】:SELECT `Id`,`MenuId`,`Code`,`Type`,`Name`,`Description`,`Url`,`IsForbidden` FROM `Sys_AdminMenuBtn`  WHERE ( `IsForbidden` = @IsForbidden0 )ORDER BY `MenuId` ASC 
+【2019-02-27 09:32:02:731】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-27 09:32:02:935】 【Sql】:SELECT `Id`,`RoleName`,`Remark`,`UserId`,`CrtDate`,`IsForbidden`,`ModifyDate` FROM `Sys_AdminRole`   WHERE ( 1 = 1 )   ORDER BY `CrtDate` DESC LIMIT 0,10
+【2019-02-27 09:32:02:936】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-27 10:47:38:531】 【Sql】:SELECT `Id`,`Status`,`UserName`,`RealName`,`Password`,`LastIp`,`RoleId`,`CrtDate`,`LastLogDate`,`HeadImgUrl`,`Sex`,`Mobile`,`CrtUser` FROM `Sys_User`   WHERE (( `UserName` = @UserName0 ) AND ( `Password` = @Password1 ))  ORDER BY NOW()  LIMIT 0,1
+【2019-02-27 10:47:38:579】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-27 10:47:47:108】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-27 10:47:47:109】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-27 10:47:47:110】 【Sql】: SELECT COUNT(1) FROM (SELECT `Id`,`RoleName`,`Remark`,`UserId`,`CrtDate`,`IsForbidden`,`ModifyDate` FROM `Sys_AdminRole`  WHERE ( 1 = 1 )  ) CountTable 
+【2019-02-27 10:47:47:111】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-27 10:47:47:146】 【Sql】:SELECT `Id`,`MenuId`,`Code`,`Type`,`Name`,`Description`,`Url`,`IsForbidden` FROM `Sys_AdminMenuBtn`  WHERE ( `IsForbidden` = @IsForbidden0 )ORDER BY `MenuId` ASC 
+【2019-02-27 10:47:47:148】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-27 10:47:47:267】 【Sql】:SELECT `Id`,`RoleName`,`Remark`,`UserId`,`CrtDate`,`IsForbidden`,`ModifyDate` FROM `Sys_AdminRole`   WHERE ( 1 = 1 )   ORDER BY `CrtDate` DESC LIMIT 0,10
+【2019-02-27 10:47:47:268】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-27 11:33:58:797】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-27 11:33:58:818】 【Sql】: SELECT COUNT(1) FROM (SELECT `Id`,`RoleName`,`Remark`,`UserId`,`CrtDate`,`IsForbidden`,`ModifyDate` FROM `Sys_AdminRole`  WHERE ( 1 = 1 )  ) CountTable 
+【2019-02-27 11:33:58:819】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-27 11:33:59:418】 【Sql】:SELECT `Id`,`MenuId`,`Code`,`Type`,`Name`,`Description`,`Url`,`IsForbidden` FROM `Sys_AdminMenuBtn`  WHERE ( `IsForbidden` = @IsForbidden0 )ORDER BY `MenuId` ASC 
+【2019-02-27 11:33:59:419】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-27 11:33:59:457】 【Sql】:SELECT `Id`,`RoleName`,`Remark`,`UserId`,`CrtDate`,`IsForbidden`,`ModifyDate` FROM `Sys_AdminRole`   WHERE ( 1 = 1 )   ORDER BY `CrtDate` DESC LIMIT 0,10
+【2019-02-27 11:33:59:458】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-27 11:34:36:204】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-02-27 11:34:36:229】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-27 11:34:36:251】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-27 11:34:36:363】 【Sql】:SELECT `Id`,`RoleName`,`Remark`,`UserId`,`CrtDate`,`IsForbidden`,`ModifyDate` FROM `Sys_AdminRole`   WHERE ( 1 = 1 )   ORDER BY `CrtDate` DESC LIMIT 0,10
+【2019-02-27 11:34:36:363】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-27 11:34:36:364】 【Sql】:SELECT `Id`,`MenuId`,`Code`,`Type`,`Name`,`Description`,`Url`,`IsForbidden` FROM `Sys_AdminMenuBtn`  WHERE ( `IsForbidden` = @IsForbidden0 )ORDER BY `MenuId` ASC 
+【2019-02-27 11:34:36:365】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-27 11:34:42:717】 【Sql】:SELECT `Id`,`MenuId`,`RoleId`,`Type`,`CrtDate`,`UserId`,`BtnJson`,`CheckStatus` FROM `Sys_AdminPermission`  WHERE ( `RoleId` = @RoleId0 )ORDER BY `Id` ASC 
+【2019-02-27 11:34:42:744】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-27 11:35:45:995】 【Sql】: SELECT COUNT(1) FROM (SELECT `Id`,`RoleName`,`Remark`,`UserId`,`CrtDate`,`IsForbidden`,`ModifyDate` FROM `Sys_AdminRole`  WHERE ( 1 = 1 )  ) CountTable 
+【2019-02-27 11:35:45:996】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-27 11:35:46:062】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-27 11:35:46:089】 【Sql】:SELECT `Id`,`RoleName`,`Remark`,`UserId`,`CrtDate`,`IsForbidden`,`ModifyDate` FROM `Sys_AdminRole`   WHERE ( 1 = 1 )   ORDER BY `CrtDate` DESC LIMIT 0,10
+【2019-02-27 11:35:46:090】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-27 11:35:46:095】 【Sql】:SELECT `Id`,`MenuId`,`Code`,`Type`,`Name`,`Description`,`Url`,`IsForbidden` FROM `Sys_AdminMenuBtn`  WHERE ( `IsForbidden` = @IsForbidden0 )ORDER BY `MenuId` ASC 
+【2019-02-27 11:35:46:095】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-27 11:35:52:478】 【Sql】:SELECT `Id`,`MenuId`,`RoleId`,`Type`,`CrtDate`,`UserId`,`BtnJson`,`CheckStatus` FROM `Sys_AdminPermission`  WHERE ( `RoleId` = @RoleId0 )ORDER BY `Id` ASC 
+【2019-02-27 11:35:52:479】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-27 11:35:54:879】 【Sql】:SELECT `Id`,`MenuId`,`RoleId`,`Type`,`CrtDate`,`UserId`,`BtnJson`,`CheckStatus` FROM `Sys_AdminPermission`  WHERE ( `RoleId` = @RoleId0 )ORDER BY `Id` ASC 
+【2019-02-27 11:35:54:881】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-27 11:39:34:591】 【Sql】: SELECT COUNT(1) FROM (SELECT `Id`,`RoleName`,`Remark`,`UserId`,`CrtDate`,`IsForbidden`,`ModifyDate` FROM `Sys_AdminRole`  WHERE ( 1 = 1 )  ) CountTable 
+【2019-02-27 11:39:34:593】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-27 11:39:34:640】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-27 11:39:34:652】 【Sql】:SELECT `Id`,`RoleName`,`Remark`,`UserId`,`CrtDate`,`IsForbidden`,`ModifyDate` FROM `Sys_AdminRole`   WHERE ( 1 = 1 )   ORDER BY `CrtDate` DESC LIMIT 0,10
+【2019-02-27 11:39:34:653】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-27 11:39:34:686】 【Sql】:SELECT `Id`,`MenuId`,`Code`,`Type`,`Name`,`Description`,`Url`,`IsForbidden` FROM `Sys_AdminMenuBtn`  WHERE ( `IsForbidden` = @IsForbidden0 )ORDER BY `MenuId` ASC 
+【2019-02-27 11:39:34:689】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-27 11:39:35:957】 【Sql】:SELECT `Id`,`MenuId`,`RoleId`,`Type`,`CrtDate`,`UserId`,`BtnJson`,`CheckStatus` FROM `Sys_AdminPermission`  WHERE ( `RoleId` = @RoleId0 )ORDER BY `Id` ASC 
+【2019-02-27 11:39:35:958】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-27 11:39:46:594】 【Sql】: SELECT COUNT(1) FROM (SELECT `Id`,`RoleName`,`Remark`,`UserId`,`CrtDate`,`IsForbidden`,`ModifyDate` FROM `Sys_AdminRole`  WHERE ( `Id` = @Id0 ) ) CountTable 
+【2019-02-27 11:39:46:595】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-27 11:39:46:755】 【Sql】: SELECT COUNT(1) FROM (SELECT `Id`,`RoleName`,`Remark`,`UserId`,`CrtDate`,`IsForbidden`,`ModifyDate` FROM `Sys_AdminRole`  WHERE ( 1 = 1 )  ) CountTable 
+【2019-02-27 11:39:46:756】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-27 11:39:46:858】 【Sql】:INSERT `Sys_AdminPermission`  (`MenuId`,`RoleId`,`Type`,`CrtDate`,`UserId`,`BtnJson`,`CheckStatus`)
+ SELECT N'4' AS `MenuId`,N'2' AS `RoleId`,N'url' AS `Type`,'2019-02-27 11:39:46.640' AS `CrtDate`,N'1' AS `UserId`,NULL AS `BtnJson`,N'checked' AS `CheckStatus`	
+UNION ALL 
+ SELECT N'5' AS `MenuId`,N'2' AS `RoleId`,N'url' AS `Type`,'2019-02-27 11:39:46.640' AS `CrtDate`,N'1' AS `UserId`,NULL AS `BtnJson`,N'checked' AS `CheckStatus`
+;
+
+【2019-02-27 11:39:46:858】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-27 11:39:46:861】 【Sql】:UPDATE `Sys_AdminRole`  SET
+           `RoleName`=@RoleName,`Remark`=@Remark,`IsForbidden`=@IsForbidden,`ModifyDate`=@ModifyDate  WHERE `Id`=@Id
+【2019-02-27 11:39:46:862】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-27 11:39:47:032】 【Sql】:UPDATE  `Sys_AdminPermission` S    INNER JOIN             (
+              
+ SELECT N'85' AS `Id`,'2019-02-27 11:39:46.640' AS `CrtDate`,N'1' AS `UserId`,N'checked' AS `CheckStatus`		
+UNION ALL 
+ SELECT N'80' AS `Id`,'2019-02-27 11:39:46.640' AS `CrtDate`,N'1' AS `UserId`,N'half' AS `CheckStatus`
+
+
+            ) T ON S.`Id`=T.`Id`
+                   SET S.`CrtDate`=T.`CrtDate`,S.`UserId`=T.`UserId`,S.`CheckStatus`=T.`CheckStatus` ;
+【2019-02-27 11:39:47:033】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-27 11:39:47:065】 【Sql】:SELECT `Id`,`RoleName`,`Remark`,`UserId`,`CrtDate`,`IsForbidden`,`ModifyDate` FROM `Sys_AdminRole`   WHERE ( 1 = 1 )   ORDER BY `CrtDate` DESC LIMIT 0,10
+【2019-02-27 11:39:47:066】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-27 11:39:47:070】 【Sql】:DELETE FROM `Sys_AdminPermission` WHERE `Id` IN ('83') 
+【2019-02-27 11:39:47:071】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;sslmode=None;characterset=utf8
+【2019-02-27 11:39:48:636】 【Sql】:SELECT `Id`,`MenuId`,`RoleId`,`Type`,`CrtDate`,`UserId`,`BtnJson`,`CheckStatus` FROM `Sys_AdminPermission`  WHERE ( `RoleId` = @RoleId0 )ORDER BY `Id` ASC 
+【2019-02-27 11:39:48:637】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;sslmode=None;characterset=utf8

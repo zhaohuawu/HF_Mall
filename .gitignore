@@ -54,3 +54,7 @@
 /HF.GoodsService/bin/Debug/netstandard2.0
 /HF.GoodsService/obj/Debug/netstandard2.0
 /HF.GoodsService/obj
+/Bryan.Base/bin
+/Bryan.Base/obj
+/Bryan.BaseService/bin
+/Bryan.BaseService/obj

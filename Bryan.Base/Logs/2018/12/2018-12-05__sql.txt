@@ -1,0 +1,20 @@
+【2018-12-05 16:24:20:422】 【Sql】:SELECT `id`,`status`,`userName`,`realName`,`password`,`lastIp`,`roleId`,`crtDate`,`lastLogDate`,`headImgUrl`,`sex`,`mobile`,`crtUser` FROM `sys_user`   WHERE (( `userName` = @userName0 ) AND ( `password` = @password1 ))  ORDER BY NOW()  LIMIT 0,1
+【2018-12-05 16:24:20:459】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2018-12-05 16:24:48:365】 【Sql】:SELECT `id`,`status`,`userName`,`realName`,`password`,`lastIp`,`roleId`,`crtDate`,`lastLogDate`,`headImgUrl`,`sex`,`mobile`,`crtUser` FROM `sys_user`  WHERE `id` IN (@InPara0)   
+【2018-12-05 16:24:48:366】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2018-12-05 16:25:03:772】 【Sql】:SELECT `id`,`status`,`userName`,`realName`,`password`,`lastIp`,`roleId`,`crtDate`,`lastLogDate`,`headImgUrl`,`sex`,`mobile`,`crtUser` FROM `sys_user`  WHERE `id` IN (@InPara0)   
+【2018-12-05 16:25:03:773】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2018-12-05 16:32:08:171】 【Sql】:SELECT `id`,`status`,`userName`,`realName`,`password`,`lastIp`,`roleId`,`crtDate`,`lastLogDate`,`headImgUrl`,`sex`,`mobile`,`crtUser` FROM `sys_user`  WHERE `id` IN (@InPara0)   
+【2018-12-05 16:32:08:193】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2018-12-05 16:34:42:038】 【Sql】: SELECT COUNT(1) FROM (SELECT `id`,`status`,`userName`,`realName`,`password`,`lastIp`,`roleId`,`crtDate`,`lastLogDate`,`headImgUrl`,`sex`,`mobile`,`crtUser` FROM `sys_user`  WHERE ( `userName` = @userName0 ) ) CountTable 
+【2018-12-05 16:34:42:070】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2018-12-05 16:34:42:407】 【Sql】:INSERT INTO `sys_user`  
+           (`status`,`userName`,`realName`,`password`,`lastIp`,`roleId`,`crtDate`,`lastLogDate`,`headImgUrl`,`sex`,`mobile`,`crtUser`)
+     VALUES
+           (@status,@userName,@realName,@password,@lastIp,@roleId,@crtDate,@lastLogDate,@headImgUrl,@sex,@mobile,@crtUser) ;SELECT LAST_INSERT_ID();
+【2018-12-05 16:34:42:408】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8
+【2018-12-05 16:34:42:523】 【Sql】:INSERT INTO `log_admin`  
+           (`typeId`,`crtUserId`,`crtUserName`,`otherId`,`remark`,`url`,`ip`,`crtDate`)
+     VALUES
+           (@typeId,@crtUserId,@crtUserName,@otherId,@remark,@url,@ip,@crtDate) ;
+【2018-12-05 16:34:42:524】 【Sql】【ConnectionString】:server=193.112.41.35;database=bryanmail;user id=xintaoke;sslmode=None;characterset=utf8

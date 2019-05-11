@@ -1,0 +1,12 @@
+【2019-04-12 10:19:15:956】 【Sql】:SELECT `Id`,`Status`,`UserName`,`RealName`,`Password`,`LastIp`,`RoleId`,`CrtDate`,`ModifyDate`,`LastLogDate`,`HeadImgUrl`,`Sex`,`Mobile`,`Email`,`CrtUser` FROM `Sys_User`   WHERE (( `UserName` = @UserName0 ) AND ( `Password` = @Password1 ))  ORDER BY NOW()  LIMIT 0,1
+【2019-04-12 10:19:15:996】 【Sql】【ConnectionString】:server=114.116.182.73;database=hfmall;user id=bryan;password=Bryan920706!;sslmode=None;characterset=utf8
+【2019-04-12 15:11:46:997】 【Sql】:SELECT `Id`,`Status`,`UserName`,`RealName`,`Password`,`LastIp`,`RoleId`,`CrtDate`,`ModifyDate`,`LastLogDate`,`HeadImgUrl`,`Sex`,`Mobile`,`Email`,`CrtUser` FROM `Sys_User`  WHERE `Id` IN (@InPara0)   
+【2019-04-12 15:11:47:000】 【Sql】【ConnectionString】:server=114.116.182.73;database=hfmall;user id=bryan;sslmode=None;characterset=utf8
+【2019-04-12 15:17:40:127】 【Sql】:SELECT `Id`,`Status`,`UserName`,`RealName`,`Password`,`LastIp`,`RoleId`,`CrtDate`,`ModifyDate`,`LastLogDate`,`HeadImgUrl`,`Sex`,`Mobile`,`Email`,`CrtUser` FROM `Sys_User`  WHERE ( 1 = 1 ) ORDER BY `Id` DESC 
+【2019-04-12 15:17:40:156】 【Sql】【ConnectionString】:server=114.116.182.73;database=hfmall;user id=bryan;password=Bryan920706!;sslmode=None;characterset=utf8
+【2019-04-12 17:44:06:302】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson`,`Status` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-04-12 17:44:06:329】 【Sql】【ConnectionString】:server=114.116.182.73;database=hfmall;user id=bryan;password=Bryan920706!;sslmode=None;characterset=utf8
+【2019-04-12 18:04:02:699】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson`,`Status` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-04-12 18:04:02:735】 【Sql】【ConnectionString】:server=114.116.182.73;database=hfmall;user id=bryan;password=Bryan920706!;sslmode=None;characterset=utf8
+【2019-04-12 18:19:09:759】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson`,`Status` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-04-12 18:19:09:793】 【Sql】【ConnectionString】:server=114.116.182.73;database=hfmall;user id=bryan;password=Bryan920706!;sslmode=None;characterset=utf8

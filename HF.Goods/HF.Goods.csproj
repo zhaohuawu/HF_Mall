@@ -8,15 +8,15 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath></OutputPath>
-    <DocumentationFile>HF.Goods.xml</DocumentationFile>
+    <DocumentationFile>HF.GoodsService.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="HF.Goods.xml" />
+    <None Remove="HF.GoodsService.xml" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="HF.Goods.xml">
+    <EmbeddedResource Include="HF.GoodsService.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>

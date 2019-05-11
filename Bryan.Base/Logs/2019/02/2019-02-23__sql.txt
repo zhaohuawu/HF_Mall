@@ -1,0 +1,4 @@
+【2019-02-23 16:12:36:082】 【Sql】:SELECT `Id`,`Status`,`UserName`,`RealName`,`Password`,`LastIp`,`RoleId`,`CrtDate`,`LastLogDate`,`HeadImgUrl`,`Sex`,`Mobile`,`CrtUser` FROM `Sys_User`   WHERE (( `UserName` = @UserName0 ) AND ( `Password` = @Password1 ))  ORDER BY NOW()  LIMIT 0,1
+【2019-02-23 16:12:36:127】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-02-23 17:00:06:069】 【Sql】:SELECT `Id`,`Status`,`UserName`,`RealName`,`Password`,`LastIp`,`RoleId`,`CrtDate`,`LastLogDate`,`HeadImgUrl`,`Sex`,`Mobile`,`CrtUser` FROM `Sys_User`  WHERE ( 1 = 1 ) ORDER BY `Id` DESC 
+【2019-02-23 17:00:06:104】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8

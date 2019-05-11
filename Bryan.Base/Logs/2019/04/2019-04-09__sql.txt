@@ -1,0 +1,6 @@
+【2019-04-09 12:22:45:169】 【Sql】:SELECT `Id`,`Status`,`UserName`,`RealName`,`Password`,`LastIp`,`RoleId`,`CrtDate`,`ModifyDate`,`LastLogDate`,`HeadImgUrl`,`Sex`,`Mobile`,`Email`,`CrtUser` FROM `Sys_User`   WHERE (( `UserName` = @UserName0 ) AND ( `Password` = @Password1 ))  ORDER BY NOW()  LIMIT 0,1
+【2019-04-09 12:22:45:209】 【Sql】【ConnectionString】:server=114.116.182.73;database=hfmall;user id=bryan;password=Bryan920706!;sslmode=None;characterset=utf8
+【2019-04-09 12:23:27:244】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-04-09 12:23:27:253】 【Sql】【ConnectionString】:server=114.116.182.73;database=hfmall;user id=bryan;password=Bryan920706!;sslmode=None;characterset=utf8
+【2019-04-09 14:07:59:332】 【Sql】:SELECT `Id`,`Pid`,`Tag`,`MenuName`,`Icon`,`Level`,`ChildNum`,`Orders`,`IsShow`,`Url`,`CrtUser`,`CrtDate`,`BtnJson` FROM `Sys_AdminMenu`  WHERE ( 1 = 1 ) ORDER BY `Pid` ASC 
+【2019-04-09 14:07:59:334】 【Sql】【ConnectionString】:server=114.116.182.73;database=hfmall;user id=bryan;sslmode=None;characterset=utf8

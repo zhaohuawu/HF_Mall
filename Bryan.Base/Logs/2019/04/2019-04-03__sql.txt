@@ -1,0 +1,4 @@
+【2019-04-03 14:34:35:622】 【Sql】:SELECT `Id`,`Status`,`UserName`,`RealName`,`Password`,`LastIp`,`RoleId`,`CrtDate`,`ModifyDate`,`LastLogDate`,`HeadImgUrl`,`Sex`,`Mobile`,`Email`,`CrtUser` FROM `Sys_User`  WHERE ( 1 = 1 ) ORDER BY `Id` DESC 
+【2019-04-03 14:34:35:660】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
+【2019-04-03 15:09:56:252】 【Sql】:SELECT `Id`,`Status`,`UserName`,`RealName`,`Password`,`LastIp`,`RoleId`,`CrtDate`,`ModifyDate`,`LastLogDate`,`HeadImgUrl`,`Sex`,`Mobile`,`Email`,`CrtUser` FROM `Sys_User`  WHERE ( 1 = 1 ) ORDER BY `Id` DESC 
+【2019-04-03 15:09:56:309】 【Sql】【ConnectionString】:server=193.112.41.35;database=hfmall;user id=xintaoke;password=xtk920706;sslmode=None;characterset=utf8
