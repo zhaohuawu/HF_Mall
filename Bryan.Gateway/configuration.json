@@ -21,24 +21,6 @@
       "ServiceName": "hfgoods",
       "LoadBalancerOptions": "LeastConnection",
       "UseServiceDiscovery": true
-    },
-    {
-      "DownstreamPathTemplate": "/base/swagger.json",
-      "DownstreamScheme": "http",
-      "ServiceName": "base",
-      "LoadBalancer": "LeastConnection",
-      "UseServiceDiscovery": true,
-      "UpstreamPathTemplate": "/base/swagger.json",
-      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ]
-    },
-    {
-      "DownstreamPathTemplate": "/hfgoods/swagger.json",
-      "DownstreamScheme": "http",
-      "ServiceName": "hfgoods",
-      "LoadBalancer": "LeastConnection",
-      "UseServiceDiscovery": true,
-      "UpstreamPathTemplate": "/hfgoods/swagger.json",
-      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ]
     }
   ],
   "GlobalConfiguration": {

@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Bryan.Gateway.Middleware;
+using Bryan.Gateway.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -34,6 +36,8 @@ namespace Bryan.Gateway
                 });
             });
 
+            services.Configure<JwtSettings>(Configuration.GetSection("JwtSettings"));
+
             services.AddOcelot(Configuration).AddConsul();
         }
 
@@ -44,6 +48,8 @@ namespace Bryan.Gateway
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseMiddleware<JwtMiddleware>();
 
             if (!env.IsProduction())
             {
