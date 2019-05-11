@@ -2,12 +2,12 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Bryan.BaseService\Bryan.BaseService.csproj" />
     <ProjectReference Include="..\Bryan.Common\Bryan.Common.csproj" />
-    <ProjectReference Include="..\BryanWu.Domain\BryanWu.Domain.csproj" />
   </ItemGroup>
 
 </Project>

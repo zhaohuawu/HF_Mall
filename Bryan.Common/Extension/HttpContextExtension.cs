@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Primitives;
 using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
 
 namespace Bryan.Common.Extension
@@ -14,6 +16,24 @@ namespace Bryan.Common.Extension
             if (string.IsNullOrEmpty(ip))
                 ip = context.Connection.RemoteIpAddress.ToString();
             return ip;
+        }
+
+        public static string GetLocalIP()
+        {
+            string result;
+            try
+            {
+                TcpClient tcpClient = new TcpClient();
+                tcpClient.Connect("www.qq.com", 80);
+                string text = ((IPEndPoint)tcpClient.Client.LocalEndPoint).Address.ToString();
+                tcpClient.Close();
+                result = text;
+            }
+            catch (Exception)
+            {
+                result = null;
+            }
+            return result;
         }
 
         public static string GetAbsoluteUri(this HttpRequest request)
