@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using BryanWu.Domain.Interface;
-using Bryan.Common.Interface;
 using Bryan.Common.Repository;
 using Bryan.Common;
 using BryanWu.Domain.Model;
 using Bryan.WebApi.Models.SysOption;
 using Microsoft.Extensions.Logging;
+using Bryan.MicroService;
 
 namespace Bryan.WebApi.Controllers
 {

@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Bryan.Common.Entity;
-using Bryan.Common.Jwt;
+using Bryan.Common;
+using Bryan.MicroService.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Bryan.Common.Extension
+namespace Bryan.MicroService
 {
     /// <summary>
     /// Startup扩展类
@@ -57,7 +57,7 @@ namespace Bryan.Common.Extension
                     OnMessageReceived = context =>
                     {
                         var header = context.Request.Headers["Authorization"].FirstOrDefault();
-                        var jwtEntity = JwtEntity.GetJwtIEntity(header);
+                        var jwtEntity = JwtEntity.GetJwtEntity(header);
                         if (jwtEntity != null)
                         {
                             if (DateTime.Now > DateTimeExtension.ConvertToCsharpTime(jwtEntity.Exp))

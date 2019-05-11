@@ -1,15 +1,15 @@
 ﻿using System;
 using Autofac.Extensions.DependencyInjection;
 using Bryan.Common.Autofac;
-using Bryan.Common.Entity;
 using Bryan.Common.Extension;
-using Bryan.Common.Jwt;
+using Bryan.MicroService.Jwt;
 using Bryan.Common.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Bryan.MicroService;
 
 namespace HF.Goods
 {

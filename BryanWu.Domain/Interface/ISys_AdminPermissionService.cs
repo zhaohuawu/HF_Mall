@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
+using Bryan.MicroService;
 
 namespace BryanWu.Domain.Interface
 {

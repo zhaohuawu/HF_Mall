@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.IO;
 
-namespace Bryan.Common.Jwt
+namespace Bryan.MicroService.Jwt
 {
     /// <summary>
     /// Jwt认证参数

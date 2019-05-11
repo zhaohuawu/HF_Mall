@@ -44,19 +44,21 @@ namespace Bryan.Gateway
             {
                 app.UseDeveloperExceptionPage();
             }
-            
-            var apis = new List<string> { "base", "hfgoods" };
-            app.UseSwagger()
-                .UseSwaggerUI(opt =>
-                {
-                    apis.ForEach(m =>
-                    {
-                        opt.SwaggerEndpoint($"/{m}/swagger.json", m);
-                        opt.DocExpansion(DocExpansion.None);
-                    });
-                });
 
-          
+            if (!env.IsProduction())
+            {
+                var apis = new List<string> { "base", "hfgoods" };
+                app.UseSwagger()
+                    .UseSwaggerUI(opt =>
+                    {
+                        apis.ForEach(m =>
+                        {
+                            opt.SwaggerEndpoint($"/{m}/swagger.json", m);
+                            opt.DocExpansion(DocExpansion.None);
+                        });
+                    });
+
+            }
 
             app.UseOcelot().Wait();
         }

@@ -49,3 +49,5 @@
 /HF.Order/obj
 /Bryan.Gateway/obj
 /Bryan.Gateway/bin/Debug/netcoreapp2.2
+/Bryan.MicroService/obj
+/Bryan.MicroService/bin/Debug/netstandard2.0

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Bryan.Common.Extension
+namespace Bryan.MicroService
 {
     /// <summary>
     /// RedisKey扩展方法

@@ -13,11 +13,11 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Bryan.Common;
 using Bryan.WebApi.Models.AppSettings;
-using Bryan.Common.Jwt;
+using Bryan.MicroService.Jwt;
 using Microsoft.Extensions.Logging;
-using Bryan.Common.Entity;
 using Bryan.Common.Extension;
 using System.Reflection;
+using Bryan.MicroService;
 
 namespace Bryan.WebApi
 {
@@ -103,7 +103,7 @@ namespace Bryan.WebApi
                     OnMessageReceived = context =>
                     {
                         var header = context.Request.Headers["Authorization"].FirstOrDefault();
-                        var jwtEntity = JwtEntity.GetJwtIEntity(header);
+                        var jwtEntity = JwtEntity.GetJwtEntity(header);
                         if (jwtEntity != null)
                         {
                             if (DateTime.Now > DateTimeExtension.ConvertToCsharpTime(jwtEntity.Exp))

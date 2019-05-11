@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bryan.Common\Bryan.Common.csproj" />
+    <ProjectReference Include="..\Bryan.MicroService\Bryan.MicroService.csproj" />
     <ProjectReference Include="..\BryanWu.Application\BryanWu.Application.csproj" />
     <ProjectReference Include="..\BryanWu.Domain\BryanWu.Domain.csproj" />
   </ItemGroup>

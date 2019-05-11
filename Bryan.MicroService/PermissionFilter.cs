@@ -1,13 +1,13 @@
-﻿using Bryan.Common.Enums;
-using Bryan.Common.Extension;
-using Bryan.Common.Jwt;
+﻿using Bryan.Common;
+using Bryan.Common.Enums;
+using Bryan.MicroService.Jwt;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Bryan.Common
+namespace Bryan.MicroService
 {
     public class PermissionFilter : ActionFilterAttribute
     {
@@ -27,7 +27,7 @@ namespace Bryan.Common
                 {
                     var perArray = actionAttr.PermissionArray;//接口需要的权限Tag
                     var hearder = filterContext.HttpContext.Request.Headers["Authorization"].FirstOrDefault();
-                    var jwtEntity = JwtEntity.GetJwtIEntity(hearder);
+                    var jwtEntity = JwtEntity.GetJwtEntity(hearder);
                     if (jwtEntity != null)
                     {
                         bool isPermission = false;//是否有权限

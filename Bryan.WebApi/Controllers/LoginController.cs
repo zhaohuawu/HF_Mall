@@ -4,16 +4,16 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using BryanWu.Domain.Interface;
-using Bryan.Common;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using BryanWu.Domain.Model;
-using Bryan.Common.Jwt;
 using Microsoft.Extensions.Logging;
 using Bryan.WebApi.Common;
+using Bryan.MicroService.Jwt;
+using Bryan.MicroService;
 
 namespace Bryan.WebApi.Controllers
 {

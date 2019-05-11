@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Bryan.Common.Jwt
+namespace Bryan.MicroService.Jwt
 {
     public class JwtAuthorizeFilter
     {

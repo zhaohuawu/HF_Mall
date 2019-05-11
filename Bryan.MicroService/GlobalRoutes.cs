@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Routing;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Bryan.Common
+namespace Bryan.MicroService
 {
     public class GlobalRoutes : IApplicationModelConvention
     {

@@ -1,8 +1,8 @@
-﻿using Bryan.Common.Jwt;
+﻿using Bryan.MicroService.Jwt;
 using System;
 using System.Text.RegularExpressions;
 
-namespace Bryan.Common.Entity
+namespace Bryan.MicroService
 {
     public class SysConfig
     {

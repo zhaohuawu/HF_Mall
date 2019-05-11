@@ -1,12 +1,11 @@
-﻿using Bryan.Common;
-using BryanWu.Domain.Interface;
+﻿using BryanWu.Domain.Interface;
 using BryanWu.Domain.Model;
 using Bryan.Common.Interface;
 using Bryan.Common.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
+using Bryan.MicroService;
 
 namespace BryanWu.Domain.Service
 {

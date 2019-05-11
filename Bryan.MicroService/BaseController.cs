@@ -1,6 +1,6 @@
-﻿using Bryan.Common.Enums;
-using Bryan.Common.Extension;
-using Bryan.Common.Jwt;
+﻿using Bryan.Common;
+using Bryan.Common.Enums;
+using Bryan.MicroService.Jwt;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using System.IO;
 using System.Linq;
 
-namespace Bryan.Common
+namespace Bryan.MicroService
 {
     /// <summary>
     /// 基类
@@ -68,7 +68,7 @@ namespace Bryan.Common
             if (string.IsNullOrEmpty(header))
             {
                 header = base.Request.Headers["Authorization"].FirstOrDefault();
-                jwtEntity = JwtEntity.GetJwtIEntity(header);
+                jwtEntity = JwtEntity.GetJwtEntity(header);
             }
             return jwtEntity;
         }

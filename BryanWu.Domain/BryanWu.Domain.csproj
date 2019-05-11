@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bryan.Common\Bryan.Common.csproj" />
+    <ProjectReference Include="..\Bryan.MicroService\Bryan.MicroService.csproj" />
   </ItemGroup>
 
   <ItemGroup>

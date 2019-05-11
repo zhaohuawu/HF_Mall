@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Logging;
 using Bryan.Common.Extension;
+using Bryan.MicroService;
 
 namespace Bryan.WebApi.Controllers
 {

@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Bryan.Common;
+using System;
 using System.IdentityModel.Tokens.Jwt;
 
-namespace Bryan.Common.Jwt
+namespace Bryan.MicroService.Jwt
 {
     public class JwtEntity
     {
@@ -13,7 +14,7 @@ namespace Bryan.Common.Jwt
         public string Iss { get; set; }
         public string Aud { get; set; }
 
-        public static JwtEntity GetJwtIEntity(string header)
+        public static JwtEntity GetJwtEntity(string header)
         {
             JwtEntity jwtEntity = new JwtEntity();
 

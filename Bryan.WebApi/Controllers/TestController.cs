@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BryanWu.Domain.Interface;
-using Bryan.Common;
-using Bryan.Common.Interface;
-using Microsoft.AspNetCore.Http;
+﻿using BryanWu.Domain.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using Bryan.WebApi.Models;
 using Microsoft.Extensions.Logging;
+using Bryan.MicroService;
 
 namespace Bryan.WebApi.Controllers
 {

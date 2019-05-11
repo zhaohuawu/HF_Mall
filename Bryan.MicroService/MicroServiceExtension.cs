@@ -2,21 +2,18 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
-using Bryan.Common.Entity;
 using Consul;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
 using Swashbuckle.AspNetCore.Swagger;
-using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
 
-namespace Bryan.Common.Extension
+namespace Bryan.MicroService
 {
     public static class MicroServiceExtension
     {
@@ -109,20 +106,20 @@ namespace Bryan.Common.Extension
                 });
             });
 
-            //if (!env.IsProduction())
-            //{
-            app.UseSwagger(delegate (SwaggerOptions opt)
+            if (!env.IsProduction())
             {
-                opt.RouteTemplate = "{documentName}/swagger.json";
-            });
-            //app.UseSwagger();
-            app.UseSwaggerUI(delegate (SwaggerUIOptions opt)
-            {
-                opt.SwaggerEndpoint("/" + serviceInfo.Name.ToLower() + "/swagger.json", serviceInfo.DisplayName);
-                opt.RoutePrefix = string.Empty;//开启默认swagger/index.html路径
-                opt.DocExpansion(DocExpansion.None);
-            });
-            //}
+                app.UseSwagger(opt =>
+                {
+                    opt.RouteTemplate = "{documentName}/swagger.json";
+                });
+                //app.UseSwagger();
+                app.UseSwaggerUI(delegate (SwaggerUIOptions opt)
+                {
+                    opt.SwaggerEndpoint("/" + serviceInfo.Name.ToLower() + "/swagger.json", serviceInfo.DisplayName);
+                    opt.RoutePrefix = string.Empty;//开启默认swagger/index.html路径
+                    opt.DocExpansion(DocExpansion.None);
+                });
+            }
             app.UseAuthentication();
         }
 

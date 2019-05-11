@@ -14,6 +14,7 @@ using Bryan.Common.Enums;
 using Bryan.Common.Extension;
 using System.Collections.Concurrent;
 using Microsoft.Extensions.Logging;
+using Bryan.MicroService;
 
 namespace Bryan.WebApi.Controllers
 {

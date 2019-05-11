@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Bryan.Common.Extension
+namespace Bryan.MicroService
 {
     public static class MvcOptionExtension
     {
