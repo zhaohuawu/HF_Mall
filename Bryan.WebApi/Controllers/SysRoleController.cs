@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BryanWu.Domain.Interface;
-using BryanWu.Domain.Model;
+using Bryan.BaseService.Interface;
+using Bryan.BaseService.Model;
 using Bryan.WebApi.Models;
 using Bryan.Common;
 using Bryan.Common.Repository;
@@ -11,10 +11,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Bryan.WebApi.Models.SysRole;
 using Bryan.Common.Enums;
-using Bryan.Common.Extension;
 using System.Collections.Concurrent;
 using Microsoft.Extensions.Logging;
 using Bryan.MicroService;
+using Bryan.BaseService.Dto;
 
 namespace Bryan.WebApi.Controllers
 {
@@ -537,8 +537,8 @@ namespace Bryan.WebApi.Controllers
         {
             var result = await Task.Run(() =>
             {
-                var list = new List<PermissionDto>();
-                var dicList = new ConcurrentBag<Dictionary<int, List<PermissionDto>>>();
+                var list = new List<PermissionToReloDto>();
+                var dicList = new ConcurrentBag<Dictionary<int, List<PermissionToReloDto>>>();
                 if (menuId > 0 && isAdd == 1)
                 {
                     //给角色新增了菜单权限
@@ -550,14 +550,14 @@ namespace Bryan.WebApi.Controllers
                             RedisHelper.HDel(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), role.ToString());
                         var roleMenuList = list.Where(p => p.RoleId == role).ToList();
                         RedisHelper.HSet(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), role.ToString(), roleMenuList);
-                        var dic = new Dictionary<int, List<PermissionDto>> { { role, roleMenuList } };
+                        var dic = new Dictionary<int, List<PermissionToReloDto>> { { role, roleMenuList } };
                         dicList.Add(dic);
                     });
                 }
                 else if (menuId > 0 && isAdd == 0)
                 {
                     //停用菜单
-                    var hDic = RedisHelper.HGetAll<List<PermissionDto>>(RedisKeysEnum.RoleMenuHash.GetHFMallKey());
+                    var hDic = RedisHelper.HGetAll<List<PermissionToReloDto>>(RedisKeysEnum.RoleMenuHash.GetHFMallKey());
                     Parallel.ForEach(hDic, item =>
                     {
                         var roleList = item.Value;
@@ -568,7 +568,7 @@ namespace Bryan.WebApi.Controllers
                                 RedisHelper.HDel(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), item.Key);
                             roleList.Remove(roleRedis);
                             RedisHelper.HSet(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), item.Key, roleList);
-                            var dic = new Dictionary<int, List<PermissionDto>> { { Convert.ToInt32(item.Key), roleList } };
+                            var dic = new Dictionary<int, List<PermissionToReloDto>> { { Convert.ToInt32(item.Key), roleList } };
                             dicList.Add(dic);
                         }
                     });
@@ -584,14 +584,14 @@ namespace Bryan.WebApi.Controllers
                             RedisHelper.HDel(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), role.ToString());
                         var roleMenuList = list.Where(p => p.RoleId == role).ToList();
                         RedisHelper.HSet(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), role.ToString(), roleMenuList);
-                        var dic = new Dictionary<int, List<PermissionDto>> { { role, roleMenuList } };
+                        var dic = new Dictionary<int, List<PermissionToReloDto>> { { role, roleMenuList } };
                         dicList.Add(dic);
                     });
                 }
                 else if (btnId > 0 && isAdd == 0)
                 {
                     //停用菜单按钮
-                    var hDic = RedisHelper.HGetAll<List<PermissionDto>>(RedisKeysEnum.RoleMenuHash.GetHFMallKey());
+                    var hDic = RedisHelper.HGetAll<List<PermissionToReloDto>>(RedisKeysEnum.RoleMenuHash.GetHFMallKey());
                     Parallel.ForEach(hDic, item =>
                     {
                         var roleList = item.Value;
@@ -602,7 +602,7 @@ namespace Bryan.WebApi.Controllers
                                 RedisHelper.HDel(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), item.Key);
                             roleList.Remove(roleRedis);
                             RedisHelper.HSet(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), item.Key, roleList);
-                            var dic = new Dictionary<int, List<PermissionDto>> { { Convert.ToInt32(item.Key), roleList } };
+                            var dic = new Dictionary<int, List<PermissionToReloDto>> { { Convert.ToInt32(item.Key), roleList } };
                             dicList.Add(dic);
                         }
                     });
@@ -617,7 +617,7 @@ namespace Bryan.WebApi.Controllers
                     {
                         var arr = list.Where(p => p.RoleId == item).Distinct().ToList();
                         RedisHelper.HSet(RedisKeysEnum.RoleMenuHash.GetHFMallKey(), item.ToString(), arr);
-                        var dic = new Dictionary<int, List<PermissionDto>> { { item, arr } };
+                        var dic = new Dictionary<int, List<PermissionToReloDto>> { { item, arr } };
                         dicList.Add(dic);
                     });
                 }

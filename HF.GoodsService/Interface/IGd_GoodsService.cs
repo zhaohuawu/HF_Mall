@@ -1,12 +1,11 @@
-﻿using BryanWu.Domain.Model;
-using Bryan.Common.Interface;
+﻿using Bryan.Common.Interface;
 using Bryan.Common.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
+using HF.GoodsService.Models;
 
-namespace BryanWu.Domain.Interface
+namespace HF.GoodsService.Interface
 {
     public interface IGd_GoodsService : IDenpendency
     {

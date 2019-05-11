@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BryanWu.Domain.Interface
+namespace Bryan.BaseService.Interface
 {
     public interface IBaseService<T>
     {

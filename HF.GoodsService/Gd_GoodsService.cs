@@ -1,13 +1,13 @@
-﻿using BryanWu.Domain.Interface;
-using BryanWu.Domain.Model;
-using Bryan.Common.Interface;
+﻿using Bryan.Common.Interface;
 using Bryan.Common.Repository;
+using HF.GoodsService.Interface;
+using HF.GoodsService.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace BryanWu.Domain.Service
+namespace HF.GoodsService
 {
     public class Gd_GoodsService : IGd_GoodsService
     {

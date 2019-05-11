@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
-namespace BryanWu.Domain.Model
+namespace Bryan.BaseService.Model
 {
     ///<summary>
     ///后台系统管理员

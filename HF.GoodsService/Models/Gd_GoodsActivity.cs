@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 
-namespace BryanWu.Domain.Model
+namespace HF.GoodsService.Models
 {
     ///<summary>
     ///商品参加的活动

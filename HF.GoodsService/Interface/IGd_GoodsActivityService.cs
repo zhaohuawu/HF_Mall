@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BryanWu.Domain.Interface
+namespace HF.GoodsService.Interface
 {
     public interface IGd_GoodsActivityService : IDenpendency
     {

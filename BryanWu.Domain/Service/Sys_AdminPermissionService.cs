@@ -1,13 +1,13 @@
-﻿using BryanWu.Domain.Interface;
-using BryanWu.Domain.Model;
+﻿using Bryan.BaseService.Dto;
+using Bryan.BaseService.Interface;
+using Bryan.BaseService.Model;
 using Bryan.Common.Interface;
 using Bryan.Common.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Bryan.MicroService;
 
-namespace BryanWu.Domain.Service
+namespace Bryan.BaseService.Service
 {
     public class Sys_AdminPermissionService : ISys_AdminPermissionService
     {
@@ -99,7 +99,7 @@ namespace BryanWu.Domain.Service
         /// <param name="menuId"></param>
         /// <param name="btnId"></param>
         /// <returns></returns>
-        public List<PermissionDto> GetRolePerList(int menuId, int btnId)
+        public List<PermissionToReloDto> GetRolePerList(int menuId, int btnId)
         {
             //菜单数据
             string mSql = @"SELECT sap.RoleId,sap.MenuId,sam.Tag,sap.Type
@@ -136,7 +136,7 @@ namespace BryanWu.Domain.Service
                 whereDic.Add("@btnId", btnId);
             }
 
-            return _repository.ExcuteGetList<PermissionDto>(mSql + mWhereSql + bSql + bWhereSql, whereDic);
+            return _repository.ExcuteGetList<PermissionToReloDto>(mSql + mWhereSql + bSql + bWhereSql, whereDic);
         }
     }
 }

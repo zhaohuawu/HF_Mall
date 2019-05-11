@@ -1,9 +1,9 @@
-﻿using BryanWu.Domain.Interface;
+﻿using Bryan.BaseService.Interface;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BryanWu.Domain.Service
+namespace Bryan.BaseService.Service
 {
     public interface BaseService<T> : IBaseService<T>
     {

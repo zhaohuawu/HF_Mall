@@ -1,4 +1,4 @@
-﻿using BryanWu.Domain.Model;
+﻿using Bryan.BaseService.Model;
 using Bryan.Common.Autofac;
 using Bryan.Common.Interface;
 using Bryan.Common.Repository;
@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace BryanWu.Domain.Interface
+namespace Bryan.BaseService.Interface
 {
     public interface ISys_AdminRoleService : IDenpendency
     {

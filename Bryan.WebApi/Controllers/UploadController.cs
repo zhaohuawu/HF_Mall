@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using Bryan.WebApi.Models;
 using Bryan.WebApi.Models.AppSettings;
-using BryanWu.Domain.Interface;
-using BryanWu.Domain;
+using Bryan.BaseService.Interface;
+using Bryan.BaseService;
 using Bryan.Common;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;

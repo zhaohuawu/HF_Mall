@@ -5,11 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bryan.MicroService\Bryan.MicroService.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Dto\" />
+    <ProjectReference Include="..\Bryan.Common\Bryan.Common.csproj" />
   </ItemGroup>
 
 </Project>

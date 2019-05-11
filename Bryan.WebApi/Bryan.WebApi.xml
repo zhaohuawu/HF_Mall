@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Bryan.WebApi</name>
+        <name>Bryan.Base</name>
     </assembly>
     <members>
         <member name="M:Bryan.WebApi.Common.Encrypt.EncryptPsw(System.String)">
@@ -11,7 +11,7 @@
             <param name="password"></param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Common.Util.MenuTree(Bryan.WebApi.Models.SysRole.ReturnMenuTree,System.Collections.Generic.List{BryanWu.Domain.Model.Sys_AdminMenu},System.Int32)">
+        <member name="M:Bryan.WebApi.Common.Util.MenuTree(Bryan.WebApi.Models.SysRole.ReturnMenuTree,System.Collections.Generic.List{Bryan.BaseService.Model.Sys_AdminMenu},System.Int32)">
             <summary>
             菜单递归
             </summary>
@@ -19,7 +19,7 @@
             <param name="list"></param>
             <param name="pid"></param>
         </member>
-        <member name="M:Bryan.WebApi.Common.Util.RoleMenuTree(Bryan.WebApi.Models.SysRole.ReturnRoleMenuTree,System.Collections.Generic.List{BryanWu.Domain.Model.Sys_AdminMenu},System.Int32,System.Collections.Generic.List{BryanWu.Domain.Model.Sys_AdminMenuBtn})">
+        <member name="M:Bryan.WebApi.Common.Util.RoleMenuTree(Bryan.WebApi.Models.SysRole.ReturnRoleMenuTree,System.Collections.Generic.List{Bryan.BaseService.Model.Sys_AdminMenu},System.Int32,System.Collections.Generic.List{Bryan.BaseService.Model.Sys_AdminMenuBtn})">
             <summary>
             菜单递归
             </summary>

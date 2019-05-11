@@ -1,14 +1,12 @@
-﻿using BryanWu.Domain.Model;
-using Bryan.Common.Autofac;
+﻿using Bryan.BaseService.Model;
 using Bryan.Common.Interface;
 using Bryan.Common.Repository;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 
-namespace BryanWu.Domain.Interface
+namespace Bryan.BaseService.Interface
 {
     public interface ILog_AdminService : IDenpendency
     {

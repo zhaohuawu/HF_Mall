@@ -1,5 +1,5 @@
 ﻿using Bryan.WebApi.Models.SysRole;
-using BryanWu.Domain.Model;
+using Bryan.BaseService.Model;
 using System.Collections.Generic;
 using System.Linq;
 

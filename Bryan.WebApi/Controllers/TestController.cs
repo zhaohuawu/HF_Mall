@@ -1,4 +1,4 @@
-﻿using BryanWu.Domain.Interface;
+﻿using Bryan.BaseService.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using Bryan.WebApi.Models;

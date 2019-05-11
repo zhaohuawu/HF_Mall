@@ -1,5 +1,5 @@
-﻿using BryanWu.Domain.Interface;
-using BryanWu.Domain.Model;
+﻿using Bryan.BaseService.Interface;
+using Bryan.BaseService.Model;
 using Bryan.Common.Interface;
 using Bryan.Common.Repository;
 using Microsoft.AspNetCore.Http;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Bryan.Common.Extension;
 
-namespace BryanWu.Domain.Service
+namespace Bryan.BaseService.Service
 {
     public class Log_AdminService : ILog_AdminService
     {

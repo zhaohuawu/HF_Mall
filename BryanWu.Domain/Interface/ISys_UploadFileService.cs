@@ -1,5 +1,5 @@
-﻿using BryanWu.Domain.Model;
-using BryanWu.Domain.Service;
+﻿using Bryan.BaseService.Model;
+using Bryan.BaseService.Service;
 using Bryan.Common.Interface;
 using Bryan.Common.Repository;
 using Microsoft.AspNetCore.Http;
@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BryanWu.Domain.Interface
+namespace Bryan.BaseService.Interface
 {
     public interface ISys_UploadFileService : IDenpendency
     {

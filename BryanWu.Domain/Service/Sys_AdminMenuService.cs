@@ -1,5 +1,5 @@
-﻿using BryanWu.Domain.Interface;
-using BryanWu.Domain.Model;
+﻿using Bryan.BaseService.Interface;
+using Bryan.BaseService.Model;
 using Bryan.Common.Interface;
 using Bryan.Common.Repository;
 using System;
@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace BryanWu.Domain.Service
+namespace Bryan.BaseService.Service
 {
     public class Sys_AdminMenuService : ISys_AdminMenuService
     {

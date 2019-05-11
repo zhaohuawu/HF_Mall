@@ -65,7 +65,7 @@ namespace Bryan.WebApi
             services.AddService(config);
 
             // 获取所有相关类库的程序集,通过命名空间和反射获取Assembly
-            Assembly[] assemblyArr = { Assembly.Load("BryanWu.Domain") };
+            Assembly[] assemblyArr = { Assembly.Load("Bryan.BaseService") };
             //autofac 注入
             return new AutofacServiceProvider(AutofacConfig.Init(services, assemblyArr));
         }

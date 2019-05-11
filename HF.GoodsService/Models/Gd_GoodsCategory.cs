@@ -2,14 +2,14 @@
 using System.Linq;
 using System.Text;
 
-namespace BryanWu.Domain.Model
+namespace HF.GoodsService.Models
 {
     ///<summary>
-    ///商品图片
+    ///商品类目
     ///</summary>
-    public partial class Gd_GoodsImg
+    public partial class Gd_GoodsCategory
     {
-        public Gd_GoodsImg()
+        public Gd_GoodsCategory()
         {
 
 
@@ -22,39 +22,60 @@ namespace BryanWu.Domain.Model
         public int Id { get; set; }
 
         /// <summary>
-        /// Desc:商品Id
+        /// Desc:类目父Id
         /// Default:
         /// Nullable:False
         /// </summary>           
-        public string GoodsId { get; set; }
+        public int Pid { get; set; }
 
         /// <summary>
-        /// Desc:图片类型
-        /// Default:0
+        /// Desc:类目名称
+        /// Default:
         /// Nullable:False
         /// </summary>           
-        public int TypeId { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
-        /// Desc:上传文件ID（sys_uploadfile主键）
-        /// Default:0
+        /// Desc:类目级别
+        /// Default:
         /// Nullable:False
         /// </summary>           
-        public int UploadFileId { get; set; }
+        public int Level { get; set; }
 
         /// <summary>
         /// Desc:排序
-        /// Default:0
+        /// Default:
         /// Nullable:False
         /// </summary>           
         public int Orders { get; set; }
 
         /// <summary>
-        /// Desc:
+        /// Desc:类目缩写
+        /// Default:
+        /// Nullable:False
+        /// </summary>           
+        public string Abbreviation { get; set; }
+
+        /// <summary>
+        /// Desc:是否商城显示
+        /// Default:1
+        /// Nullable:False
+        /// </summary>           
+        public string IsShow { get; set; }
+
+        /// <summary>
+        /// Desc:图片路径
         /// Default:
         /// Nullable:False
         /// </summary>           
         public string ImgUrl { get; set; }
+
+        /// <summary>
+        /// Desc:备注
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public string Remark { get; set; }
 
         /// <summary>
         /// Desc:创建时间
@@ -64,11 +85,11 @@ namespace BryanWu.Domain.Model
         public DateTime CrtDate { get; set; }
 
         /// <summary>
-        /// Desc:是否删除
-        /// Default:0
-        /// Nullable:False
+        /// Desc:修改时间
+        /// Default:
+        /// Nullable:True
         /// </summary>           
-        public int IsDelete { get; set; }
+        public DateTime? ModifyDate { get; set; }
 
     }
 }

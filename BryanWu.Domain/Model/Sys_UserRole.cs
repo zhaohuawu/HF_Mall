@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BryanWu.Domain.Model
+namespace Bryan.BaseService.Model
 {
     public class Sys_UserRole
     {

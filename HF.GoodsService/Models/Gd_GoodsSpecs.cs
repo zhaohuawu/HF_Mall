@@ -2,15 +2,16 @@
 using System.Linq;
 using System.Text;
 
-namespace Bryan.BaseService.Model
+namespace HF.GoodsService.Models
 {
     ///<summary>
-    ///记录后台操作日志
+    ///商品规格
     ///</summary>
-    public partial class Log_Admin
+    public partial class Gd_GoodsSpecs
     {
-        public Log_Admin()
+        public Gd_GoodsSpecs()
         {
+
 
         }
         /// <summary>
@@ -21,60 +22,60 @@ namespace Bryan.BaseService.Model
         public int Id { get; set; }
 
         /// <summary>
-        /// Desc:日志类型
+        /// Desc:商品Id
         /// Default:
         /// Nullable:False
         /// </summary>           
-        public int TypeId { get; set; }
+        public string GoodsId { get; set; }
 
         /// <summary>
-        /// Desc:创建人ID
+        /// Desc:商品规格json数据，如：{"颜色":"金色","内存":"32G"}
         /// Default:
         /// Nullable:False
         /// </summary>           
-        public int CrtUserId { get; set; }
+        public string SpecsJosn { get; set; }
 
         /// <summary>
-        /// Desc:创建人账号
-        /// Default:
-        /// Nullable:False
-        /// </summary>           
-        public string CrtUserName { get; set; }
-
-        /// <summary>
-        /// Desc:影响数据的ID
+        /// Desc:规格库存
         /// Default:0
         /// Nullable:False
         /// </summary>           
-        public string OtherId { get; set; }
+        public int Stock { get; set; }
 
         /// <summary>
-        /// Desc:描述
+        /// Desc:规格缩略图
         /// Default:
         /// Nullable:True
         /// </summary>           
-        public string Remark { get; set; }
+        public string SkuImgUrl { get; set; }
 
         /// <summary>
-        /// Desc:url
+        /// Desc:创建时间
         /// Default:
-        /// Nullable:True
-        /// </summary>           
-        public string Url { get; set; }
-
-        /// <summary>
-        /// Desc:ip
-        /// Default:
-        /// Nullable:False
-        /// </summary>           
-        public string Ip { get; set; }
-
-        /// <summary>
-        /// Desc:
-        /// Default:CURRENT_TIMESTAMP
         /// Nullable:False
         /// </summary>           
         public DateTime CrtDate { get; set; }
+
+        /// <summary>
+        /// Desc:修改日期
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public DateTime? ModifyDate { get; set; }
+
+        /// <summary>
+        /// Desc:规格价格
+        /// Default:0.0000
+        /// Nullable:False
+        /// </summary>           
+        public decimal Price { get; set; }
+
+        /// <summary>
+        /// Desc:
+        /// Default:0
+        /// Nullable:False
+        /// </summary>           
+        public int IsDelete { get; set; }
 
     }
 }

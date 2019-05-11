@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 
-namespace BryanWu.Domain.Model
+namespace Bryan.BaseService.Model
 {
     ///<summary>
     ///后台用户权限组
