@@ -25,25 +25,25 @@ namespace Bryan.Common.Extension
             return i;
         }
 
-        public static sbyte ToSafeSbyte(object o, sbyte i = 0)
+        public static sbyte ToSafeSbyte(this object o, sbyte i = 0)
         {
             sbyte.TryParse(o.ToString(), out i);
             return i;
         }
         
-        public static long ToSafeLong(object o, long i = 0)
+        public static long ToSafeLong(this object o, long i = 0)
         {
             long.TryParse(o.ToString(), out i);
             return i;
         }
 
-        public static double ToSafeDouble(object o, double i = 0)
+        public static double ToSafeDouble(this object o, double i = 0)
         {
             double.TryParse(o.ToString(), out i);
             return i;
         }
 
-        public static decimal ToSafeDecimal(object o, decimal i = 0)
+        public static decimal ToSafeDecimal(this object o, decimal i = 0)
         {
             decimal.TryParse(o.ToString(), out i);
             return i;
@@ -54,7 +54,7 @@ namespace Bryan.Common.Extension
         /// </summary>
         /// <param name="o">需要转换的字符</param>
         /// <returns></returns>
-        public static DateTime ToSafeDate(object o)
+        public static DateTime ToSafeDate(this object o)
         {
             DateTime d = DateTime.MinValue;
             DateTime.TryParse(o.ToString(), out d);

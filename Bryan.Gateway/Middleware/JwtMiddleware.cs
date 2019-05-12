@@ -1,4 +1,5 @@
 ﻿using Bryan.Common;
+using Bryan.Common.Extension;
 using Bryan.Gateway.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -8,6 +9,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
 using System.Security.Claims;
@@ -42,34 +44,52 @@ namespace Bryan.Gateway.Middleware
                 {
                     string authHeader = context.Request.Headers["Authorization"].FirstOrDefault();
 
-                    var jwtEntity = JwtEntity.GetJwtEntity(authHeader);
-
-                    //颁发机构
-                    if (_jwt.Issuer != jwtEntity.Iss)
+                    if (!string.IsNullOrEmpty(authHeader))
                     {
-                        throw new Exception("Token颁发机构异常");
+                        var token = authHeader.Split(' ');
+                        if (token.Length > 1)
+                        {
+                            if (token[0].ToLower() == "bearer")
+                            {
+                                var jwtToken = new JwtSecurityToken(token[1]);
+                                var paloadStr = JSONHelper.Seriallize(jwtToken.Payload);
+                                JObject objs = JsonConvert.DeserializeObject<JObject>(paloadStr);
+                                //颁发机构
+                                if (_jwt.Issuer != objs["iss"].ToString())
+                                {
+                                    throw new Exception("Token颁发机构异常");
+                                }
+
+                                //过期
+                                if (DateTimeExtension.ConvertToCsharpTime(objs["exp"].ToSafeLong()) <= DateTime.Now)
+                                {
+                                    throw new Exception("授权已过期");
+                                }
+                                
+                                List<Claim> claims = new List<Claim>();
+                                foreach (var property in objs)
+                                {
+                                    var claim = new Claim(property.Key.ToString(), property.Value.ToString());
+                                    claims.Add(claim);
+                                }
+
+                                var ci = new ClaimsIdentity();
+                                ci.AddClaims(claims);
+                                context.User.AddIdentity(ci);
+                                
+                                await _next(context);
+                            }
+                            else
+                            {
+                                throw new Exception("无法识别的Authorization类型");
+                            }
+                        }
+                        else
+                        {
+                            throw new Exception("Authorization值不符合规范");
+                        }
                     }
 
-                    //过期
-                    if (DateTimeExtension.ConvertToCsharpTime(jwtEntity.Exp) <= DateTime.Now)
-                    {
-                        throw new Exception("授权已过期");
-                    }
-
-                    JObject objs = JsonConvert.DeserializeObject<JObject>(JsonConvert.SerializeObject(jwtEntity));
-                    List<Claim> claims = new List<Claim>();
-                    foreach (var property in objs)
-                    {
-                        var claim = new Claim(property.Key.ToString(), property.Value.ToString());
-                        claims.Add(claim);
-                    }
-
-                    var ci = new ClaimsIdentity();
-                    ci.AddClaims(claims);
-                    context.User.AddIdentity(ci);
-
-
-                    await _next(context);
                 }
             }
             catch (Exception exp)

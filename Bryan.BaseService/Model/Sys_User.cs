@@ -13,7 +13,6 @@ namespace Bryan.BaseService.Model
         public Sys_User()
         {
             this.Status = 1;
-            this.RoleId = 1;
             this.Sex = 0;
 
         }
@@ -58,14 +57,7 @@ namespace Bryan.BaseService.Model
         /// Nullable:True
         /// </summary>           
         public string LastIp { get; set; }
-
-        /// <summary>
-        /// Desc:角色ID
-        /// Default:1
-        /// Nullable:False
-        /// </summary>           
-        public int RoleId { get; set; }
-
+        
         /// <summary>
         /// Desc:创建时间
         /// Default:CURRENT_TIMESTAMP

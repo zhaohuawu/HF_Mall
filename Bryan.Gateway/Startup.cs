@@ -1,4 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Bryan.Common;
 using Bryan.Gateway.Middleware;
 using Bryan.Gateway.Models;
 using Microsoft.AspNetCore.Builder;
@@ -26,6 +31,7 @@ namespace Bryan.Gateway
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.Configure<JwtSettings>(Configuration.GetSection("JwtSettings"));
 
             services.AddSwaggerGen(opt =>
             {
@@ -35,8 +41,6 @@ namespace Bryan.Gateway
                     Version = "v1"
                 });
             });
-
-            services.Configure<JwtSettings>(Configuration.GetSection("JwtSettings"));
 
             services.AddOcelot(Configuration).AddConsul();
         }
@@ -48,7 +52,7 @@ namespace Bryan.Gateway
             {
                 app.UseDeveloperExceptionPage();
             }
-
+           
             app.UseMiddleware<JwtMiddleware>();
 
             if (!env.IsProduction())
@@ -68,7 +72,6 @@ namespace Bryan.Gateway
 
             app.UseOcelot().Wait();
         }
-
-
+        
     }
 }

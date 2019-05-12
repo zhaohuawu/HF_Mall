@@ -20,31 +20,24 @@ namespace Bryan.Gateway.Models
 
             if (!string.IsNullOrEmpty(header))
             {
-                try
+                var token = header.Split(' ');
+                if (token.Length > 1)
                 {
-                    var token = header.Split(' ');
-                    if (token.Length > 1)
+                    if (token[0].ToLower() == "bearer")
                     {
-                        if (token[0].ToLower() == "bearer")
-                        {
-                            var jwtToken = new JwtSecurityToken(token[1]);
-                            var paloadStr = JSONHelper.Seriallize(jwtToken.Payload);
-                            jwtEntity = JSONHelper.Dseriallize<JwtEntity>(paloadStr);
-                            return jwtEntity;
-                        }
-                        else
-                        {
-                            throw new Exception("无法识别的Authorization类型");
-                        }
+                        var jwtToken = new JwtSecurityToken(token[1]);
+                        var paloadStr = JSONHelper.Seriallize(jwtToken.Payload);
+                        jwtEntity = JSONHelper.Dseriallize<JwtEntity>(paloadStr);
+                        return jwtEntity;
                     }
                     else
                     {
-                        throw new Exception("Authorization值不符合规范");
+                        throw new Exception("无法识别的Authorization类型");
                     }
                 }
-                catch (Exception ex)
+                else
                 {
-                    throw ex;
+                    throw new Exception("Authorization值不符合规范");
                 }
             }
             return null;
