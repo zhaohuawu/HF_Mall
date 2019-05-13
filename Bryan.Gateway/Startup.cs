@@ -52,26 +52,26 @@ namespace Bryan.Gateway
             {
                 app.UseDeveloperExceptionPage();
             }
-           
+
             app.UseMiddleware<JwtMiddleware>();
 
             if (!env.IsProduction())
             {
-                var apis = new List<string> { "base", "hfgoods" };
+                var servicesName = Configuration.GetSection("ServicesName").Value.Split(',');
                 app.UseSwagger()
                     .UseSwaggerUI(opt =>
                     {
-                        apis.ForEach(m =>
+                        foreach (var m in servicesName)
                         {
                             opt.SwaggerEndpoint($"/{m}/swagger.json", m);
                             opt.DocExpansion(DocExpansion.None);
-                        });
+                        }
                     });
 
             }
 
             app.UseOcelot().Wait();
         }
-        
+
     }
 }

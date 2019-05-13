@@ -23,6 +23,7 @@ namespace Bryan.WebApi.Controllers
         /// 覆盖返回码redis
         /// </summary>
         /// <returns></returns>
+        [Permission("admin")]
         [HttpPost]
         public async Task<IActionResult> UpdateMsgCodeToRedis()
         {

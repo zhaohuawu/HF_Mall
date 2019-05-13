@@ -21,10 +21,6 @@
       "ServiceName": "hfgoods",
       "LoadBalancerOptions": "LeastConnection",
       "UseServiceDiscovery": true
-      //"AuthenticationOptions": {
-      //  "AuthenticationProviderKey": "Bryan5Wukll8jhgs",
-      //  "AllowedScopes": []
-      //}
     }
   ],
   "GlobalConfiguration": {
