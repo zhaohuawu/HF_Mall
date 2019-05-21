@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System;
 using System.IO;
 using System.Linq;
 
@@ -75,17 +76,32 @@ namespace Bryan.MicroService
 
         protected string GetMsgCode(string code)
         {
-            string msg = RedisHelper.HGet(RedisKeysEnum.ReturnCodeHash.GetHFMallKey(), code);
-
-            if (string.IsNullOrEmpty(msg))
+            try
             {
+                string msg = RedisHelper.HGet(RedisKeysEnum.ReturnCodeHash.GetHFMallKey(), code);
+
+                if (string.IsNullOrEmpty(msg))
+                {
+                    var build = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("Config/msgCode.json");
+                    var _msgCode = build.Build();
+                    msg = _msgCode[code.ToString()];
+                    if (!string.IsNullOrEmpty(msg))
+                        RedisHelper.HSet(RedisKeysEnum.ReturnCodeHash.GetHFMallKey(), code, msg);
+                }
+                return msg;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
                 var build = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("Config/msgCode.json");
                 var _msgCode = build.Build();
-                msg = _msgCode[code.ToString()];
-                if (!string.IsNullOrEmpty(msg))
-                    RedisHelper.HSet(RedisKeysEnum.ReturnCodeHash.GetHFMallKey(), code, msg);
+                var msg = _msgCode[code.ToString()];
+                return msg;
             }
-            return msg;
+            finally
+            {
+
+            }
         }
 
     }
