@@ -6,11 +6,13 @@ using Bryan.Common.Repository;
 using System.Collections.Generic;
 using Bryan.BaseService;
 using Bryan.BaseService.Model;
+using System.Threading.Tasks;
 
 namespace Bryan.Test
 {
     class Program
     {
+        private static bool _noPayFlag = true; //抽奖团标示
         static void Main(string[] args)
         {
             WordsHelper.why_pinyin = 1;
@@ -25,10 +27,45 @@ namespace Bryan.Test
 
             //var kkList = new List<string>() { "kkk", "kkk", "kkk" };
 
-            Console.WriteLine(Enum.IsDefined(typeof(UploadStatusEnum), 1));
-            Console.WriteLine(Enum.IsDefined(typeof(UploadStatusEnum), "1"));
-            Console.WriteLine(Enum.IsDefined(typeof(UploadStatusEnum), "可删除")); 
-            
+            //Console.WriteLine(Enum.IsDefined(typeof(UploadStatusEnum), 1));
+            //Console.WriteLine(Enum.IsDefined(typeof(UploadStatusEnum), "1"));
+            //Console.WriteLine(Enum.IsDefined(typeof(UploadStatusEnum), "可删除"));
+
+            var list = new List<int> { 1, 2, 3, 4, 5, 6, 7 };
+            Parallel.ForEach(list, async item =>
+            {
+                if (_noPayFlag)
+                {
+                    _noPayFlag = false;
+                    Console.WriteLine(_noPayFlag);
+                    try
+                    {
+
+                        for (int i = 0; i < 10000; i++)
+                        {
+                            await Task.Run(() =>
+                            {
+                                Console.WriteLine(i);
+                            });
+                        }
+                        //_noPayFlag = true;
+                        Console.WriteLine("KK");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"处理最后5分钟还未支付的订单失败：{ex.Message}");
+                    }
+                    finally
+                    {
+                        _noPayFlag = true;
+                        Console.WriteLine(_noPayFlag);
+
+                    }
+                }
+            });
+
+
+
             var user = new Sys_User();
             //user.HeadImgUrl = "sgdsg";
 
