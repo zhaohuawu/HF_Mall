@@ -106,6 +106,7 @@ namespace Bryan.MicroService
         {
             MicroServiceExtension.UseMicroService(app, env, lifetime, systemConfig);
             //app.UseCors("AllowDomain");
+            app.UseMiddleware<PermissionMiddleware>();
             app.UseMiddleware<ExceptionMiddleware>();
             return app;
         }

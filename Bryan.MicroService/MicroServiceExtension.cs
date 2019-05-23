@@ -63,49 +63,51 @@ namespace Bryan.MicroService
             string serviceId = $" {serviceInfo.Name}-{serviceInfo.LocalAddress}";
             string address = serviceInfo.LocalAddress.Split(new char[] { ':' }, StringSplitOptions.None)[0];
             string s = serviceInfo.LocalAddress.Split(new char[] { ':' }, StringSplitOptions.None)[1];
-            using (ConsulClient consulClient = new ConsulClient(x =>
+            if (!string.IsNullOrEmpty(serviceInfo.ServiceDiscoveryAddress))
             {
-                x.Address = new Uri(serviceInfo.ServiceDiscoveryAddress);
-            }))
-            {
-                var agentServiceRegistration = new AgentServiceRegistration
-                {
-                    Address = address,
-                    Port = int.Parse(s),
-                    ID = serviceId,
-                    Name = serviceInfo.Name,
-                    Check = new AgentServiceCheck
-                    {
-                        DeregisterCriticalServiceAfter = new TimeSpan?(TimeSpan.FromSeconds(5.0)),
-                        HTTP = "http://" + serviceInfo.LocalAddress + "/healthcheck",
-                        Interval = new TimeSpan?(TimeSpan.FromSeconds(2.0)),
-                        Timeout = new TimeSpan?(TimeSpan.FromSeconds(1.0))
-                    }
-                };
-                agentServiceRegistration.Tags = new string[]
-                {
-                    serviceInfo.DisplayName
-                };
-                consulClient.Agent.ServiceRegister(agentServiceRegistration, default(CancellationToken)).Wait();
-            }
-            lifetime.ApplicationStopped.Register(() =>
-            {
-                using (ConsulClient consulClient2 = new ConsulClient(x =>
+                using (ConsulClient consulClient = new ConsulClient(x =>
                 {
                     x.Address = new Uri(serviceInfo.ServiceDiscoveryAddress);
                 }))
                 {
-                    consulClient2.Agent.ServiceDeregister(serviceId, default(CancellationToken)).Wait();
+                    var agentServiceRegistration = new AgentServiceRegistration
+                    {
+                        Address = address,
+                        Port = int.Parse(s),
+                        ID = serviceId,
+                        Name = serviceInfo.Name,
+                        Check = new AgentServiceCheck
+                        {
+                            DeregisterCriticalServiceAfter = new TimeSpan?(TimeSpan.FromSeconds(5.0)),
+                            HTTP = "http://" + serviceInfo.LocalAddress + "/healthcheck",
+                            Interval = new TimeSpan?(TimeSpan.FromSeconds(2.0)),
+                            Timeout = new TimeSpan?(TimeSpan.FromSeconds(1.0))
+                        }
+                    };
+                    agentServiceRegistration.Tags = new string[]
+                    {
+                    serviceInfo.DisplayName
+                    };
+                    consulClient.Agent.ServiceRegister(agentServiceRegistration, default(CancellationToken)).Wait();
                 }
-            });
-            app.Map("/healthcheck", delegate (IApplicationBuilder ab)
-            {
-                ab.Run(async delegate (HttpContext context)
+                lifetime.ApplicationStopped.Register(() =>
                 {
-                    await context.Response.WriteAsync("ok", default(CancellationToken));
+                    using (ConsulClient consulClient2 = new ConsulClient(x =>
+                    {
+                        x.Address = new Uri(serviceInfo.ServiceDiscoveryAddress);
+                    }))
+                    {
+                        consulClient2.Agent.ServiceDeregister(serviceId, default(CancellationToken)).Wait();
+                    }
                 });
-            });
-
+                app.Map("/healthcheck", delegate (IApplicationBuilder ab)
+                {
+                    ab.Run(async delegate (HttpContext context)
+                    {
+                        await context.Response.WriteAsync("ok", default(CancellationToken));
+                    });
+                });
+            }
             if (!env.IsProduction())
             {
                 app.UseSwagger(opt =>

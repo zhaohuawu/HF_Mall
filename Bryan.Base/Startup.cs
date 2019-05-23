@@ -38,7 +38,7 @@ namespace Bryan.WebApi
             //宿主机物理网卡地址
             config.LocalAddress = HttpContextExtension.GetLocalIP() + ":" + Configuration.GetSection("ServiceAddress").Value.Split(':')[1];
             //服务发现地址
-            config.ServiceDiscoveryAddress = Configuration.GetSection("DCAddress").Value;
+            //config.ServiceDiscoveryAddress = Configuration.GetSection("DCAddress").Value;
             config.RedisConnectionString = Configuration.GetConnectionString("Redis_Hfmall");
             config.RedisDefaultKey = Configuration.GetConnectionString("RedisDafaultKey");
             config.JwtSettings = Configuration.GetSection("JwtSettings").Get<JwtSettings>();
