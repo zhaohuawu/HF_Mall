@@ -1,31 +1,32 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using Volo.Abp.Domain.Entities.Auditing;
 
-namespace HF.GoodsService.Models
+namespace HF.Goods.Domain.DomainModel
 {
     ///<summary>
     ///商品信息
     ///</summary>
-    public partial class Gd_Goods
+    [Table("gd_goods")]
+    public partial class Gd_Goods : FullAuditedAggregateRoot<Guid>
     {
-        public Gd_Goods()
-        {
-
-
-        }
-        /// <summary>
-        /// Desc:商品主键（G+门店简称+商品类目简称+创建日期+时分秒+当天该门店增加的商品数量）
-        /// Default:
-        /// Nullable:False
-        /// </summary>           
-        public string Id { get; set; }
+        ///// <summary>
+        ///// Desc:商品主键（G+门店简称+商品类目简称+创建日期+时分秒+当天该门店增加的商品数量）
+        ///// Default:
+        ///// Nullable:False
+        ///// </summary>           
+        //public override string Id { get; set; }
 
         /// <summary>
         /// Desc:商品状态：1暂存，2删除，3审核驳回，5审核中，10通过审核
         /// Default:1
         /// Nullable:False
         /// </summary>           
+        [Required]
+        [Range(1, 10)]
         public int Status { get; set; }
 
         /// <summary>

@@ -60,3 +60,9 @@
 /HF.GoodsService/obj
 /项目相关/consul.exe
 /Bryan.Base/Logs
+/HF.Goods.Domain/bin/Debug/netstandard2.0
+/HF.Goods.Domain/obj
+/HF.Goods.Domain.Shared/bin/Debug/netstandard2.0
+/HF.Goods.Domain.Shared/obj
+/HF.Goods.EntityFrameworkCore/bin/Debug/netstandard2.0
+/HF.Goods.EntityFrameworkCore/obj

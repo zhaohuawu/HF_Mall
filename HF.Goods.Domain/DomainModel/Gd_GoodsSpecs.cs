@@ -2,14 +2,14 @@
 using System.Linq;
 using System.Text;
 
-namespace HF.GoodsService.Models
+namespace HF.Goods.Domain.DomainModel
 {
     ///<summary>
-    ///商品图片
+    ///商品规格
     ///</summary>
-    public partial class Gd_GoodsImg
+    public partial class Gd_GoodsSpecs
     {
-        public Gd_GoodsImg()
+        public Gd_GoodsSpecs()
         {
 
 
@@ -29,32 +29,25 @@ namespace HF.GoodsService.Models
         public string GoodsId { get; set; }
 
         /// <summary>
-        /// Desc:图片类型
-        /// Default:0
-        /// Nullable:False
-        /// </summary>           
-        public int TypeId { get; set; }
-
-        /// <summary>
-        /// Desc:上传文件ID（sys_uploadfile主键）
-        /// Default:0
-        /// Nullable:False
-        /// </summary>           
-        public int UploadFileId { get; set; }
-
-        /// <summary>
-        /// Desc:排序
-        /// Default:0
-        /// Nullable:False
-        /// </summary>           
-        public int Orders { get; set; }
-
-        /// <summary>
-        /// Desc:
+        /// Desc:商品规格json数据，如：{"颜色":"金色","内存":"32G"}
         /// Default:
         /// Nullable:False
         /// </summary>           
-        public string ImgUrl { get; set; }
+        public string SpecsJosn { get; set; }
+
+        /// <summary>
+        /// Desc:规格库存
+        /// Default:0
+        /// Nullable:False
+        /// </summary>           
+        public int Stock { get; set; }
+
+        /// <summary>
+        /// Desc:规格缩略图
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public string SkuImgUrl { get; set; }
 
         /// <summary>
         /// Desc:创建时间
@@ -64,7 +57,21 @@ namespace HF.GoodsService.Models
         public DateTime CrtDate { get; set; }
 
         /// <summary>
-        /// Desc:是否删除
+        /// Desc:修改日期
+        /// Default:
+        /// Nullable:True
+        /// </summary>           
+        public DateTime? ModifyDate { get; set; }
+
+        /// <summary>
+        /// Desc:规格价格
+        /// Default:0.0000
+        /// Nullable:False
+        /// </summary>           
+        public decimal Price { get; set; }
+
+        /// <summary>
+        /// Desc:
         /// Default:0
         /// Nullable:False
         /// </summary>           
