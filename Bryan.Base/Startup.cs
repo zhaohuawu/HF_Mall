@@ -12,14 +12,14 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Bryan.Common;
-using Bryan.WebApi.Models.AppSettings;
+using Bryan.Base.Models.AppSettings;
 using Bryan.MicroService.Jwt;
 using Microsoft.Extensions.Logging;
 using Bryan.Common.Extension;
 using System.Reflection;
 using Bryan.MicroService;
 
-namespace Bryan.WebApi
+namespace Bryan.Base
 {
     public class Startup
     {

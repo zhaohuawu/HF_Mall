@@ -4,14 +4,14 @@
         <name>Bryan.Base</name>
     </assembly>
     <members>
-        <member name="M:Bryan.WebApi.Common.Encrypt.EncryptPsw(System.String)">
+        <member name="M:Bryan.Base.Common.Encrypt.EncryptPsw(System.String)">
             <summary>
             注册密码加密
             </summary>
             <param name="password"></param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Common.Util.MenuTree(Bryan.WebApi.Models.SysRole.ReturnMenuTree,System.Collections.Generic.List{Bryan.BaseService.Model.Sys_AdminMenu},System.Int32)">
+        <member name="M:Bryan.Base.Common.Util.MenuTree(Bryan.Base.Models.SysRole.ReturnMenuTree,System.Collections.Generic.List{Bryan.BaseService.Model.Sys_AdminMenu},System.Int32)">
             <summary>
             菜单递归
             </summary>
@@ -19,7 +19,7 @@
             <param name="list"></param>
             <param name="pid"></param>
         </member>
-        <member name="M:Bryan.WebApi.Common.Util.RoleMenuTree(Bryan.WebApi.Models.SysRole.ReturnRoleMenuTree,System.Collections.Generic.List{Bryan.BaseService.Model.Sys_AdminMenu},System.Int32,System.Collections.Generic.List{Bryan.BaseService.Model.Sys_AdminMenuBtn})">
+        <member name="M:Bryan.Base.Common.Util.RoleMenuTree(Bryan.Base.Models.SysRole.ReturnRoleMenuTree,System.Collections.Generic.List{Bryan.BaseService.Model.Sys_AdminMenu},System.Int32,System.Collections.Generic.List{Bryan.BaseService.Model.Sys_AdminMenuBtn})">
             <summary>
             菜单递归
             </summary>
@@ -28,7 +28,7 @@
             <param name="pid"></param>
             <param name="btnList"></param>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.LoginController.CreateToken(System.String,System.String)">
+        <member name="M:Bryan.Base.Controllers.LoginController.CreateToken(System.String,System.String)">
             <summary>
             生成token
             </summary>
@@ -36,13 +36,13 @@
             <param name="password">密码</param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.RedisController.UpdateMsgCodeToRedis">
+        <member name="M:Bryan.Base.Controllers.RedisController.UpdateMsgCodeToRedis">
             <summary>
             覆盖返回码redis
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysOptionController.GetOptionList(System.Int32,System.Int32,System.String)">
+        <member name="M:Bryan.Base.Controllers.SysOptionController.GetOptionList(System.Int32,System.Int32,System.String)">
             <summary>
             获取数据字典父列表
             </summary>
@@ -51,7 +51,7 @@
             <param name="GroupName"></param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysOptionController.GetOptionListByKey(System.Int32,System.Int32,System.String,System.String,System.Int32)">
+        <member name="M:Bryan.Base.Controllers.SysOptionController.GetOptionListByKey(System.Int32,System.Int32,System.String,System.String,System.Int32)">
             <summary>
             获取数据字典子列表
             </summary>
@@ -62,35 +62,35 @@
             <param name="IsHide"></param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysOptionController.GetOption(System.Int32)">
+        <member name="M:Bryan.Base.Controllers.SysOptionController.GetOption(System.Int32)">
             <summary>
             获取单个数据字典
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysOptionController.AddOption(Bryan.WebApi.Models.SysOption.FromAddSysOption)">
+        <member name="M:Bryan.Base.Controllers.SysOptionController.AddOption(Bryan.Base.Models.SysOption.FromAddSysOption)">
             <summary>
             添加字典
             </summary>
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysOptionController.UpdateOptionName(Bryan.WebApi.Models.SysOption.FromUpdateSysOption)">
+        <member name="M:Bryan.Base.Controllers.SysOptionController.UpdateOptionName(Bryan.Base.Models.SysOption.FromUpdateSysOption)">
             <summary>
             修改字典名
             </summary>
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysOptionController.UpdateOption(Bryan.WebApi.Models.SysOption.FromAddSysOption)">
+        <member name="M:Bryan.Base.Controllers.SysOptionController.UpdateOption(Bryan.Base.Models.SysOption.FromAddSysOption)">
             <summary>
             修改字典
             </summary>
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysOptionController.UpdateOptionOrders(System.Int32,System.Int32)">
+        <member name="M:Bryan.Base.Controllers.SysOptionController.UpdateOptionOrders(System.Int32,System.Int32)">
             <summary>
             改变字典排序
             </summary>
@@ -98,13 +98,13 @@
             <param name="orders">将移动到的排序位置</param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysRoleController.GetAllRolesList">
+        <member name="M:Bryan.Base.Controllers.SysRoleController.GetAllRolesList">
             <summary>
             获取所有角色列表(禁用的排除)
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysRoleController.GetAdminRolesList(System.Int32,System.Int32,System.Int32,System.String)">
+        <member name="M:Bryan.Base.Controllers.SysRoleController.GetAdminRolesList(System.Int32,System.Int32,System.Int32,System.String)">
             <summary>
             获取角色列表
             </summary>
@@ -114,61 +114,61 @@
             <param name="IsForbidden">是否禁用，0：全部，1：正常，5：禁用</param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysRoleController.GetRolePerList(System.Int32)">
+        <member name="M:Bryan.Base.Controllers.SysRoleController.GetRolePerList(System.Int32)">
             <summary>
             根据角色获取权限
             </summary>
             <param name="roleId"></param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysRoleController.AddRole(Bryan.WebApi.Models.SysRole.FromAddRole)">
+        <member name="M:Bryan.Base.Controllers.SysRoleController.AddRole(Bryan.Base.Models.SysRole.FromAddRole)">
             <summary>
             添加角色并且配置权限
             </summary>
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysRoleController.ForbiddenRole(System.Int32)">
+        <member name="M:Bryan.Base.Controllers.SysRoleController.ForbiddenRole(System.Int32)">
             <summary>
             禁用角色
             </summary>
             <param name="roleId">角色ID</param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysRoleController.UpdateRole(Bryan.WebApi.Models.SysRole.FromUpdateRole)">
+        <member name="M:Bryan.Base.Controllers.SysRoleController.UpdateRole(Bryan.Base.Models.SysRole.FromUpdateRole)">
             <summary>
             更新角色和菜单
             </summary>
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysRoleController.GetMenuList">
+        <member name="M:Bryan.Base.Controllers.SysRoleController.GetMenuList">
             <summary>
             获取全部菜单
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysRoleController.GetMenuListFromRole">
+        <member name="M:Bryan.Base.Controllers.SysRoleController.GetMenuListFromRole">
             <summary>
             获取全部菜单
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysRoleController.GetMenu(System.Int32)">
+        <member name="M:Bryan.Base.Controllers.SysRoleController.GetMenu(System.Int32)">
             <summary>
             菜单id获取单个菜单
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysRoleController.AddMenu(Bryan.WebApi.Models.SysRole.FromAddMenu)">
+        <member name="M:Bryan.Base.Controllers.SysRoleController.AddMenu(Bryan.Base.Models.SysRole.FromAddMenu)">
             <summary>
             添加菜单
             </summary>
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysRoleController.UpdateMenuOrders(System.Int32,System.Int32)">
+        <member name="M:Bryan.Base.Controllers.SysRoleController.UpdateMenuOrders(System.Int32,System.Int32)">
             <summary>
             改变菜单排序
             </summary>
@@ -176,35 +176,35 @@
             <param name="orders">将移动到的排序位置</param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysRoleController.GetMenuBtnList(System.Int32)">
+        <member name="M:Bryan.Base.Controllers.SysRoleController.GetMenuBtnList(System.Int32)">
             <summary>
             获取菜单中的按钮或资源
             </summary>
             <param name="menuId">菜单ID</param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysRoleController.GetMenuBtnById(System.Int32)">
+        <member name="M:Bryan.Base.Controllers.SysRoleController.GetMenuBtnById(System.Int32)">
             <summary>
             通过ID获取菜单中的单个资源或按钮
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysRoleController.AddMenuBtn(Bryan.WebApi.Models.SysRole.FromAddMenuBtn)">
+        <member name="M:Bryan.Base.Controllers.SysRoleController.AddMenuBtn(Bryan.Base.Models.SysRole.FromAddMenuBtn)">
             <summary>
             添加菜单按钮或资源
             </summary>
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysRoleController.DeleteMenuBtn(System.Int32)">
+        <member name="M:Bryan.Base.Controllers.SysRoleController.DeleteMenuBtn(System.Int32)">
             <summary>
             根据Id删除菜单按钮或资源
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysRoleController.UpdateRolePerToRedis(System.Int32,System.Int32,System.Int32)">
+        <member name="M:Bryan.Base.Controllers.SysRoleController.UpdateRolePerToRedis(System.Int32,System.Int32,System.Int32)">
             <summary>
             添加或修改账号角色列表Redis
             </summary>
@@ -213,59 +213,59 @@
             <param name="btnId"></param>
             <returns></returns>
         </member>
-        <member name="T:Bryan.WebApi.Controllers.SysUserController">
+        <member name="T:Bryan.Base.Controllers.SysUserController">
             <summary>
             用户api
             </summary>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysUserController.GetUserById(System.Int32)">
+        <member name="M:Bryan.Base.Controllers.SysUserController.GetUserById(System.Int32)">
             <summary>
             查询账号（根据用户ID）
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysUserController.GetAllUser">
+        <member name="M:Bryan.Base.Controllers.SysUserController.GetAllUser">
             <summary>
             获取所有用户
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysUserController.GetPageList(Bryan.WebApi.Models.SysUser.FromGetSysUser)">
+        <member name="M:Bryan.Base.Controllers.SysUserController.GetPageList(Bryan.Base.Models.SysUser.FromGetSysUser)">
             <summary>
             分页获取账号列表
             </summary>
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysUserController.AddSysUser(Bryan.WebApi.Models.SysUser.FromAddSysUser)">
+        <member name="M:Bryan.Base.Controllers.SysUserController.AddSysUser(Bryan.Base.Models.SysUser.FromAddSysUser)">
             <summary>
             注册账号
             </summary>
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysUserController.FrobiddenSysUser(System.Int32)">
+        <member name="M:Bryan.Base.Controllers.SysUserController.FrobiddenSysUser(System.Int32)">
             <summary>
             修改账号状态
             </summary>
             <param name="userId"></param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysUserController.GetUserRolesList(System.Int32)">
+        <member name="M:Bryan.Base.Controllers.SysUserController.GetUserRolesList(System.Int32)">
             <summary>
             获取所有角色列表
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysUserController.UpdateUserRole(Bryan.WebApi.Models.SysUser.FromUpdateSysUser)">
+        <member name="M:Bryan.Base.Controllers.SysUserController.UpdateUserRole(Bryan.Base.Models.SysUser.FromUpdateSysUser)">
             <summary>
             更新角色和账号
             </summary>
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.SysUserController.UpdateUserRoleToRedis(System.Int32,System.Int32,System.Int32)">
+        <member name="M:Bryan.Base.Controllers.SysUserController.UpdateUserRoleToRedis(System.Int32,System.Int32,System.Int32)">
             <summary>
             添加或修改账号角色列表Redis
             </summary>
@@ -274,39 +274,39 @@
             <param name="roleId"></param>
             <returns></returns>
         </member>
-        <member name="T:Bryan.WebApi.Controllers.TestController">
+        <member name="T:Bryan.Base.Controllers.TestController">
             <summary>
             测试
             </summary>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.TestController.Get(System.String)">
+        <member name="M:Bryan.Base.Controllers.TestController.Get(System.String)">
             <summary>
             测试代码sssss
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.TestController.PostParams(Newtonsoft.Json.Linq.JObject)">
+        <member name="M:Bryan.Base.Controllers.TestController.PostParams(Newtonsoft.Json.Linq.JObject)">
             <summary>
             测试多参数返回json {"code":"000000","paramStr":"kjk,kllk"}
             </summary>
             <param name="obj">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.TestController.PostParamsFromForm(Newtonsoft.Json.Linq.JObject)">
+        <member name="M:Bryan.Base.Controllers.TestController.PostParamsFromForm(Newtonsoft.Json.Linq.JObject)">
             <summary>
             测试多参数返回json {"code":"000000","paramStr":"kjk,kllk"}
             </summary>
             <param name="obj">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.TestController.PostTest(System.String)">
+        <member name="M:Bryan.Base.Controllers.TestController.PostTest(System.String)">
             <summary>
             测试多参数返回json {"code":"000000","paramStr":"kjk,kllk"}
             </summary>
             <param name="obj">请求参数</param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.TestController.PostTestTow(System.String,System.String)">
+        <member name="M:Bryan.Base.Controllers.TestController.PostTestTow(System.String,System.String)">
             <summary>
             双FromBody
             </summary>
@@ -314,523 +314,523 @@
             <param name="paramStr"></param>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.UploadController.UploadAvatar">
+        <member name="M:Bryan.Base.Controllers.UploadController.UploadAvatar">
             <summary>
             上传头像
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Bryan.WebApi.Controllers.UploadController.DeleteUploadStatusAsync(System.String)">
+        <member name="M:Bryan.Base.Controllers.UploadController.DeleteUploadStatusAsync(System.String)">
             <summary>
             修改图片状态为可删除
             </summary>
             <param name="filePath">图片路径</param>
             <returns></returns>
         </member>
-        <member name="T:Bryan.WebApi.Models.AppSettings.AppSettings">
+        <member name="T:Bryan.Base.Models.AppSettings.AppSettings">
             <summary>
             基本参数
             </summary>
         </member>
-        <member name="T:Bryan.WebApi.Models.EnumLogAdminType">
+        <member name="T:Bryan.Base.Models.EnumLogAdminType">
             <summary>
             后台操作日志
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.ReturnUpload.url">
+        <member name="P:Bryan.Base.Models.ReturnUpload.url">
             <summary>
             上传文件路径
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.ReturnUpload.uploadId">
+        <member name="P:Bryan.Base.Models.ReturnUpload.uploadId">
             <summary>
             上传文件Id
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysOption.FromAddSysOption.GroupName">
+        <member name="P:Bryan.Base.Models.SysOption.FromAddSysOption.GroupName">
             <summary>
             Desc:参数名称
             Default:
             Nullable:False
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysOption.FromAddSysOption.GroupKey">
+        <member name="P:Bryan.Base.Models.SysOption.FromAddSysOption.GroupKey">
             <summary>
             Desc:参数关键词
             Default:
             Nullable:False
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysOption.FromAddSysOption.EnumCode">
+        <member name="P:Bryan.Base.Models.SysOption.FromAddSysOption.EnumCode">
             <summary>
             Desc:参数编码
             Default:0
             Nullable:False
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysOption.FromAddSysOption.EnumName">
+        <member name="P:Bryan.Base.Models.SysOption.FromAddSysOption.EnumName">
             <summary>
             Desc:参数编码类型名
             Default:
             Nullable:False
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysOption.FromAddSysOption.EnumLabel">
+        <member name="P:Bryan.Base.Models.SysOption.FromAddSysOption.EnumLabel">
             <summary>
             Desc:参数编码类型描述
             Default:
             Nullable:True
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysOption.FromAddSysOption.Remark">
+        <member name="P:Bryan.Base.Models.SysOption.FromAddSysOption.Remark">
             <summary>
             Desc:参数编码类型描述
             Default:
             Nullable:True
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysOption.FromAddSysOption.Orders">
+        <member name="P:Bryan.Base.Models.SysOption.FromAddSysOption.Orders">
             <summary>
             Desc:排序
             Default:0
             Nullable:False
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysOption.FromAddSysOption.IsHide">
+        <member name="P:Bryan.Base.Models.SysOption.FromAddSysOption.IsHide">
             <summary>
             是否隐藏
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysOption.FromAddSysOption.Levels">
+        <member name="P:Bryan.Base.Models.SysOption.FromAddSysOption.Levels">
             <summary>
             Desc:级别
             Default:1
             Nullable:False
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysOption.FromUpdateSysOption.GroupName">
+        <member name="P:Bryan.Base.Models.SysOption.FromUpdateSysOption.GroupName">
             <summary>
             Desc:参数名称
             Default:
             Nullable:False
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysOption.FromUpdateSysOption.GroupKey">
+        <member name="P:Bryan.Base.Models.SysOption.FromUpdateSysOption.GroupKey">
             <summary>
             Desc:参数关键词
             Default:
             Nullable:False
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysOption.FromUpdateSysOption.Remark">
+        <member name="P:Bryan.Base.Models.SysOption.FromUpdateSysOption.Remark">
             <summary>
             Desc:参数编码类型描述
             Default:
             Nullable:True
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysOption.FromUpdateSysOption.IsHide">
+        <member name="P:Bryan.Base.Models.SysOption.FromUpdateSysOption.IsHide">
             <summary>
             是否隐藏
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysOption.FromUpdateSysOption.Levels">
+        <member name="P:Bryan.Base.Models.SysOption.FromUpdateSysOption.Levels">
             <summary>
             Desc:级别
             Default:1
             Nullable:False
             </summary>           
         </member>
-        <member name="T:Bryan.WebApi.Models.SysRole.FromAddMenu">
+        <member name="T:Bryan.Base.Models.SysRole.FromAddMenu">
             <summary>
             添加菜单参数
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromAddMenu.Id">
+        <member name="P:Bryan.Base.Models.SysRole.FromAddMenu.Id">
             <summary>
             菜单ID
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromAddMenu.Pid">
+        <member name="P:Bryan.Base.Models.SysRole.FromAddMenu.Pid">
             <summary>
             父菜单ID
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromAddMenu.Tag">
+        <member name="P:Bryan.Base.Models.SysRole.FromAddMenu.Tag">
             <summary>
             标识字符串
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromAddMenu.MenuName">
+        <member name="P:Bryan.Base.Models.SysRole.FromAddMenu.MenuName">
             <summary>
             菜单名
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromAddMenu.Icon">
+        <member name="P:Bryan.Base.Models.SysRole.FromAddMenu.Icon">
             <summary>
             icon图标
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromAddMenu.Level">
+        <member name="P:Bryan.Base.Models.SysRole.FromAddMenu.Level">
             <summary>
             菜单级别
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromAddMenu.Orders">
+        <member name="P:Bryan.Base.Models.SysRole.FromAddMenu.Orders">
             <summary>
             排序
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromAddMenu.Url">
+        <member name="P:Bryan.Base.Models.SysRole.FromAddMenu.Url">
             <summary>
             菜单路径
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromAddMenu.Status">
+        <member name="P:Bryan.Base.Models.SysRole.FromAddMenu.Status">
             <summary>
             是否禁用，0:启用，1:禁用
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromAddMenu.IsShow">
+        <member name="P:Bryan.Base.Models.SysRole.FromAddMenu.IsShow">
             <summary>
             Desc:是否显示（0:显示,1:隐藏）
             Default:1
             Nullable:False
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromAddMenuBtn.MenuId">
+        <member name="P:Bryan.Base.Models.SysRole.FromAddMenuBtn.MenuId">
             <summary>
             Desc:菜单Id
             Default:
             Nullable:False
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromAddMenuBtn.Code">
+        <member name="P:Bryan.Base.Models.SysRole.FromAddMenuBtn.Code">
             <summary>
             Desc:按钮或资源编码
             Default:
             Nullable:False
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromAddMenuBtn.Type">
+        <member name="P:Bryan.Base.Models.SysRole.FromAddMenuBtn.Type">
             <summary>
             Desc:按钮或资源类型
             Default:
             Nullable:False
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromAddMenuBtn.Name">
+        <member name="P:Bryan.Base.Models.SysRole.FromAddMenuBtn.Name">
             <summary>
             Desc:按钮或资源名称
             Default:
             Nullable:False
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromAddMenuBtn.Description">
+        <member name="P:Bryan.Base.Models.SysRole.FromAddMenuBtn.Description">
             <summary>
             Desc:描述
             Default:
             Nullable:True
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromAddMenuBtn.Url">
+        <member name="P:Bryan.Base.Models.SysRole.FromAddMenuBtn.Url">
             <summary>
             Desc:url或其他
             Default:
             Nullable:True
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromAddMenuBtn.IsForbidden">
+        <member name="P:Bryan.Base.Models.SysRole.FromAddMenuBtn.IsForbidden">
             <summary>
             Desc:是否禁用，0:启用，1:禁用
             Default:0
             Nullable:False
             </summary>           
         </member>
-        <member name="T:Bryan.WebApi.Models.SysRole.FromAddRole">
+        <member name="T:Bryan.Base.Models.SysRole.FromAddRole">
             <summary>
             添加角色参数
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromAddRole.RoleId">
+        <member name="P:Bryan.Base.Models.SysRole.FromAddRole.RoleId">
             <summary>
             角色Id
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromAddRole.RoleName">
+        <member name="P:Bryan.Base.Models.SysRole.FromAddRole.RoleName">
             <summary>
             Desc:角色名称
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromAddRole.Remark">
+        <member name="P:Bryan.Base.Models.SysRole.FromAddRole.Remark">
             <summary>
             Desc:角色描述
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromAddRole.IsForbidden">
+        <member name="P:Bryan.Base.Models.SysRole.FromAddRole.IsForbidden">
             <summary>
             是否禁用，0：正常，1：禁用
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromAddRole.MenuList">
+        <member name="P:Bryan.Base.Models.SysRole.FromAddRole.MenuList">
             <summary>
             角色权限下的菜单Id列表
             </summary>
         </member>
-        <member name="T:Bryan.WebApi.Models.SysRole.FromUpdateRole">
+        <member name="T:Bryan.Base.Models.SysRole.FromUpdateRole">
             <summary>
             更新角色参数
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromUpdateRole.RoleId">
+        <member name="P:Bryan.Base.Models.SysRole.FromUpdateRole.RoleId">
             <summary>
             角色Id
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromUpdateRole.RoleName">
+        <member name="P:Bryan.Base.Models.SysRole.FromUpdateRole.RoleName">
             <summary>
             角色名称
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromUpdateRole.IsForbidden">
+        <member name="P:Bryan.Base.Models.SysRole.FromUpdateRole.IsForbidden">
             <summary>
             是否禁用，0：正常，1：禁用
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromUpdateRole.Remark">
+        <member name="P:Bryan.Base.Models.SysRole.FromUpdateRole.Remark">
             <summary>
             角色描述
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.FromUpdateRole.MenuList">
+        <member name="P:Bryan.Base.Models.SysRole.FromUpdateRole.MenuList">
             <summary>
             角色权限下的菜单Id列表
             </summary>
         </member>
-        <member name="T:Bryan.WebApi.Models.SysRole.ReturnMenuTree">
+        <member name="T:Bryan.Base.Models.SysRole.ReturnMenuTree">
             <summary>
             菜单管理中的菜单树
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.ReturnMenuTree.Id">
+        <member name="P:Bryan.Base.Models.SysRole.ReturnMenuTree.Id">
             <summary>
             菜单主键
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.ReturnMenuTree.MenuName">
+        <member name="P:Bryan.Base.Models.SysRole.ReturnMenuTree.MenuName">
             <summary>
             菜单名
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.ReturnMenuTree.Children">
+        <member name="P:Bryan.Base.Models.SysRole.ReturnMenuTree.Children">
             <summary>
             子菜单列表
             </summary>
         </member>
-        <member name="T:Bryan.WebApi.Models.SysRole.ReturnRoleMenuTree">
+        <member name="T:Bryan.Base.Models.SysRole.ReturnRoleMenuTree">
             <summary>
             添加角色中的授权页面菜单树
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.ReturnRoleMenuTree.Id">
+        <member name="P:Bryan.Base.Models.SysRole.ReturnRoleMenuTree.Id">
             <summary>
             菜单主键
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.ReturnRoleMenuTree.MenuName">
+        <member name="P:Bryan.Base.Models.SysRole.ReturnRoleMenuTree.MenuName">
             <summary>
             菜单名
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.ReturnRoleMenuTree.Type">
+        <member name="P:Bryan.Base.Models.SysRole.ReturnRoleMenuTree.Type">
             <summary>
             菜单类型
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.ReturnRoleMenuTree.Children">
+        <member name="P:Bryan.Base.Models.SysRole.ReturnRoleMenuTree.Children">
             <summary>
             子菜单列表
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.ReturnRoleMenuTree.Disabled">
+        <member name="P:Bryan.Base.Models.SysRole.ReturnRoleMenuTree.Disabled">
             <summary>
             是否禁止点击
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.RoleMenu.PerId">
+        <member name="P:Bryan.Base.Models.SysRole.RoleMenu.PerId">
             <summary>
             角色菜单权限ID（添加时0，删除时大于0）
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.RoleMenu.MenuId">
+        <member name="P:Bryan.Base.Models.SysRole.RoleMenu.MenuId">
             <summary>
             菜单ID
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.RoleMenu.Status">
+        <member name="P:Bryan.Base.Models.SysRole.RoleMenu.Status">
             <summary>
             是否添加，0：删除，1：添加，2：更新
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.RoleMenu.BtnJson">
+        <member name="P:Bryan.Base.Models.SysRole.RoleMenu.BtnJson">
             <summary>
             菜单按钮json字符串
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.RoleMenu.Type">
+        <member name="P:Bryan.Base.Models.SysRole.RoleMenu.Type">
             <summary>
             菜单类型
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysRole.RoleMenu.CheckStatus">
+        <member name="P:Bryan.Base.Models.SysRole.RoleMenu.CheckStatus">
             <summary>
             选中状态（checkd：选中，half：半选中）
             </summary>
         </member>
-        <member name="T:Bryan.WebApi.Models.SysUser.FromAddSysUser">
+        <member name="T:Bryan.Base.Models.SysUser.FromAddSysUser">
             <summary>
             添加用户参数
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysUser.FromAddSysUser.UserName">
+        <member name="P:Bryan.Base.Models.SysUser.FromAddSysUser.UserName">
             <summary>
             账号名
             Default:
             Nullable:False
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysUser.FromAddSysUser.RealName">
+        <member name="P:Bryan.Base.Models.SysUser.FromAddSysUser.RealName">
             <summary>
             真实姓名
             Default:
             Nullable:True
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysUser.FromAddSysUser.Password">
+        <member name="P:Bryan.Base.Models.SysUser.FromAddSysUser.Password">
             <summary>
             密码
             Default:
             Nullable:False
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysUser.FromAddSysUser.HeadImgUrl">
+        <member name="P:Bryan.Base.Models.SysUser.FromAddSysUser.HeadImgUrl">
             <summary>
             Desc:头像
             Default:
             Nullable:True
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysUser.FromAddSysUser.Sex">
+        <member name="P:Bryan.Base.Models.SysUser.FromAddSysUser.Sex">
             <summary>
             Desc:性别
             Default:0
             Nullable:True
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysUser.FromAddSysUser.Mobile">
+        <member name="P:Bryan.Base.Models.SysUser.FromAddSysUser.Mobile">
             <summary>
             Desc:联系号码
             Default:
             Nullable:True
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysUser.FromAddSysUser.Email">
+        <member name="P:Bryan.Base.Models.SysUser.FromAddSysUser.Email">
             <summary>
             邮箱
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysUser.FromAddSysUser.RoleList">
+        <member name="P:Bryan.Base.Models.SysUser.FromAddSysUser.RoleList">
             <summary>
             角色列表
             Default:1
             Nullable:False
             </summary>           
         </member>
-        <member name="T:Bryan.WebApi.Models.SysUser.FromUpdateSysUser">
+        <member name="T:Bryan.Base.Models.SysUser.FromUpdateSysUser">
             <summary>
             更新用户及用户权限参数
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysUser.FromUpdateSysUser.UserId">
+        <member name="P:Bryan.Base.Models.SysUser.FromUpdateSysUser.UserId">
             <summary>
             账号ID
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysUser.FromUpdateSysUser.UserName">
+        <member name="P:Bryan.Base.Models.SysUser.FromUpdateSysUser.UserName">
             <summary>
             账号名
             Default:
             Nullable:False
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysUser.FromUpdateSysUser.RealName">
+        <member name="P:Bryan.Base.Models.SysUser.FromUpdateSysUser.RealName">
             <summary>
             真实姓名
             Default:
             Nullable:True
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysUser.FromUpdateSysUser.Password">
+        <member name="P:Bryan.Base.Models.SysUser.FromUpdateSysUser.Password">
             <summary>
             密码
             Default:
             Nullable:False
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysUser.FromUpdateSysUser.HeadImgUrl">
+        <member name="P:Bryan.Base.Models.SysUser.FromUpdateSysUser.HeadImgUrl">
             <summary>
             Desc:头像
             Default:
             Nullable:True
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysUser.FromUpdateSysUser.Sex">
+        <member name="P:Bryan.Base.Models.SysUser.FromUpdateSysUser.Sex">
             <summary>
             Desc:性别
             Default:0
             Nullable:True
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysUser.FromUpdateSysUser.Mobile">
+        <member name="P:Bryan.Base.Models.SysUser.FromUpdateSysUser.Mobile">
             <summary>
             Desc:联系号码
             Default:
             Nullable:True
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysUser.FromUpdateSysUser.Email">
+        <member name="P:Bryan.Base.Models.SysUser.FromUpdateSysUser.Email">
             <summary>
             邮箱
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysUser.FromUpdateSysUser.RoleList">
+        <member name="P:Bryan.Base.Models.SysUser.FromUpdateSysUser.RoleList">
             <summary>
             角色列表
             Default:1
             Nullable:False
             </summary>           
         </member>
-        <member name="P:Bryan.WebApi.Models.SysUser.UserRole.UserRoleId">
+        <member name="P:Bryan.Base.Models.SysUser.UserRole.UserRoleId">
             <summary>
             账号角色绑定ID（默认为0，>0为修改或删除）
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysUser.UserRole.RoleId">
+        <member name="P:Bryan.Base.Models.SysUser.UserRole.RoleId">
             <summary>
             角色ID
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.SysUser.UserRole.Status">
+        <member name="P:Bryan.Base.Models.SysUser.UserRole.Status">
             <summary>
             状态（1：添加，2：删除）
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.TestDto.Code">
+        <member name="P:Bryan.Base.Models.TestDto.Code">
             <summary>
             返回code
             </summary>
         </member>
-        <member name="P:Bryan.WebApi.Models.TestDto.Msg">
+        <member name="P:Bryan.Base.Models.TestDto.Msg">
             <summary>
             返回信息
             </summary>

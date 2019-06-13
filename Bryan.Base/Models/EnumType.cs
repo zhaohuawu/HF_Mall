@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Bryan.WebApi.Models
+namespace Bryan.Base.Models
 {
     /// <summary>
     /// 后台操作日志

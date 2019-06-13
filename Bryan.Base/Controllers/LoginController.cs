@@ -11,11 +11,11 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Bryan.BaseService.Model;
 using Microsoft.Extensions.Logging;
-using Bryan.WebApi.Common;
+using Bryan.Base.Common;
 using Bryan.MicroService.Jwt;
 using Bryan.MicroService;
 
-namespace Bryan.WebApi.Controllers
+namespace Bryan.Base.Controllers
 {
     [Authorize]
     [Route("api/[controller]/[action]")]

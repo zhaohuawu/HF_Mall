@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Bryan.WebApi.Models.SysUser
+namespace Bryan.Base.Models.SysUser
 {
     /// <summary>
     /// 更新用户及用户权限参数

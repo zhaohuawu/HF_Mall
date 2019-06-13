@@ -8,11 +8,11 @@ using Bryan.BaseService.Interface;
 using Bryan.Common.Repository;
 using Bryan.Common;
 using Bryan.BaseService.Model;
-using Bryan.WebApi.Models.SysOption;
+using Bryan.Base.Models.SysOption;
 using Microsoft.Extensions.Logging;
 using Bryan.MicroService;
 
-namespace Bryan.WebApi.Controllers
+namespace Bryan.Base.Controllers
 {
     [Authorize]
     [Route("api/[controller]/[action]")]

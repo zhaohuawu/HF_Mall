@@ -4,19 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Bryan.BaseService.Interface;
 using Bryan.BaseService.Model;
-using Bryan.WebApi.Models;
+using Bryan.Base.Models;
 using Bryan.Common;
 using Bryan.Common.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Bryan.WebApi.Models.SysRole;
+using Bryan.Base.Models.SysRole;
 using Bryan.Common.Enums;
 using System.Collections.Concurrent;
 using Microsoft.Extensions.Logging;
 using Bryan.MicroService;
 using Bryan.BaseService.Dto;
 
-namespace Bryan.WebApi.Controllers
+namespace Bryan.Base.Controllers
 {
     [Authorize]
     [Route("api/[controller]/[action]")]

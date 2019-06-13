@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Bryan.WebApi.Models.SysRole
+namespace Bryan.Base.Models.SysRole
 {
     /// <summary>
     /// 添加菜单参数

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Bryan.WebApi.Models;
-using Bryan.WebApi.Models.AppSettings;
+using Bryan.Base.Models;
+using Bryan.Base.Models.AppSettings;
 using Bryan.BaseService.Interface;
 using Bryan.BaseService;
 using Bryan.Common;
@@ -13,7 +13,7 @@ using Microsoft.Extensions.Logging;
 using Bryan.Common.Extension;
 using Bryan.MicroService;
 
-namespace Bryan.WebApi.Controllers
+namespace Bryan.Base.Controllers
 {
     [Authorize]
     [Route("api/[controller]/[action]")]

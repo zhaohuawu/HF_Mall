@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Bryan.WebApi.Models.SysRole
+namespace Bryan.Base.Models.SysRole
 {
     /// <summary>
     /// 添加角色中的授权页面菜单树

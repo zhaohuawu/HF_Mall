@@ -1,11 +1,11 @@
 ﻿using Bryan.BaseService.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
-using Bryan.WebApi.Models;
+using Bryan.Base.Models;
 using Microsoft.Extensions.Logging;
 using Bryan.MicroService;
 
-namespace Bryan.WebApi.Controllers
+namespace Bryan.Base.Controllers
 {
     /// <summary>
     /// 测试

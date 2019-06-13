@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 using Bryan.MicroService;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Bryan.WebApi.Controllers
+namespace Bryan.Base.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]

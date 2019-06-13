@@ -4,21 +4,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using Bryan.BaseService.Interface;
 using Bryan.BaseService.Model;
-using Bryan.WebApi.Models;
+using Bryan.Base.Models;
 using Bryan.Common;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Bryan.Common.Repository;
-using Bryan.WebApi.Models.SysUser;
+using Bryan.Base.Models.SysUser;
 using Bryan.BaseService;
 using Bryan.Common.Enums;
 using Bryan.Common.Extension;
 using System.Collections.Concurrent;
 using Microsoft.Extensions.Logging;
-using Bryan.WebApi.Common;
+using Bryan.Base.Common;
 using Bryan.MicroService;
 
-namespace Bryan.WebApi.Controllers
+namespace Bryan.Base.Controllers
 {
     /// <summary>
     /// 用户api

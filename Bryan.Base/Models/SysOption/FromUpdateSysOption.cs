@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Bryan.WebApi.Models.SysOption
+namespace Bryan.Base.Models.SysOption
 {
     public class FromUpdateSysOption
     {

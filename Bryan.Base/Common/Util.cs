@@ -1,9 +1,9 @@
-﻿using Bryan.WebApi.Models.SysRole;
+﻿using Bryan.Base.Models.SysRole;
 using Bryan.BaseService.Model;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Bryan.WebApi.Common
+namespace Bryan.Base.Common
 {
     public class Util
     {

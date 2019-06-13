@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Bryan.WebApi.Models.AppSettings
+namespace Bryan.Base.Models.AppSettings
 {
     public class UploadSettings
     {
