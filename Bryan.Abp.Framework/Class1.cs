@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HF.Goods.Domain.Shared
+namespace Bryan.Abp.Framework
 {
     public class Class1
     {
