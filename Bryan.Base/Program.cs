@@ -23,7 +23,6 @@ namespace Bryan.Base
                 {
                     log.AddConfiguration(context.Configuration.GetSection("Logging"));
                     log.AddConsole();
-
                 })
                 .UseUrls("http://*:5010")
                 .UseStartup<Startup>();
