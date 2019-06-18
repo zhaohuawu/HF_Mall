@@ -26,6 +26,8 @@ namespace HF.Goods.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
+            var kk = new Domain.DomainModel.Gd_Goods();
+            
             return id.ToSafeString();
         }
 

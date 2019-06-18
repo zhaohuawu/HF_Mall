@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 
-namespace HF.GoodsService.Models
+namespace HF.Goods.Domain.DomainModel
 {
     ///<summary>
     ///商品类目

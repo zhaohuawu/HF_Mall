@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HF.Goods.Application.Contracts\HF.Goods.Application.Contracts.csproj" />
+    <ProjectReference Include="..\HF.Goods.Domain\HF.Goods.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

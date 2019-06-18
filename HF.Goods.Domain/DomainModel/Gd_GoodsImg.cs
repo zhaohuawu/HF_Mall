@@ -2,14 +2,14 @@
 using System.Linq;
 using System.Text;
 
-namespace HF.GoodsService.Models
+namespace HF.Goods.Domain.DomainModel
 {
     ///<summary>
-    ///商品参加的活动
+    ///商品图片
     ///</summary>
-    public partial class Gd_GoodsActivity
+    public partial class Gd_GoodsImg
     {
-        public Gd_GoodsActivity()
+        public Gd_GoodsImg()
         {
 
 
@@ -22,60 +22,53 @@ namespace HF.GoodsService.Models
         public int Id { get; set; }
 
         /// <summary>
-        /// Desc:商品ID
+        /// Desc:商品Id
         /// Default:
         /// Nullable:False
         /// </summary>           
         public string GoodsId { get; set; }
 
         /// <summary>
-        /// Desc:活动类型：1拼团，5秒杀
-        /// Default:1
+        /// Desc:图片类型
+        /// Default:0
         /// Nullable:False
         /// </summary>           
         public int TypeId { get; set; }
 
         /// <summary>
-        /// Desc:活动ID
+        /// Desc:上传文件ID（sys_uploadfile主键）
         /// Default:0
         /// Nullable:False
         /// </summary>           
-        public int ActivityId { get; set; }
+        public int UploadFileId { get; set; }
 
         /// <summary>
-        /// Desc:活动价格
-        /// Default:0.0000
-        /// Nullable:False
-        /// </summary>           
-        public decimal Price { get; set; }
-
-        /// <summary>
-        /// Desc:活动商品库存
+        /// Desc:排序
         /// Default:0
         /// Nullable:False
         /// </summary>           
-        public int Stock { get; set; }
+        public int Orders { get; set; }
 
         /// <summary>
-        /// Desc:拼团活动成团人数
-        /// Default:0
-        /// Nullable:False
-        /// </summary>           
-        public int GroupMin { get; set; }
-
-        /// <summary>
-        /// Desc:活动开始时间
+        /// Desc:
         /// Default:
-        /// Nullable:True
+        /// Nullable:False
         /// </summary>           
-        public DateTime? StartTime { get; set; }
+        public string ImgUrl { get; set; }
 
         /// <summary>
-        /// Desc:活动结束时间
+        /// Desc:创建时间
         /// Default:
-        /// Nullable:True
+        /// Nullable:False
         /// </summary>           
-        public DateTime? EndTime { get; set; }
+        public DateTime CrtDate { get; set; }
+
+        /// <summary>
+        /// Desc:是否删除
+        /// Default:0
+        /// Nullable:False
+        /// </summary>           
+        public int IsDelete { get; set; }
 
     }
 }

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Caching" Version="0.17.0" />
+    <PackageReference Include="Volo.Abp.Core" Version="0.17.0" />
+    <PackageReference Include="Volo.Abp.Identity.Domain" Version="0.17.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HF.Goods.Domain.Shared\HF.Goods.Domain.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
