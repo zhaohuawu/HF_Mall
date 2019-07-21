@@ -85,53 +85,5 @@ namespace Bryan.Base
             app.UseMvc();
         }
 
-        private void JwtValidation(IServiceCollection services)
-        {
-            var jwtSettingsSection = Configuration.GetSection("JwtSettings");
-            services.Configure<JwtSettings>(jwtSettingsSection);
-            //TODO 令牌过期后刷新，以及更改密码后令牌未过期的处理问题
-            var jwtSettings = jwtSettingsSection.Get<JwtSettings>();
-            services.AddAuthentication(opts =>
-            {
-                opts.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                opts.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(opts =>
-            {
-                opts.Events = new JwtBearerEvents()
-                {
-                    OnMessageReceived = context =>
-                    {
-                        var header = context.Request.Headers["Authorization"].FirstOrDefault();
-                        var jwtEntity = JwtEntity.GetJwtEntity(header);
-                        if (jwtEntity != null)
-                        {
-                            if (DateTime.Now > DateTimeExtension.ConvertToCsharpTime(jwtEntity.Exp))
-                            {
-                                context.Fail("token已过期");
-                            }
-                        }
-                        return Task.CompletedTask;
-                    }
-                };
-
-                opts.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Secretkey)),
-                    ValidateIssuer = true,
-                    ValidIssuer = jwtSettings.Issuer,
-                    ValidateAudience = true,
-                    ValidAudience = jwtSettings.Audience,
-                };
-            });
-        }
-
-        private void RegisterRedis()
-        {
-            var cacheStr = Configuration.GetConnectionString("Redis_Hfmall");
-            var csredis = new CSRedis.CSRedisClient(cacheStr);
-            RedisHelper.Initialization(csredis);
-        }
     }
 }

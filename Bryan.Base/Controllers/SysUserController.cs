@@ -306,7 +306,7 @@ namespace Bryan.Base.Controllers
         {
             var result = await Task.Run(() =>
             {
-                var list = new List<Sys_UserRole>();
+                var list = new List<Sys_UserRole>(); 
                 var dicList = new ConcurrentBag<Dictionary<int, List<int>>>();
                 if (userId > 0 && isAdd == 1)
                 {

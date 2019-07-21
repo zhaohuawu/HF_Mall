@@ -72,3 +72,9 @@
 /HF.Goods.Application/obj
 /HF.Goods.Application.Contracts/bin/Debug/netstandard2.0
 /HF.Goods.Application.Contracts/obj
+/Bryan.Domain/bin/Debug/netstandard2.0
+/Bryan.Domain.Shared/bin/Debug/netstandard2.0
+/Bryan.Domain.Shared/obj
+/Bryan.EntityFrameworkCore/bin/Debug/netstandard2.0
+/Bryan.EntityFrameworkCore/obj
+/Bryan.MicroService/bin/Debug
