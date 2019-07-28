@@ -28,41 +28,18 @@ namespace Bryan.BaseService.Service
         {
             return _repository.GetEntityById<Sys_User>(id);
         }
-
-        public PageList<Sys_User> GetPageList(Expression<Func<Sys_User, bool>> where, PageSet pageSet, Expression<Func<Sys_User, object>> orderBy, bool isDesc = false, bool isPageNavStr = false)
-        {
-            return _repository.GetPageList(where, pageSet, orderBy, isDesc, isPageNavStr);
-        }
-
+        
         public PageList<TResult> GetPageList<TResult>(Expression<Func<Sys_User, bool>> where, PageSet pageSet, Expression<Func<Sys_User, TResult>> obj, Expression<Func<Sys_User, object>> orderBy, bool isDesc = false, bool isPageNavStr = false)
         {
             return _repository.GetPageList(where, pageSet, obj, orderBy, isDesc, isPageNavStr);
         }
 
-        public Sys_User AddUser(Sys_User model)
-        {
-            return _repository.InsertAndGetEntity(model);
-        }
-
-        public bool UpdateUser(Sys_User model)
-        {
-            return _repository.Update(model) > 0; ;
-        }
-
-        public bool DeleteUserBy(int id)
-        {
-            return _repository.DeleteById<Sys_User>(id) > 0;
-        }
 
         public Sys_User GetEntity(Expression<Func<Sys_User, bool>> where)
         {
             return _repository.GetEntity(where);
         }
-        public Sys_User InsertAndGetEntity(Sys_User user)
-        {
-            return _repository.InsertAndGetEntity(user);
-        }
-
+       
         public bool UpdateColumns(Expression<Func<Sys_User, object>> columns, Sys_User user, bool isLock)
         {
             return _repository.UpdateColumns(columns, user, isLock) > 0;
@@ -85,11 +62,6 @@ namespace Bryan.BaseService.Service
             return _repository.InsertList(insertList);
         }
 
-        public bool DeleteById(int id)
-        {
-            return _repository.DeleteById<Sys_UserRole>(id) > 0;
-        }
-
         public int DeleteByIdArray(params int[] idArr)
         {
             return _repository.DeleteByIdArray<Sys_UserRole>(idArr);
@@ -110,27 +82,21 @@ namespace Bryan.BaseService.Service
         /// <returns></returns>
         public List<Sys_UserRole> GetUserRoleList(int userId, int roleId)
         {
-            string sql = @"select sur.UserId,sur.RoleId from sys_user su
-                        inner join sys_userrole sur on sur.UserId=su.Id
-                        inner join sys_adminrole sar on sur.RoleId=sar.Id
-                        where su.`Status`=1
-                        and sar.IsForbidden=1";
-            string whereSql = "";
-            var whereDic = new Dictionary<string, object>();
-            if (userId > 0)
+            var queryList = _repository.SqlSugarDB.Queryable<Sys_User, Sys_UserRole, Sys_AdminRole>((su, sr, sa) => new object[] {
+                JoinType.Inner,su.Id==sr.UserId,
+                JoinType.Inner,sr.RoleId==sa.Id
+            })
+            .Select((su, sr, sa) => new Sys_UserRole
             {
-                whereSql += " and su.Id=@userId";
-                whereDic.Add("@userId", userId);
-            }
-
-            if (roleId > 0)
-            {
-                whereSql += " and sar.Id=@roleId";
-                whereDic.Add("@roleId", roleId);
-            }
-
-            return _repository.ExcuteGetList<Sys_UserRole>(sql + whereSql, whereDic);
+                Id = sr.Id,
+                UserId = sr.UserId,
+                RoleId = sr.RoleId
+            })
+            .WhereIF(userId > 0, su => su.Id == userId)
+            .WhereIF(roleId > 0, sa => sa.Id == roleId)
+            .ToList();
+            return queryList;
         }
-        
+
     }
 }

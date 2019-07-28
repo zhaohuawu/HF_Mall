@@ -170,10 +170,7 @@ namespace Bryan.BaseService.Service
                 string fileName = filePath.Substring(lastIndex + 1, filePath.Length - lastIndex - 1);
                 int status = (int)statusEnum;
                 int typeId = (int)typeEnum;
-                await Task.Run(() =>
-                {
-                    _repository.SqlSugarDB.Updateable<Sys_UploadFile>().UpdateColumns(p => new Sys_UploadFile() { Status = status }).Where(p => p.FileName == fileName && p.TypeId == typeId).ExecuteCommand();
-                });
+                await _repository.SqlSugarDB.Updateable<Sys_UploadFile>().SetColumns(p => new Sys_UploadFile() { Status = status }).Where(p => p.FileName == fileName && p.TypeId == typeId).ExecuteCommandAsync();
             }
         }
 
