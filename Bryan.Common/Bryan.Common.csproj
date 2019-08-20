@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Authors>BryanWu</Authors>
+    <Authors>Bryan Wu</Authors>
     <Product>Bryan.Common</Product>
     <Version>1.5.11</Version>
   </PropertyGroup>

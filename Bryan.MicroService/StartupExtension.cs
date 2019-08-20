@@ -91,21 +91,12 @@ namespace Bryan.MicroService
                     .AllowAnyHeader()
                     .AllowCredentials();//指定处理cookie
                 });
-                //opt.AddPolicy("AllowDomain", builder =>
-                //{
-                //    builder.WithOrigins(new string[] { "*" })
-                //    .AllowAnyHeader()
-                //    .AllowAnyMethod()
-                //    .AllowAnyOrigin()
-                //    .AllowCredentials();
-                //});
             });
         }
 
         public static IApplicationBuilder UseService(this IApplicationBuilder app, IHostingEnvironment env, IApplicationLifetime lifetime, SysConfig systemConfig)
         {
             MicroServiceExtension.UseMicroService(app, env, lifetime, systemConfig);
-            //app.UseCors("AllowDomain");
             app.UseMiddleware<PermissionMiddleware>();
             app.UseMiddleware<ExceptionMiddleware>();
             return app;
