@@ -78,3 +78,5 @@
 /Bryan.EntityFrameworkCore/bin/Debug/netstandard2.0
 /Bryan.EntityFrameworkCore/obj
 /Bryan.MicroService/bin/Debug
+/DesignPatterns.Test/bin/Debug/netcoreapp2.2
+/DesignPatterns.Test/obj
