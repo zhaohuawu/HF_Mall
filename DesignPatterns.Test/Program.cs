@@ -1,4 +1,5 @@
-﻿using DesignPatterns.Test.Proxy;
+﻿using DesignPatterns.Test.Decorator;
+using DesignPatterns.Test.Proxy;
 using System;
 
 namespace DesignPatterns.Test
@@ -8,9 +9,9 @@ namespace DesignPatterns.Test
     {
         static void Main(string[] args)
         {
-            // 创建一个代理对象并发出请求
-            Person proxy = new Friend();
-            proxy.BuyProduct();
+            //ProxyClient.ProxyRequst();
+            DecoratorClient.Order();
+
             Console.Read();
         }
     }
