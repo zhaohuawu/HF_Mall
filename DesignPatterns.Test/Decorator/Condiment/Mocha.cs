@@ -9,11 +9,9 @@ namespace DesignPatterns.Test.Decorator
     /// </summary>
     public class Mocha : CondimentDecorator
     {
-        public Beverage _beverage;
-
-        public Mocha(Beverage beverage)
+        public Mocha(Beverage beverage) : base(beverage)
         {
-            this._beverage = beverage;
+
         }
         public override string GetDescription()
         {

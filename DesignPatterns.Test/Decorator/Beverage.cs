@@ -10,10 +10,7 @@ namespace DesignPatterns.Test.Decorator
     public abstract class Beverage
     {
         public string _description = "";
-        public  string GetDescription()
-        {
-            return _description;
-        }
+        public abstract string GetDescription();
 
         public abstract double Cost();
     }

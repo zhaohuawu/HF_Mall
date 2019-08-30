@@ -13,8 +13,8 @@ namespace DesignPatterns.Test.Decorator
 
             Beverage beverage1 = new Decaf();
             beverage1 = new Mocha(beverage1);
-            //beverage1 = new Milk(beverage1);
-            //beverage1 = new Soy(beverage1);
+            beverage1 = new Milk(beverage1);
+            beverage1 = new Soy(beverage1);
             var list = beverage1.GetDescription();
             Console.WriteLine($"饮料材料：{beverage1.GetDescription()}，价格：{beverage1.Cost()}");
 

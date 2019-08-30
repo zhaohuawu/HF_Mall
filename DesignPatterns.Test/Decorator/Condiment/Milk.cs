@@ -9,11 +9,10 @@ namespace DesignPatterns.Test.Decorator
     /// </summary>
     public class Milk : CondimentDecorator
     {
-        public Beverage _beverage;
 
-        public Milk(Beverage beverage)
+        public Milk(Beverage beverage) : base(beverage)
         {
-            this._beverage = beverage;
+
         }
         public override string GetDescription()
         {

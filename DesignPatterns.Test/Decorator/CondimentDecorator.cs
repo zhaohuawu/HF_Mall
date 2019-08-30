@@ -9,7 +9,19 @@ namespace DesignPatterns.Test.Decorator
     /// </summary>
     public abstract class CondimentDecorator : Beverage
     {
-        public abstract new string GetDescription();
+        public Beverage _beverage;
 
+        public CondimentDecorator(Beverage beverage)
+        {
+            this._beverage = beverage;
+        }
+        public override string GetDescription()
+        {
+            return _beverage.GetDescription();
+        }
+        public override double Cost()
+        {
+            return _beverage.Cost();
+        }
     }
 }

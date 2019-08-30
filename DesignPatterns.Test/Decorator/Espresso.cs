@@ -17,5 +17,10 @@ namespace DesignPatterns.Test.Decorator
         {
             return 20.99;
         }
+
+        public override string GetDescription()
+        {
+            return _description;
+        }
     }
 }
