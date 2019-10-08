@@ -80,3 +80,5 @@
 /Bryan.MicroService/bin/Debug
 /DesignPatterns.Test/bin/Debug/netcoreapp2.2
 /DesignPatterns.Test/obj
+/Bryan.Base/Properties/PublishProfiles
+/Bryan.MicroService/bin/Release/netstandard2.0
