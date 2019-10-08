@@ -9,8 +9,8 @@ namespace DesignPatterns.Test
     {
         static void Main(string[] args)
         {
-            //ProxyClient.ProxyRequst();
-            DecoratorClient.Order();
+            ProxyClient.ProxyRequst();
+            //DecoratorClient.Order();
 
             Console.Read();
         }

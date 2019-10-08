@@ -4,18 +4,15 @@ using System.Text;
 
 namespace DesignPatterns.Test.Decorator
 {
-    /// <summary>
-    /// 具体装饰角色（大豆）
-    /// </summary>
-    public class Soy : CondimentDecorator
+    public class Sugar : CondimentDecorator
     {
-        public Soy(Beverage beverage) : base(beverage)
+        public Sugar(Beverage beverage) : base(beverage)
         {
 
         }
         public override string GetDescription()
         {
-            return $"{_beverage.GetDescription()}，Soy";
+            return $"{_beverage.GetDescription()}，Sugar";
         }
         public override double Cost()
         {

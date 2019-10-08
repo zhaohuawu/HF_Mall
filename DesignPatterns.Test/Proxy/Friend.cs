@@ -22,6 +22,7 @@ namespace DesignPatterns.Test.Proxy
             // 调用真实主题方法
             realSubject.BuyProduct();
             this.PostBuyProduct();
+            
         }
 
         // 代理角色执行的一些操作
