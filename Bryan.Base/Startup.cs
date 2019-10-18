@@ -27,6 +27,7 @@ namespace Bryan.Base
         public Startup(IConfiguration configuration, IHostingEnvironment env
             , ILogger<Startup> logger)
         {
+            _logger.LogWarning($"连接字符串串:{HttpContextExtension.GetLocalIP()}");
             Configuration = configuration;
             Env = env;
             _logger = logger;

@@ -33,6 +33,16 @@ namespace Bryan.MicroService
                 //x.SerializerSettings.ContractResolver = new ContractResolverOverload();
             });
 
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("any", builder =>
+                {
+                    builder.AllowAnyOrigin() //允许任何来源的主机访问
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();//指定处理cookie
+                });
+            });
             #region JWT认证
             //JWT配置注入
             services.Configure<JwtSettings>(opt =>
@@ -44,6 +54,9 @@ namespace Bryan.MicroService
                 opt.PublicKey = systemConfig.JwtSettings.PublicKey;
                 opt.Secretkey = systemConfig.JwtSettings.Secretkey;
             });
+            SysConfig systemConfig2 = systemConfig;
+            services.AddMicroService(systemConfig2);
+
             //TODO 令牌过期后刷新，以及更改密码后令牌未过期的处理问题
             services.AddAuthentication(opts =>
             {
@@ -80,18 +93,7 @@ namespace Bryan.MicroService
                 };
             });
             #endregion
-            SysConfig systemConfig2 = systemConfig;
-            services.AddMicroService(systemConfig2);
-            services.AddCors(opt =>
-            {
-                opt.AddPolicy("any", builder =>
-                {
-                    builder.AllowAnyOrigin() //允许任何来源的主机访问
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials();//指定处理cookie
-                });
-            });
+
         }
 
         public static IApplicationBuilder UseService(this IApplicationBuilder app, IHostingEnvironment env, IApplicationLifetime lifetime, SysConfig systemConfig)

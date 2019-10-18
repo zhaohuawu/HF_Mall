@@ -108,20 +108,20 @@ namespace Bryan.MicroService
                     });
                 });
             }
-            if (!env.IsProduction())
+            //if (!env.IsProduction())
+            //{
+            app.UseSwagger(opt =>
             {
-                app.UseSwagger(opt =>
-                {
-                    opt.RouteTemplate = "{documentName}/swagger.json";
-                });
-                //app.UseSwagger();
-                app.UseSwaggerUI(delegate (SwaggerUIOptions opt)
-                {
-                    opt.SwaggerEndpoint("/" + serviceInfo.Name.ToLower() + "/swagger.json", serviceInfo.DisplayName);
-                    opt.RoutePrefix = string.Empty;//开启默认swagger/index.html路径
+                opt.RouteTemplate = "{documentName}/swagger.json";
+            });
+            //app.UseSwagger();
+            app.UseSwaggerUI(delegate (SwaggerUIOptions opt)
+            {
+                opt.SwaggerEndpoint("/" + serviceInfo.Name.ToLower() + "/swagger.json", serviceInfo.DisplayName);
+                opt.RoutePrefix = string.Empty;//开启默认swagger/index.html路径
                     opt.DocExpansion(DocExpansion.None);
-                });
-            }
+            });
+            //}
             app.UseAuthentication();
         }
 
