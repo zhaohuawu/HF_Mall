@@ -4,6 +4,9 @@ using Newtonsoft.Json.Linq;
 using Bryan.Base.Models;
 using Microsoft.Extensions.Logging;
 using Bryan.MicroService;
+using System.IO;
+using Bryan.Base.Models.AppSettings;
+using Microsoft.Extensions.Options;
 
 namespace Bryan.Base.Controllers
 {
@@ -15,10 +18,12 @@ namespace Bryan.Base.Controllers
     public class TestController : BaseController
     {
         private ILog_AdminService _logAdmin;
-        public TestController(ILog_AdminService logAdmin, ILogger<TestController> log)
+        private UploadSettings _uploadSettings;
+        public TestController(ILog_AdminService logAdmin, IOptions<UploadSettings> uploadSettings, ILogger<TestController> log)
         {
             _logAdmin = logAdmin;
             _log = log;
+            this._uploadSettings = uploadSettings.Value;
         }
 
         /// <summary>
@@ -29,7 +34,8 @@ namespace Bryan.Base.Controllers
         [ProducesResponseType(typeof(TestDto), 200)]
         public IActionResult Get(string code)
         {
-            return ReturnJson(code);
+
+            return ReturnJson(code, new { dir = Directory.GetCurrentDirectory(), dirPath = Path.Combine(Directory.GetCurrentDirectory(), _uploadSettings.avatar), path = Path.Combine(_uploadSettings.path, _uploadSettings.avatar) });
         }
         /// <summary>
         /// 测试多参数返回json {"code":"000000","paramStr":"kjk,kllk"}
@@ -90,6 +96,6 @@ namespace Bryan.Base.Controllers
             else
                 return ReturnJsonByParms(code, null, paramStr.Split(','));
         }
-        
+
     }
 }

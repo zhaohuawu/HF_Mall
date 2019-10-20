@@ -37,7 +37,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HF.Goods.Application", "HF.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HF.Goods.Application.Contracts", "HF.Goods.Application.Contracts\HF.Goods.Application.Contracts.csproj", "{17FA4D91-40C3-4A12-8946-6F51072989D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignPatterns.Test", "DesignPatterns.Test\DesignPatterns.Test.csproj", "{2C0CE087-D1B4-46B2-AAFF-ECA0AF3DF015}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesignPatterns.Test", "DesignPatterns.Test\DesignPatterns.Test.csproj", "{2C0CE087-D1B4-46B2-AAFF-ECA0AF3DF015}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApi", "TestApi\TestApi.csproj", "{5A496AFD-764F-4220-BC13-9FB908AD27F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -259,6 +261,22 @@ Global
 		{2C0CE087-D1B4-46B2-AAFF-ECA0AF3DF015}.Release|x64.Build.0 = Release|Any CPU
 		{2C0CE087-D1B4-46B2-AAFF-ECA0AF3DF015}.Release|x86.ActiveCfg = Release|Any CPU
 		{2C0CE087-D1B4-46B2-AAFF-ECA0AF3DF015}.Release|x86.Build.0 = Release|Any CPU
+		{5A496AFD-764F-4220-BC13-9FB908AD27F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A496AFD-764F-4220-BC13-9FB908AD27F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A496AFD-764F-4220-BC13-9FB908AD27F8}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{5A496AFD-764F-4220-BC13-9FB908AD27F8}.Debug|ARM.Build.0 = Debug|Any CPU
+		{5A496AFD-764F-4220-BC13-9FB908AD27F8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5A496AFD-764F-4220-BC13-9FB908AD27F8}.Debug|x64.Build.0 = Debug|Any CPU
+		{5A496AFD-764F-4220-BC13-9FB908AD27F8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5A496AFD-764F-4220-BC13-9FB908AD27F8}.Debug|x86.Build.0 = Debug|Any CPU
+		{5A496AFD-764F-4220-BC13-9FB908AD27F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A496AFD-764F-4220-BC13-9FB908AD27F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A496AFD-764F-4220-BC13-9FB908AD27F8}.Release|ARM.ActiveCfg = Release|Any CPU
+		{5A496AFD-764F-4220-BC13-9FB908AD27F8}.Release|ARM.Build.0 = Release|Any CPU
+		{5A496AFD-764F-4220-BC13-9FB908AD27F8}.Release|x64.ActiveCfg = Release|Any CPU
+		{5A496AFD-764F-4220-BC13-9FB908AD27F8}.Release|x64.Build.0 = Release|Any CPU
+		{5A496AFD-764F-4220-BC13-9FB908AD27F8}.Release|x86.ActiveCfg = Release|Any CPU
+		{5A496AFD-764F-4220-BC13-9FB908AD27F8}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

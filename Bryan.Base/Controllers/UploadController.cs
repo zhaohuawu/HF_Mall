@@ -12,6 +12,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Logging;
 using Bryan.Common.Extension;
 using Bryan.MicroService;
+using System.IO;
 
 namespace Bryan.Base.Controllers
 {

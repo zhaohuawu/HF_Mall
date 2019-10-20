@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using SqlSugar;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
@@ -116,7 +117,11 @@ namespace Bryan.BaseService.Service
         {
             var now = DateTime.Now;
             imgUrl = imgUrl + now.Year + "/" + now.Month + "/" + now.Day + "/";
-            path = path + imgUrl;
+            //if (!path.EndsWith("/"))
+            //    path = path + "/";
+            //if (imgUrl.StartsWith("/"))
+            //    imgUrl = imgUrl.TrimStart('/');
+            path = Path.Combine(path, imgUrl);
             //文件名称
             string fileName = GUIDHelper.GetStringID() + ".png";
             imgUrl = imgUrl + fileName;

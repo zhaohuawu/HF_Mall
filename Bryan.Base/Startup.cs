@@ -18,6 +18,7 @@ using Microsoft.Extensions.Logging;
 using Bryan.Common.Extension;
 using System.Reflection;
 using Bryan.MicroService;
+using Autofac;
 
 namespace Bryan.Base
 {
@@ -27,7 +28,6 @@ namespace Bryan.Base
         public Startup(IConfiguration configuration, IHostingEnvironment env
             , ILogger<Startup> logger)
         {
-            _logger.LogWarning($"连接字符串串:{HttpContextExtension.GetLocalIP()}");
             Configuration = configuration;
             Env = env;
             _logger = logger;
@@ -52,23 +52,31 @@ namespace Bryan.Base
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            //AppSettings 参数配置
-            var appSettingsSection = Configuration.GetSection("AppSettings");
-            var appSettings = appSettingsSection.Get<AppSettings>();
-            services.Configure<AppSettings>(appSettingsSection);
-            services.Configure<UploadSettings>(Configuration.GetSection("Upload"));
+            try
+            {
+                //AppSettings 参数配置
+                var appSettingsSection = Configuration.GetSection("AppSettings");
+                var appSettings = appSettingsSection.Get<AppSettings>();
+                services.Configure<AppSettings>(appSettingsSection);
+                services.Configure<UploadSettings>(Configuration.GetSection("Upload"));
 
-            //注册数据库服务
-            DBManager.ConnectionString = Configuration.GetConnectionString("mysql_hfmall");
-            DBManager.isLocal = appSettings.IsLocal;
-            _logger.LogWarning($"连接字符串串:{DBManager.ConnectionString}");
+                //注册数据库服务
+                DBManager.ConnectionString = Configuration.GetConnectionString("mysql_hfmall");
+                DBManager.isLocal = appSettings.IsLocal;
+                _logger.LogWarning($"连接字符串串:{DBManager.ConnectionString}");
 
-            services.AddService(config);
+                services.AddService(config);
 
-            // 获取所有相关类库的程序集,通过命名空间和反射获取Assembly
-            Assembly[] assemblyArr = { Assembly.Load("Bryan.BaseService") };
-            //autofac 注入
-            return new AutofacServiceProvider(AutofacConfig.Init(services, assemblyArr));
+                // 获取所有相关类库的程序集,通过命名空间和反射获取Assembly
+                Assembly[] assemblyArr = { Assembly.Load("Bryan.BaseService") };
+                //autofac 注入
+                return new AutofacServiceProvider(AutofacConfig.Init(services, assemblyArr));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(null, ex, ex.Message, null);
+            }
+            return new AutofacServiceProvider(AutofacConfig.Init(services, null));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -78,10 +86,10 @@ namespace Bryan.Base
             {
                 app.UseDeveloperExceptionPage();//当exception是调用异常处理页面
             }
-            else
-            {
-                app.UseHsts();
-            }
+            //else
+            //{
+            //    app.UseHsts();
+            //}
             app.UseService(env, lifetime, config);
             app.UseMvc();
         }
